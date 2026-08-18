@@ -1,0 +1,114 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap'); */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    background-color: #ddd;
+    font-weight: 400;
+    overflow-y: scroll;
+}
+
+a:not(.btn) {
+    color: #000000;
+}
+
+[data-bs-theme="dark"] a:not(.btn) {
+    color: #6ea8fe;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+h1 { font-size: 1.7rem }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1rem; }
+
+.mono {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    font-weight: bold;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(255,255,255,.95) !important;
+}
+
+.bgeisdev {
+    background-color: #775500;
+}
+
+.bgeisuat {
+    background-color: #775500;
+}
+
+.bgeis {
+    background-color: #444444;
+}
+
+.bgnyl {
+    background-color: #0073bd;
+}
+
+.bgusaa {
+    background-color: #1a3258;
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+.text-xs {
+    font-size: 10px;
+}
+
+.btn-group-xs>.btn, .btn-xs {
+    padding: 0px 3px;
+    font-size: 12px;
+}
+
+.subheader {
+    margin: -10px;
+    background-color: rgb(245, 245, 245);
+    padding: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+input:required:user-invalid,
+input:focus:user-invalid {
+    border-color: #dd0000;
+}
+
+select:required:user-invalid,
+select:focus:user-invalid {
+    border-color: #dd0000;
+}
+
+.file:required:user-invalid,
+.file:focus:user-invalid {
+    border-color: #dd0000;
+}
+
+[v-cloak]>* {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .container {
+        background-color: #FFF;
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+        border: 0;
+    }
+}

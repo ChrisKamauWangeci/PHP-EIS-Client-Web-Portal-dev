@@ -1,0 +1,1 @@
+cd d:\websites\eis.expressimagingservices.net\ && php artisan schedule:run
