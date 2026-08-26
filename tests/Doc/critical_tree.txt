@@ -1,0 +1,937 @@
+.
+├── README.md
+├── app
+│   ├── Console
+│   │   └── Commands
+│   │       ├── AclReset.php
+│   │       ├── AclSeed.php
+│   │       ├── AddDocusignCcRole.php
+│   │       ├── CancelStatusCreate.php
+│   │       ├── DailyStatRecord.php
+│   │       ├── DailyStatReport.php
+│   │       ├── Datamaintenance.php
+│   │       ├── Docusigndownload.php
+│   │       ├── Docusignresend.php
+│   │       ├── Docusignvoidcompleted.php
+│   │       ├── EhrorderGenerateCoverpage.php
+│   │       ├── Faxcompany.php
+│   │       ├── Faxreport.php
+│   │       ├── Faxreportcompany.php
+│   │       ├── Filetransferreport.php
+│   │       ├── Hospitalfacilityformupdate.php
+│   │       ├── Hospitaltimezoneupdate.php
+│   │       ├── ImportShelteragentcode.php
+│   │       ├── Iplookup.php
+│   │       ├── LoginIpCleanup.php
+│   │       ├── SeqsterorderReminderNorthwesternMutual.php
+│   │       ├── Seqsterordercreate.php
+│   │       ├── Seqsterorderprovider.php
+│   │       ├── Seqsterorderreminderprudential.php
+│   │       ├── Seqsterorderreport.php
+│   │       ├── ShelterAgentsCsvImport.php
+│   │       ├── Shipmentimportfromworkorder.php
+│   │       ├── Smartaccesscreate.php
+│   │       ├── WorkorderPushback.php
+│   │       ├── Workorderholdtimereminder.php
+│   │       └── Workorderpaymentimportfromworkorder.php
+│   ├── Exports
+│   │   ├── EhrorderssearchresultsExport.php
+│   │   └── WorkordersExport.php
+│   ├── Helper
+│   │   └── Helper.php
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   ├── Admin
+│   │   │   │   ├── AccountmanagerController.php
+│   │   │   │   ├── AzureController.php
+│   │   │   │   ├── BilltopicklistController.php
+│   │   │   │   ├── ChangelogController.php
+│   │   │   │   ├── CompanyController.php
+│   │   │   │   ├── CompanyupdateController.php
+│   │   │   │   ├── ContractorController.php
+│   │   │   │   ├── ContractorloginController.php
+│   │   │   │   ├── ContractorloginattemptController.php
+│   │   │   │   ├── ContractorloginipController.php
+│   │   │   │   ├── CreditcardController.php
+│   │   │   │   ├── DatachangeController.php
+│   │   │   │   ├── DocusigndocumentController.php
+│   │   │   │   ├── FileController.php
+│   │   │   │   ├── FiletransferController.php
+│   │   │   │   ├── LoginController.php
+│   │   │   │   ├── LoginattemptController.php
+│   │   │   │   ├── LoginipController.php
+│   │   │   │   ├── Over60daysnoticeconfigController.php
+│   │   │   │   ├── PasswordresetController.php
+│   │   │   │   ├── PermissionController.php
+│   │   │   │   ├── PlatformConfigurationController.php
+│   │   │   │   ├── RequestorController.php
+│   │   │   │   ├── RequestorPasswordChangeController.php
+│   │   │   │   ├── RequestorroleController.php
+│   │   │   │   ├── RoleController.php
+│   │   │   │   ├── SettingController.php
+│   │   │   │   ├── ShelteragentController.php
+│   │   │   │   ├── SmartaccessthemeController.php
+│   │   │   │   ├── StatustriggerController.php
+│   │   │   │   ├── TicketmanagerController.php
+│   │   │   │   ├── WebsiteconfigController.php
+│   │   │   │   ├── WorkorderController.php
+│   │   │   │   ├── WorkorderholdtimeController.php
+│   │   │   │   └── WorkordernoticeController.php
+│   │   │   ├── Api
+│   │   │   │   ├── AlternatepaymentController.php
+│   │   │   │   ├── CopyserviceController.php
+│   │   │   │   ├── DocusigneventController.php
+│   │   │   │   ├── FileController.php
+│   │   │   │   ├── HospitalController.php
+│   │   │   │   ├── HospitalrawController.php
+│   │   │   │   ├── PlatformConfigurationController.php
+│   │   │   │   ├── RoiController.php
+│   │   │   │   ├── WorkorderController.php
+│   │   │   │   ├── WorkorderholdtimeController-new.php
+│   │   │   │   └── WorkorderholdtimeController.php
+│   │   │   ├── AuthAdminController.php
+│   │   │   ├── AuthUserController.php
+│   │   │   ├── AuthUserGoogleController.php
+│   │   │   ├── Controller.php
+│   │   │   ├── DocusigndocumentController.php
+│   │   │   ├── PasswordresetController.php
+│   │   │   ├── QrController.php
+│   │   │   ├── SessioninfoController.php
+│   │   │   ├── SmartaccessController.php
+│   │   │   └── User
+│   │   │       ├── AdditionalrequestController.php
+│   │   │       ├── AddonorderController.php
+│   │   │       ├── AlternatepaymentController.php
+│   │   │       ├── ApscancellationController.php
+│   │   │       ├── BankstatementController.php
+│   │   │       ├── CheckController.php
+│   │   │       ├── CompanyupdateController.php
+│   │   │       ├── ContractorController.php
+│   │   │       ├── ContractorloginController.php
+│   │   │       ├── CopyserviceController.php
+│   │   │       ├── CreditcardauthorizationController.php
+│   │   │       ├── DailyStatController.php
+│   │   │       ├── DatachangeController.php
+│   │   │       ├── DocusignController.php
+│   │   │       ├── DocusignchangeController.php
+│   │   │       ├── DocusigndocumentController.php
+│   │   │       ├── EhrorderController.php
+│   │   │       ├── EhrordersdocumentController.php
+│   │   │       ├── EhrorderssearchresultController.php
+│   │   │       ├── EhrorderssearchresultsexclusionController.php
+│   │   │       ├── EisweborderController.php
+│   │   │       ├── EmailController.php
+│   │   │       ├── ExamrequestController.php
+│   │   │       ├── FacilityformController.php
+│   │   │       ├── FaxController.php
+│   │   │       ├── FileController.php
+│   │   │       ├── FiletransferController.php
+│   │   │       ├── HospitalController.php
+│   │   │       ├── IncomingApsConfigController.php
+│   │   │       ├── IncomingApsLogController.php
+│   │   │       ├── InquiryController.php
+│   │   │       ├── InsurancecompanyController.php
+│   │   │       ├── LlmController.php
+│   │   │       ├── OrderController.php
+│   │   │       ├── PrefillController.php
+│   │   │       ├── PurgeConfigController.php
+│   │   │       ├── ReportConfigController.php
+│   │   │       ├── ReportConfigNameController.php
+│   │   │       ├── ReportConfigTypeController.php
+│   │   │       ├── RequestlogController.php
+│   │   │       ├── RequestorController.php
+│   │   │       ├── RoiController.php
+│   │   │       ├── SeqsterorderController.php
+│   │   │       ├── ShipmentController.php
+│   │   │       ├── ShippinglabelController.php
+│   │   │       ├── SignformController.php
+│   │   │       ├── SpellController.php
+│   │   │       ├── StatustriggerController.php
+│   │   │       ├── SynodextransmissionsController.php
+│   │   │       ├── TicketController.php
+│   │   │       ├── TimecardController.php
+│   │   │       ├── WebhookController.php
+│   │   │       ├── WoinController.php
+│   │   │       ├── WorkorderController.php
+│   │   │       ├── WorkorderdetailController.php
+│   │   │       ├── WorkorderemailController.php
+│   │   │       ├── WorkorderemailsendController.php
+│   │   │       ├── WorkorderfileController.php
+│   │   │       ├── WorkorderfiledownloadController.php
+│   │   │       ├── WorkorderfiletransferController.php
+│   │   │       ├── WorkorderholdtimeController.php
+│   │   │       ├── WorkordernoticeController.php
+│   │   │       ├── WorkorderpaymentController.php
+│   │   │       └── WorkorderprefillController.php
+│   │   ├── Middleware
+│   │   │   ├── ApiSessionMiddleware.php
+│   │   │   ├── AuthAdmin.php
+│   │   │   ├── AuthUser.php
+│   │   │   └── Authenticate.php
+│   │   ├── Requests
+│   │   │   ├── IndexEhrorderRequest.php
+│   │   │   ├── IndexPlatformConfigurationRequest.php
+│   │   │   ├── StoreAlternatepaymentRequest.php
+│   │   │   ├── StoreCompanyRequest.php
+│   │   │   ├── StoreCompanyupdateRequest.php
+│   │   │   ├── StoreContractorRequest.php
+│   │   │   ├── StoreCopyserviceRequest.php
+│   │   │   ├── StoreCreditcardRequest.php
+│   │   │   ├── StoreDatachangeRequest.php
+│   │   │   ├── StoreDocusigndocumentRequest.php
+│   │   │   ├── StoreEhrorderRequest.php
+│   │   │   ├── StoreEhrorderssearchresultsexclusionRequest.php
+│   │   │   ├── StoreFacilityformRequest.php
+│   │   │   ├── StoreHospitalRequest.php
+│   │   │   ├── StoreHospitalrawRequest.php
+│   │   │   ├── StoreIncomingApsConfigRequest.php
+│   │   │   ├── StoreOver60daysnoticeconfigRequest.php
+│   │   │   ├── StorePlatformConfigurationRequest.php
+│   │   │   ├── StorePurgeConfigRequest.php
+│   │   │   ├── StoreReportConfigNameRequest.php
+│   │   │   ├── StoreReportConfigRequest.php
+│   │   │   ├── StoreReportConfigTypeRequest.php
+│   │   │   ├── StoreRequestlogRequest.php
+│   │   │   ├── StoreRequestorRequest.php
+│   │   │   ├── StoreRequestorroleRequest.php
+│   │   │   ├── StoreRoiRequest.php
+│   │   │   ├── StoreSeqsterorderRequest.php
+│   │   │   ├── StoreSettingRequest.php
+│   │   │   ├── StoreShipmentRequest.php
+│   │   │   ├── StoreShippinglabelRequest.php
+│   │   │   ├── StoreTicketRequest.php
+│   │   │   ├── StoreTicketcommentRequest.php
+│   │   │   ├── StoreTicketfileRequest.php
+│   │   │   ├── StoreWebsiteconfigRequest.php
+│   │   │   ├── StoreWorkorderRequest.php
+│   │   │   ├── StoreWorkordernoticeRequest.php
+│   │   │   ├── StoreWorkorderpaymentRequest.php
+│   │   │   ├── UpdateAlternatepaymentRequest.php
+│   │   │   ├── UpdateApscancellationRequest.php
+│   │   │   ├── UpdateCompanyRequest.php
+│   │   │   ├── UpdateCompanyupdateRequest.php
+│   │   │   ├── UpdateContractorRequest.php
+│   │   │   ├── UpdateCopyserviceRequest.php
+│   │   │   ├── UpdateCreditcardRequest.php
+│   │   │   ├── UpdateDatachangeRequest.php
+│   │   │   ├── UpdateDocusignRequest.php
+│   │   │   ├── UpdateDocusigndocumentRequest.php
+│   │   │   ├── UpdateEhrorderRequest.php
+│   │   │   ├── UpdateEhrorderssearchresultsexclusionRequest.php
+│   │   │   ├── UpdateExamrequestRequest.php
+│   │   │   ├── UpdateFacilityformRequest.php
+│   │   │   ├── UpdateHospitalRequest.php
+│   │   │   ├── UpdateHospitalrawRequest.php
+│   │   │   ├── UpdateIncomingApsConfigRequest.php
+│   │   │   ├── UpdateOver60daysnoticeconfigRequest.php
+│   │   │   ├── UpdatePlatformConfigurationRequest.php
+│   │   │   ├── UpdatePurgeConfigRequest.php
+│   │   │   ├── UpdateReportConfigNameRequest.php
+│   │   │   ├── UpdateReportConfigRequest.php
+│   │   │   ├── UpdateReportConfigTypeRequest.php
+│   │   │   ├── UpdateRequestlogRequest.php
+│   │   │   ├── UpdateRequestorRequest.php
+│   │   │   ├── UpdateRequestorroleRequest.php
+│   │   │   ├── UpdateRoiRequest.php
+│   │   │   ├── UpdateSeqsterorderRequest.php
+│   │   │   ├── UpdateSettingRequest.php
+│   │   │   ├── UpdateShipmentRequest.php
+│   │   │   ├── UpdateTicketRequest.php
+│   │   │   ├── UpdateWebsiteconfigRequest.php
+│   │   │   ├── UpdateWorkorderHospitalRequest.php
+│   │   │   ├── UpdateWorkorderRequest.php
+│   │   │   ├── UpdateWorkordernoticeRequest.php
+│   │   │   └── UpdateWorkorderpaymentRequest.php
+│   │   └── Resources
+│   │       └── WorkorderResource.php
+│   ├── Mail
+│   │   ├── DailyStatEmail.php
+│   │   ├── DocusignaccesscodeEmail.php
+│   │   ├── EmailEmail.php
+│   │   ├── Emailer.php
+│   │   ├── FaxEmail.php
+│   │   ├── FiletransferEmail.php
+│   │   ├── IpconfirmadminEmail.php
+│   │   ├── IpconfirmuserEmail.php
+│   │   ├── NoticeEmail.php
+│   │   ├── PasswordresetEmail.php
+│   │   ├── SeqsterorderEmail.php
+│   │   ├── SeqsterorderreportEmail.php
+│   │   ├── SmartaccessEmail.php
+│   │   ├── TicketEmail.php
+│   │   └── WorkorderholdtimereminderEmail.php
+│   ├── Models
+│   │   ├── Accountmanager.php
+│   │   ├── Addonorder.php
+│   │   ├── Agent.php
+│   │   ├── Alternatepayment.php
+│   │   ├── Apscancellation.php
+│   │   ├── Apsorder.php
+│   │   ├── Bankstatement.php
+│   │   ├── Billingfeeeis.php
+│   │   ├── Billtopicklist.php
+│   │   ├── Billtopicklistnew.php
+│   │   ├── Changelog.php
+│   │   ├── Cioxsiteid.php
+│   │   ├── Company.php
+│   │   ├── Companyupdate.php
+│   │   ├── Contractor.php
+│   │   ├── ContractorAdmin.php
+│   │   ├── Contractorlogin.php
+│   │   ├── Contractorloginattempt.php
+│   │   ├── Contractorloginip.php
+│   │   ├── Copyservice.php
+│   │   ├── Creditcard.php
+│   │   ├── DailyStat.php
+│   │   ├── Datachange.php
+│   │   ├── Docusigndocument.php
+│   │   ├── Docusignevent.php
+│   │   ├── Drfeeupdatehst.php
+│   │   ├── Ehrorder.php
+│   │   ├── Ehrordersdocument.php
+│   │   ├── Ehrorderssearchresult.php
+│   │   ├── Ehrorderssearchresultsexclusion.php
+│   │   ├── Ehrstatustrigger.php
+│   │   ├── Ehrworkorder.php
+│   │   ├── Eisweborder.php
+│   │   ├── Email.php
+│   │   ├── EpicOrganization.php
+│   │   ├── Examrequest.php
+│   │   ├── Facilityform.php
+│   │   ├── Fax.php
+│   │   ├── Filetransfer.php
+│   │   ├── Hospital.php
+│   │   ├── Hospitalraw.php
+│   │   ├── IncomingApsConfig.php
+│   │   ├── IncomingApsLog.php
+│   │   ├── Inquiry.php
+│   │   ├── Insuranceagencyexception.php
+│   │   ├── Insurancecompany.php
+│   │   ├── Login.php
+│   │   ├── Loginattempt.php
+│   │   ├── Loginip.php
+│   │   ├── Northwesternmutual.php
+│   │   ├── Northwesternmutualagent.php
+│   │   ├── Order.php
+│   │   ├── OrderFile.php
+│   │   ├── Over60daysnoticeconfig.php
+│   │   ├── Passwordreset.php
+│   │   ├── PlatformConfiguration.php
+│   │   ├── Prefill.php
+│   │   ├── PurgeConfig.php
+│   │   ├── ReportConfig.php
+│   │   ├── ReportConfigName.php
+│   │   ├── ReportConfigType.php
+│   │   ├── Requestlog.php
+│   │   ├── Requestor.php
+│   │   ├── RequestorPasswordChange.php
+│   │   ├── Requestorfollowup.php
+│   │   ├── Requestorrole.php
+│   │   ├── Roi.php
+│   │   ├── Seqsterorder.php
+│   │   ├── Setting.php
+│   │   ├── Shelteragent.php
+│   │   ├── Shipment.php
+│   │   ├── Smartaccesstheme.php
+│   │   ├── Statuslist.php
+│   │   ├── Statustrigger.php
+│   │   ├── Synodextransmission.php
+│   │   ├── Ticket.php
+│   │   ├── Ticketcomment.php
+│   │   ├── Timecard.php
+│   │   ├── Underwriter.php
+│   │   ├── User.php
+│   │   ├── Vendor.php
+│   │   ├── Webhook.php
+│   │   ├── Websiteconfig.php
+│   │   ├── Woin.php
+│   │   ├── Workorder.php
+│   │   ├── Workorderagent.php
+│   │   ├── Workorderdetail.php
+│   │   ├── Workorderduplicate.php
+│   │   ├── Workorderfiledownload.php
+│   │   ├── Workorderfiletransfer.php
+│   │   ├── Workorderholdtime.php
+│   │   ├── Workordernotice.php
+│   │   ├── Workorderpayment.php
+│   │   └── Workorderreopen.php
+│   ├── Providers
+│   │   └── AppServiceProvider.php
+│   ├── Services
+│   │   ├── DailyStatService.php
+│   │   ├── DocusignService.php
+│   │   ├── EhrorderCoverpageService.php
+│   │   ├── GeoIpService.php
+│   │   ├── SeqsterEmailService.php
+│   │   └── SpellCheckService.php
+│   └── View
+│       └── Components
+│           ├── AdminLayout.php
+│           ├── AppLayout.php
+│           ├── NomenuLayout.php
+│           ├── PdfLayout.php
+│           └── UserLayout.php
+├── artisan
+├── bootstrap
+│   ├── app.php
+│   ├── cache
+│   │   ├── packages.php
+│   │   └── services.php
+│   └── providers.php
+├── commandlaravel.bat
+├── composer.json
+├── composer.lock
+├── config
+│   ├── app.php
+│   ├── auth.php
+│   ├── cache.php
+│   ├── database.php
+│   ├── dompdf.php
+│   ├── filesystems.php
+│   ├── logging.php
+│   ├── mail.php
+│   ├── queue.php
+│   ├── services.php
+│   ├── session.php
+│   └── site_config.php
+├── database
+│   ├── database.sqlite
+│   ├── factories
+│   │   └── UserFactory.php
+│   ├── migrations
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   └── 0001_01_01_000002_create_jobs_table.php
+│   └── seeders
+│       └── DatabaseSeeder.php
+├── package.json
+├── phpunit.xml
+├── pint.json
+├── private-test-docusign.key
+├── public
+│   ├── css
+│   │   ├── admin.css
+│   │   ├── bootstrap.min.css
+│   │   ├── bootstrap.min.css.map
+│   │   ├── css.css
+│   │   ├── php.php
+│   │   ├── prefill.ttf
+│   │   └── tailwind.min.css
+│   ├── eis
+│   │   └── s.php
+│   ├── favicon.ico
+│   ├── index.php
+│   ├── js
+│   │   ├── bootstrap.bundle.min.js
+│   │   ├── bootstrap.bundle.min.js.map
+│   │   ├── disableforms.js
+│   │   ├── download.min.js
+│   │   ├── fontkit.umd.min.js
+│   │   ├── htmx.min.js
+│   │   ├── jquery-3.7.1.min.js
+│   │   ├── passwordchange.js
+│   │   ├── pdf-lib-orig.js
+│   │   ├── pdf-lib.js
+│   │   ├── tablesort.js
+│   │   └── vue.global.prod.min.js
+│   ├── robots.txt
+│   ├── test.php
+│   └── web.config
+├── resources
+│   ├── css
+│   │   └── app.css
+│   ├── js
+│   │   ├── app.js
+│   │   └── bootstrap.js
+│   └── views
+│       ├── admin
+│       │   ├── accountmanagers
+│       │   │   └── index.blade.php
+│       │   ├── azure
+│       │   │   └── edit.blade.php
+│       │   ├── billtopicklists
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── changelogs
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── companies
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── companyupdates
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── contractorloginattempts
+│       │   │   └── index.blade.php
+│       │   ├── contractorloginips
+│       │   │   └── index.blade.php
+│       │   ├── contractorlogins
+│       │   │   ├── index.blade.php
+│       │   │   ├── show.blade.php
+│       │   │   ├── stats.blade.php
+│       │   │   └── statsdaily.blade.php
+│       │   ├── contractors
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   ├── password.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── creditcards
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── datachanges
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── docusigndocuments
+│       │   │   ├── index.blade.php
+│       │   │   ├── show.blade.php
+│       │   │   └── stats.blade.php
+│       │   ├── filetransfers
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── loginattempts
+│       │   │   ├── index.blade.php
+│       │   │   └── stats.blade.php
+│       │   ├── loginips
+│       │   │   └── index.blade.php
+│       │   ├── logins
+│       │   │   ├── index.blade.php
+│       │   │   └── stats.blade.php
+│       │   ├── over60daysnoticeconfigs
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── passwordresets
+│       │   │   └── index.blade.php
+│       │   ├── permissions
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   └── index.blade.php
+│       │   ├── platform_configurations
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade-vue.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── requestor_password_changes
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── requestorroles
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── requestors
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   ├── password.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── roles
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── settings
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── shelteragents
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── smartaccessthemes
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── statustriggers
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── ticketmanagers
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── websiteconfigs
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   ├── workorderholdtimes
+│       │   │   ├── index.blade.php
+│       │   │   ├── show.blade.php
+│       │   │   └── stats.blade.php
+│       │   ├── workordernotices
+│       │   │   ├── create.blade.php
+│       │   │   ├── edit.blade.php
+│       │   │   ├── index.blade.php
+│       │   │   └── show.blade.php
+│       │   └── workorders
+│       │       ├── index.blade.php
+│       │       ├── show.blade.php
+│       │       └── stats.blade.php
+│       ├── authadmin
+│       │   ├── ipconfirm.blade.php
+│       │   └── login.blade.php
+│       ├── authuser
+│       │   ├── ipconfirm.blade.php
+│       │   └── login.blade.php
+│       ├── components
+│       │   ├── email.blade.php
+│       │   ├── emailseqster.blade.php
+│       │   ├── flash.blade.php
+│       │   ├── flashold.blade.php
+│       │   ├── form
+│       │   │   ├── button.blade.php
+│       │   │   ├── checkbox.blade.php
+│       │   │   ├── datalist.blade.php
+│       │   │   ├── error.blade.php
+│       │   │   ├── errors.blade.php
+│       │   │   ├── field.blade.php
+│       │   │   ├── input.blade.php
+│       │   │   ├── label.blade.php
+│       │   │   ├── select.blade.php
+│       │   │   └── textarea.blade.php
+│       │   ├── hospitalformcopyschedule.blade.php
+│       │   ├── hospitalformnotes.blade.php
+│       │   ├── hospitalformnotescreate.blade.php
+│       │   └── loadingindicator.blade.php
+│       ├── docusigndocuments
+│       │   └── index.blade.php
+│       ├── emails
+│       │   ├── daily_stat.blade.php
+│       │   ├── docusign
+│       │   │   ├── bestow.blade.php
+│       │   │   ├── catholicorderofforesters.blade.php
+│       │   │   ├── eis.blade.php
+│       │   │   ├── massmutual.blade.php
+│       │   │   ├── nationwide.blade.php
+│       │   │   ├── northwesternmutual.blade.php
+│       │   │   ├── plico.blade.php
+│       │   │   ├── protective.blade.php
+│       │   │   └── prudential.blade.php
+│       │   ├── docusignaccesscode.blade.php
+│       │   ├── email.blade.php
+│       │   ├── emailer.blade.php
+│       │   ├── faxreport.blade.php
+│       │   ├── faxreportcompany.blade.php
+│       │   ├── filetransfer.blade.php
+│       │   ├── ipconfirmadmin.blade.php
+│       │   ├── ipconfirmuser-text.blade.php
+│       │   ├── ipconfirmuser.blade.php
+│       │   ├── notice.blade.php
+│       │   ├── passwordreset.blade.php
+│       │   ├── seqsterorder
+│       │   │   ├── eis.blade.php
+│       │   │   ├── northwestern.blade.php
+│       │   │   ├── prudential.blade.php
+│       │   │   └── usaa.blade.php
+│       │   ├── seqsterorderreminder_northwesternmutual.blade.php
+│       │   ├── seqsterorderreminder_prudential.blade.php
+│       │   ├── seqsterorderreport.blade.php
+│       │   ├── smartaccess
+│       │   │   ├── smartaccess-abacus.blade.php
+│       │   │   ├── smartaccess-ai-old.blade.php
+│       │   │   ├── smartaccess-simple.blade.php
+│       │   │   └── smartaccess.blade.php
+│       │   ├── ticket.blade.php
+│       │   └── workorderholdtimereminder.blade.php
+│       ├── index.blade.php
+│       ├── layouts
+│       │   ├── admin.blade.php
+│       │   ├── app.blade.php
+│       │   ├── nomenu.blade.php
+│       │   ├── pdf.blade.php
+│       │   └── user.blade.php
+│       ├── partials
+│       │   ├── footer.blade.php
+│       │   ├── footerapp.blade.php
+│       │   └── workorderfollowupstatus.blade.php
+│       ├── passwordresets
+│       │   ├── create.blade.php
+│       │   └── index.blade.php
+│       └── user
+│           ├── additionalrequests
+│           │   ├── create.blade.php
+│           │   └── pdf
+│           │       └── additionalrequest.blade.php
+│           ├── addonorders
+│           │   ├── create.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── alternatepayments
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── apscancellations
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   ├── partials
+│           │   │   └── row.blade.php
+│           │   └── show.blade.php
+│           ├── bankstatements
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── checks
+│           │   └── pdf
+│           │       ├── check.blade.php
+│           │       ├── copyservice.blade.php
+│           │       └── envelope.blade.php
+│           ├── companyupdates
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── contractorlogins
+│           │   ├── index.blade.php
+│           │   ├── show.blade.php
+│           │   ├── stats.blade.php
+│           │   └── statsdaily.blade.php
+│           ├── contractors
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── copyservices
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── creditcardauthorizations
+│           │   ├── create.blade.php
+│           │   └── pdf
+│           │       └── creditcardauthorization.blade.php
+│           ├── daily_stats
+│           │   ├── index.blade.php
+│           │   └── totals.blade.php
+│           ├── datachanges
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── docusigndocuments
+│           │   ├── index.blade.php
+│           │   ├── show.blade.php
+│           │   └── stats.blade.php
+│           ├── docusigns
+│           │   ├── edit.blade.php
+│           │   └── index.blade.php
+│           ├── ehrorders
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   ├── pdf
+│           │   │   └── coverpage.blade.php
+│           │   └── show.blade.php
+│           ├── ehrordersdocuments
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── ehrorderssearchresults
+│           │   ├── _status_button.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── ehrorderssearchresultsexclusions
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── eisweborders
+│           │   ├── index.blade.php
+│           │   ├── show.blade.php
+│           │   └── stats.blade.php
+│           ├── emails
+│           │   ├── create.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── examrequests
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── facilityforms
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── faxes
+│           │   ├── create.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── filetransfers
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── hospitals
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   ├── show.blade.php
+│           │   └── transfer.blade.php
+│           ├── incoming_aps_configs
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── incoming_aps_logs
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── inquiries
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── insurancecompanies
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── orders
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── prefills
+│           │   ├── index.blade.php
+│           │   ├── show.blade.php
+│           │   └── stats.blade.php
+│           ├── purge_configs
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── report_config_names
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── report_config_types
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── report_configs
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── requestlogs
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── requestors
+│           │   └── autocomplete.blade.php
+│           ├── rois
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── seqsterorders
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   ├── show.blade.php
+│           │   └── stats.blade.php
+│           ├── shipments
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── shippinglabels
+│           │   └── create.blade.php
+│           ├── signforms
+│           │   ├── create.blade.php
+│           │   └── index.blade.php
+│           ├── statustriggers
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── synodextransmissions
+│           │   ├── _table.blade.php
+│           │   ├── htmxpagination.blade.php
+│           │   └── index.blade.php
+│           ├── tickets
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── timecards
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── utilities
+│           │   └── index.blade.php
+│           ├── webhooks
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── woins
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── workorderdetails
+│           │   ├── create.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── workorderemails
+│           │   └── create.blade.php
+│           ├── workorderemailsend
+│           │   └── create.blade.php
+│           ├── workorderfiledownloads
+│           │   ├── _table.blade.php
+│           │   ├── htmxpagination.blade.php
+│           │   └── index.blade.php
+│           ├── workorderfiles
+│           │   ├── authcheckembed.blade.php
+│           │   ├── pdf
+│           │   │   ├── coverpage.blade.php
+│           │   │   └── qr.blade.php
+│           │   ├── show.blade.php
+│           │   └── showhtmx.blade.php
+│           ├── workorderfiletransfers
+│           │   ├── _table.blade.php
+│           │   ├── htmxpagination.blade.php
+│           │   └── index.blade.php
+│           ├── workorderholdtimes
+│           │   ├── detail.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── workordernotices
+│           │   ├── create.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── workorderpayments
+│           │   ├── create.blade.php
+│           │   ├── edit.blade.php
+│           │   ├── index.blade.php
+│           │   └── show.blade.php
+│           ├── workorderprefills
+│           │   └── index.blade.php
+│           └── workorders
+│               ├── cancel.blade.php
+│               ├── changerequestor.blade.php
+│               ├── docusign.blade.php
+│               ├── duplicate.blade.php
+│               ├── edit.blade.php
+│               ├── history.blade.php
+│               ├── hospitalchange.blade.php
+│               ├── index.blade.php
+│               ├── partials
+│               │   └── _followupnote.blade.php
+│               ├── payment.blade.php
+│               ├── paymentnote.blade.php
+│               ├── related.blade.php
+│               ├── reopen.blade.php
+│               └── show.blade.php
+├── routes
+│   ├── api.php
+│   ├── console.php
+│   └── web.php
+├── storage
+│   ├── app
+│   │   ├── private
+│   │   └── public
+│   └── persistent_logs
+│       └── geoip_error.txt
+└── vite.config.js
+
+157 directories, 778 files
