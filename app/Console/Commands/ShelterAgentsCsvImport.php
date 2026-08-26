@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -55,7 +57,7 @@ class ShelterAgentsCsvImport extends Command
             }
         }
 
-        if (!empty($batch)) {
+        if (! empty($batch)) {
             DB::table('shelteragents')->insert($batch);
         }
 

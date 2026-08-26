@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exports;
 
 use Illuminate\Support\Collection;
@@ -9,11 +11,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class EhrorderssearchresultsExport implements
-    FromCollection,
-    WithHeadings,
-    WithMapping,
-    ShouldAutoSize
+class EhrorderssearchresultsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping
 {
     use Exportable;
 

@@ -15,8 +15,8 @@ class SmartaccessthemeController extends Controller
         $filters = $request->query();
 
         $query = Smartaccesstheme::query()
-            ->when($filters['company_name'] ?? null, fn($q, $v) => $q->where('company_name', $v))
-            ->when($filters['slug'] ?? null, fn($q, $v) => $q->where('slug', $v));
+            ->when($filters['company_name'] ?? null, fn ($q, $v) => $q->where('company_name', $v))
+            ->when($filters['slug'] ?? null, fn ($q, $v) => $q->where('slug', $v));
 
         $query->leftJoin('Company', 'smartaccessthemes.company_name', '=', 'Company.C_Name');
         $query->select([

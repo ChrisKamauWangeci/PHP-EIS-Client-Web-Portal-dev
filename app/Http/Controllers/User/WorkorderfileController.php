@@ -11,9 +11,9 @@ use App\Models\Hospital;
 use App\Models\Insurancecompany;
 use App\Models\Requestor;
 use App\Models\Requestorfollowup;
+use App\Models\Statustrigger;
 use App\Models\Workorder;
 use App\Models\Workorderholdtime;
-use App\Models\Statustrigger;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -496,7 +496,6 @@ class WorkorderfileController extends Controller
                             $requestorfollowup->save();
                         }
 
-
                         $filetype = $request->input('filetype');
 
                         $workorderholdtimeimagefile = null;
@@ -506,7 +505,7 @@ class WorkorderfileController extends Controller
                             $request->session()->flash('success', 'Special Authorization File is uploaded: special_authorization ' . $filename);
 
                             $statusCode = 659;
-                            if($this->subdomain() == 'usaa') {
+                            if ($this->subdomain() == 'usaa') {
                                 $statusCode = 1003800773;
                             }
 

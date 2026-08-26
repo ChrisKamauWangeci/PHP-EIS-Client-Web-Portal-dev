@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Ehrorder;
+use Illuminate\Http\Request;
 
 class SmartaccessController extends Controller
 {

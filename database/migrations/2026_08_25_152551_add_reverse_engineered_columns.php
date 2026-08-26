@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class() extends Migration
 {
     public function up(): void
     {
@@ -27,7 +29,7 @@ return new class extends Migration
 
         // 2. Ensure WorkOrder exists and add columns
         // (GenerateSkeletonSchema might have missed this one in eisuat, so we use 'create' if it doesn't exist)
-        if (!Schema::hasTable('WorkOrder')) {
+        if (! Schema::hasTable('WorkOrder')) {
             Schema::create('WorkOrder', function (Blueprint $table) {
                 $table->id();
                 $table->timestamps();
@@ -72,4 +74,3 @@ return new class extends Migration
         });
     }
 };
-

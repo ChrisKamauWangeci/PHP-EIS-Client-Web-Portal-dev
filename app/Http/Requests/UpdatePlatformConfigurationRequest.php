@@ -27,7 +27,7 @@ class UpdatePlatformConfigurationRequest extends FormRequest
                 'min:3',
                 'max:50',
                 Rule::unique('platform_configurations')
-                    ->where(fn($query) => $query->where(
+                    ->where(fn ($query) => $query->where(
                         'company',
                         $this->input('company')
                     ))

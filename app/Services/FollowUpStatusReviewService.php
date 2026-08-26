@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Http;
 class FollowUpStatusReviewService
 {
     protected string $endpoint;
+
     protected string $apiKey;
+
     protected string $deployment;
+
     protected string $apiVersion;
 
     public function __construct()
@@ -43,7 +46,7 @@ Analyze current_note against previous_notes and output a JSON object containing:
         $scoring = $this->calculateScore($analysis);
 
         // Stage 6: Status Note Rewrite
-        $rewritePrompt = "You are a Status Note Rewrite agent. Write a single professional revised status note under 900 characters incorporating missing verifications, duplicates, and escalation actions documented.";
+        $rewritePrompt = 'You are a Status Note Rewrite agent. Write a single professional revised status note under 900 characters incorporating missing verifications, duplicates, and escalation actions documented.';
         $rewriteData = $this->callAzureOpenAi($rewritePrompt, json_encode(['current_note' => $currentNote, 'analysis' => $analysis]));
 
         return array_merge($scoring, [
@@ -81,7 +84,7 @@ Analyze current_note against previous_notes and output a JSON object containing:
         ];
 
         foreach ($checks as $field => $alertText) {
-            if (!($ver[$field] ?? false)) {
+            if (! ($ver[$field] ?? false)) {
                 $missingCount++;
                 $alerts[] = $alertText;
             }
@@ -111,11 +114,19 @@ Analyze current_note against previous_notes and output a JSON object containing:
         $questions = [];
         $ver = $analysis['provider_verification'] ?? [];
 
-        if (!($ver['request_received_confirmed'] ?? false)) $questions[] = "Did you receive our request?";
-        if (!($ver['authorization_received_confirmed'] ?? false)) $questions[] = "Did you receive our authorization?";
-        if (!($ver['patient_located_confirmed'] ?? false)) $questions[] = "Is the patient on file?";
-        if (!($ver['turnaround_time_provided'] ?? false)) $questions[] = "What is your current turnaround time?";
-        $questions[] = "When should we follow up again?";
+        if (! ($ver['request_received_confirmed'] ?? false)) {
+            $questions[] = 'Did you receive our request?';
+        }
+        if (! ($ver['authorization_received_confirmed'] ?? false)) {
+            $questions[] = 'Did you receive our authorization?';
+        }
+        if (! ($ver['patient_located_confirmed'] ?? false)) {
+            $questions[] = 'Is the patient on file?';
+        }
+        if (! ($ver['turnaround_time_provided'] ?? false)) {
+            $questions[] = 'What is your current turnaround time?';
+        }
+        $questions[] = 'When should we follow up again?';
 
         return $questions;
     }

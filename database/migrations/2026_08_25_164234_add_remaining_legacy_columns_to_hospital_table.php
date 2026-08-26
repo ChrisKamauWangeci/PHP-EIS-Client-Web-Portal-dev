@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class() extends Migration
 {
     public function up(): void
     {
@@ -33,7 +35,7 @@ return new class extends Migration
                 'H_SpecialAuth',
                 'H_SendMethodEmail',
                 'H_ResponseTime',
-                'H_ROI'
+                'H_ROI',
             ]);
         });
     }

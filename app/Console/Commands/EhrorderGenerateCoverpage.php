@@ -38,8 +38,9 @@ class EhrorderGenerateCoverpage extends Command
             $directory = '\\\\ftpserver2\\ftpserver\\eis\\coverpage_auth\\' . $ehrorder->created_at->format('Ymd') . '\\';
             $mergedPath = $directory . $ehrorder->id . '-coverpage_auth.pdf';
 
-            if(is_file($mergedPath)) {
+            if (is_file($mergedPath)) {
                 $this->info('Merged PDF already exists for Ehrorder ID: ' . $ehrorder->id);
+
                 continue;
             }
 

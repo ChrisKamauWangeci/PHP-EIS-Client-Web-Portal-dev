@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exports;
 
 use Illuminate\Support\Collection;
@@ -9,11 +11,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class WorkordersExport implements
-    FromCollection,
-    WithHeadings,
-    WithMapping,
-    ShouldAutoSize
+class WorkordersExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping
 {
     use Exportable;
 
@@ -62,7 +60,7 @@ class WorkordersExport implements
 
     protected function calculateAge($row): ?int
     {
-        if (!$row->W_ReceiveDate) {
+        if (! $row->W_ReceiveDate) {
             return null;
         }
 
@@ -72,5 +70,4 @@ class WorkordersExport implements
 
         return (int) $row->W_ReceiveDate->diffInDays($end);
     }
-
 }

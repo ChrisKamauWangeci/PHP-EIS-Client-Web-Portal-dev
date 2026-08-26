@@ -22,13 +22,13 @@ class TicketController extends Controller
         $filters = $request->query();
 
         $query = Ticket::query()
-            ->when($filters['id'] ?? null, fn($q, $v) => $q->where('id', $v))
-            ->when($filters['workorder_id'] ?? null, fn($q, $v) => $q->where('workorder_id', $v))
-            ->when($filters['company'] ?? null, fn($q, $v) => $q->where('company', 'LIKE', '%' . $v . '%'))
-            ->when($filters['requestor_name'] ?? null, fn($q, $v) => $q->where('requestor_name', 'LIKE', '%' . $v . '%'))
-            ->when($filters['assigned_to'] ?? null, fn($q, $v) => $q->where('assigned_to', 'LIKE', '%' . $v . '%'))
-            ->when($filters['subject'] ?? null, fn($q, $v) => $q->where('subject', 'LIKE', '%' . $v . '%'))
-            ->when($filters['status'] ?? null, fn($q, $v) => $q->where('status', $v));
+            ->when($filters['id'] ?? null, fn ($q, $v) => $q->where('id', $v))
+            ->when($filters['workorder_id'] ?? null, fn ($q, $v) => $q->where('workorder_id', $v))
+            ->when($filters['company'] ?? null, fn ($q, $v) => $q->where('company', 'LIKE', '%' . $v . '%'))
+            ->when($filters['requestor_name'] ?? null, fn ($q, $v) => $q->where('requestor_name', 'LIKE', '%' . $v . '%'))
+            ->when($filters['assigned_to'] ?? null, fn ($q, $v) => $q->where('assigned_to', 'LIKE', '%' . $v . '%'))
+            ->when($filters['subject'] ?? null, fn ($q, $v) => $q->where('subject', 'LIKE', '%' . $v . '%'))
+            ->when($filters['status'] ?? null, fn ($q, $v) => $q->where('status', $v));
 
         $sort_field = $request->query('sort_field', 'created_at');
         $sort_direction = $request->query('sort_direction', 'desc');
@@ -44,7 +44,7 @@ class TicketController extends Controller
     public function show(Ticket $ticket)
     {
         $ticket->load([
-            'ticketcomments' => fn($q) => $q->orderBy('created_at')
+            'ticketcomments' => fn ($q) => $q->orderBy('created_at'),
         ]);
 
         return view('user.tickets.show', compact('ticket'));
@@ -100,7 +100,7 @@ class TicketController extends Controller
         $ticketcomment->save();
 
         $ticket->load([
-            'ticketcomments' => fn($q) => $q->orderBy('created_at')
+            'ticketcomments' => fn ($q) => $q->orderBy('created_at'),
         ]);
 
         $data['from'] = 'info@expressimagingservices.com';

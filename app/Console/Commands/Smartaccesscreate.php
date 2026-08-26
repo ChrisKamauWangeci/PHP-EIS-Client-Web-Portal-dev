@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Mail\SmartaccessEmail;
 use App\Models\Ehrorder;
 use App\Models\Smartaccesstheme;
-use App\Mail\SmartaccessEmail;
 use Illuminate\Console\Command;
-use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
 
 class Smartaccesscreate extends Command
@@ -32,9 +31,9 @@ class Smartaccesscreate extends Command
             ->first()?->toArray()
 
             ?? Smartaccesstheme::query()
-            ->where('company_name', 'EIS')
-            ->firstOrFail()
-            ->toArray();
+                ->where('company_name', 'EIS')
+                ->firstOrFail()
+                ->toArray();
     }
 
     public function email()
@@ -44,13 +43,14 @@ class Smartaccesscreate extends Command
             ->where('submission_type', 'auto')
             ->where(function ($q) {
                 $q->whereNull('status')
-                  ->orWhere('status', '');
+                    ->orWhere('status', '');
             })
             ->orderBy('created_at', 'desc')
             ->first();
 
-        if (!$ehrorder) {
+        if (! $ehrorder) {
             $this->warn('No EHR order found.');
+
             return;
         }
 

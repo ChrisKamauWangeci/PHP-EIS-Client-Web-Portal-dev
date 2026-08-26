@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\ContractorAdmin;
 use App\Models\User;
 
 return [
@@ -74,7 +75,7 @@ return [
         ],
         'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Models\ContractorAdmin::class,
+            'model' => ContractorAdmin::class,
         ],
 
         // 'users' => [

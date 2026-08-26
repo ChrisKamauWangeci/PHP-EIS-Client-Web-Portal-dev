@@ -117,12 +117,12 @@ class EhrorderssearchresultController extends Controller
         $query->orderBy($sort_field, $sort_direction);
 
         $hasDateRange =
-            !empty($filters['created_at_from']) ||
-            !empty($filters['created_at_to']) ||
-            !empty($filters['received_at_from']) ||
-            !empty($filters['received_at_to']);
+            ! empty($filters['created_at_from']) ||
+            ! empty($filters['created_at_to']) ||
+            ! empty($filters['received_at_from']) ||
+            ! empty($filters['received_at_to']);
 
-        if (!$hasDateRange) {
+        if (! $hasDateRange) {
             $query->limit(5000);
         }
 
@@ -149,9 +149,9 @@ class EhrorderssearchresultController extends Controller
                 'ehrorders.last_name',
             ])
             ->join('ehrorders', 'ehrorderssearchresults.ehrorder_id', '=', 'ehrorders.id')
-            ->when($filters['workorder_id'] ?? null, fn($q, $v) => $q->where('ehrorderssearchresults.workorder_id', $v))
-            ->when($filters['ehrorder_id'] ?? null, fn($q, $v) => $q->where('ehrorderssearchresults.ehrorder_id', $v))
-            ->when($filters['status'] ?? null, fn($q, $v) => $q->where('ehrorderssearchresults.status', $v))
+            ->when($filters['workorder_id'] ?? null, fn ($q, $v) => $q->where('ehrorderssearchresults.workorder_id', $v))
+            ->when($filters['ehrorder_id'] ?? null, fn ($q, $v) => $q->where('ehrorderssearchresults.ehrorder_id', $v))
+            ->when($filters['status'] ?? null, fn ($q, $v) => $q->where('ehrorderssearchresults.status', $v))
             ->when(array_key_exists('consent_required', $filters), function ($q) use ($filters) {
                 return match ($filters['consent_required']) {
                     'null' => $q->whereNull('ehrorderssearchresults.consent_required'),
@@ -159,15 +159,15 @@ class EhrorderssearchresultController extends Controller
                     default => null,
                 };
             })
-            ->when($filters['managing_organization'] ?? null, fn($q, $v) => $q->where('ehrorderssearchresults.managing_organization', 'like', "%$v%"))
-            ->when($filters['service_provider'] ?? null, fn($q, $v) => $q->where('ehrorders.service_provider', $v))
-            ->when($filters['company_name'] ?? null, fn($q, $v) => $q->where('ehrorderssearchresults.company_name', 'like', "%$v%"))
-            ->when($filters['first_name'] ?? null, fn($q, $v) => $q->where('ehrorders.first_name', 'like', "%$v%"))
-            ->when($filters['last_name'] ?? null, fn($q, $v) => $q->where('ehrorders.last_name', 'like', "%$v%"))
-            ->when($filters['received_at_from'] ?? null, fn($q, $v) => $q->whereDate('ehrorderssearchresults.received_at', '>=', $v))
-            ->when($filters['received_at_to'] ?? null, fn($q, $v) => $q->whereDate('ehrorderssearchresults.received_at', '<=', $v))
-            ->when($filters['created_at_from'] ?? null, fn($q, $v) => $q->whereDate('ehrorderssearchresults.created_at', '>=', $v))
-            ->when($filters['created_at_to'] ?? null, fn($q, $v) => $q->whereDate('ehrorderssearchresults.created_at', '<=', $v))
+            ->when($filters['managing_organization'] ?? null, fn ($q, $v) => $q->where('ehrorderssearchresults.managing_organization', 'like', "%$v%"))
+            ->when($filters['service_provider'] ?? null, fn ($q, $v) => $q->where('ehrorders.service_provider', $v))
+            ->when($filters['company_name'] ?? null, fn ($q, $v) => $q->where('ehrorderssearchresults.company_name', 'like', "%$v%"))
+            ->when($filters['first_name'] ?? null, fn ($q, $v) => $q->where('ehrorders.first_name', 'like', "%$v%"))
+            ->when($filters['last_name'] ?? null, fn ($q, $v) => $q->where('ehrorders.last_name', 'like', "%$v%"))
+            ->when($filters['received_at_from'] ?? null, fn ($q, $v) => $q->whereDate('ehrorderssearchresults.received_at', '>=', $v))
+            ->when($filters['received_at_to'] ?? null, fn ($q, $v) => $q->whereDate('ehrorderssearchresults.received_at', '<=', $v))
+            ->when($filters['created_at_from'] ?? null, fn ($q, $v) => $q->whereDate('ehrorderssearchresults.created_at', '>=', $v))
+            ->when($filters['created_at_to'] ?? null, fn ($q, $v) => $q->whereDate('ehrorderssearchresults.created_at', '<=', $v))
             ->when(($filters['dbfield'] ?? null) && ($filters['dbconditions'] ?? null), function ($q) use ($filters) {
 
                 $dbfield = $filters['dbfield'];

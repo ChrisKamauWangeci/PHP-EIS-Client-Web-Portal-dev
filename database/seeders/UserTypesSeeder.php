@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Accountmanager;
@@ -25,12 +27,12 @@ class UserTypesSeeder extends Seeder
             return ContractorAdmin::firstOrCreate(
                 ['C_Name' => 'Admin User'],
                 [
-                    'C_Password'    => 'Secret123!',
+                    'C_Password' => 'Secret123!',
                     'C_UserCompany' => 'EIS',
-                    'C_SysAdmin'    => 1,
-                    'is_active'     => 1,
-                    'C_Email'       => 'admin@expressimagingservices.com',
-                    'C_Location'    => 'US Onsite',
+                    'C_SysAdmin' => 1,
+                    'is_active' => 1,
+                    'C_Email' => 'admin@expressimagingservices.com',
+                    'C_Location' => 'US Onsite',
                 ]
             );
         });
@@ -40,12 +42,12 @@ class UserTypesSeeder extends Seeder
             return Contractor::firstOrCreate(
                 ['C_Name' => 'Standard Contractor'],
                 [
-                    'C_Password'    => 'Secret123!',
+                    'C_Password' => 'Secret123!',
                     'C_UserCompany' => 'EIS',
-                    'C_SysAdmin'    => 0,
-                    'is_active'     => 1,
-                    'C_Email'       => 'contractor@expressimagingservices.com',
-                    'C_Location'    => 'US Remote',
+                    'C_SysAdmin' => 0,
+                    'is_active' => 1,
+                    'C_Email' => 'contractor@expressimagingservices.com',
+                    'C_Location' => 'US Remote',
                 ]
             );
         });
@@ -59,12 +61,12 @@ class UserTypesSeeder extends Seeder
             return Requestor::firstOrCreate(
                 ['R_LoginEmail' => 'requestor@acmeinsurance.com'],
                 [
-                    'R_Name'       => 'Sample Requestor',
-                    'R_Company'    => 'ACME Insurance',
-                    'R_Email'      => 'requestor@acmeinsurance.com',
-                    'R_Password'   => 'Secret123!',
-                    'R_Active'     => 1,
-                    'R_SuperUser'  => 0,
+                    'R_Name' => 'Sample Requestor',
+                    'R_Company' => 'ACME Insurance',
+                    'R_Email' => 'requestor@acmeinsurance.com',
+                    'R_Password' => 'Secret123!',
+                    'R_Active' => 1,
+                    'R_SuperUser' => 0,
                 ]
             );
         });
@@ -73,26 +75,26 @@ class UserTypesSeeder extends Seeder
         Shelteragent::firstOrCreate(
             ['email' => 'sdl.manager@shelter.com'],
             [
-                'name'                => 'Shelter District Manager',
-                'role'                => 'sdl',
+                'name' => 'Shelter District Manager',
+                'role' => 'sdl',
                 'sdl_district_number' => 'D-101',
-                'agent_code'          => 'S001',
-                'is_active'           => true,
-                'created_by'          => 'Seeder',
-                'updated_by'          => 'Seeder',
+                'agent_code' => 'S001',
+                'is_active' => true,
+                'created_by' => 'Seeder',
+                'updated_by' => 'Seeder',
             ]
         );
 
         Shelteragent::firstOrCreate(
             ['email' => 'shelter.agent@shelter.com'],
             [
-                'name'                => 'Shelter Local Agent',
-                'role'                => 'agent',
+                'name' => 'Shelter Local Agent',
+                'role' => 'agent',
                 'sdl_district_number' => 'D-101',
-                'agent_code'          => 'A001',
-                'is_active'           => true,
-                'created_by'          => 'Seeder',
-                'updated_by'          => 'Seeder',
+                'agent_code' => 'A001',
+                'is_active' => true,
+                'created_by' => 'Seeder',
+                'updated_by' => 'Seeder',
             ]
         );
 
@@ -120,7 +122,7 @@ class UserTypesSeeder extends Seeder
                 ['A_Name' => 'Sample Agent'],
                 [
                     'A_Company' => 'ACME Insurance',
-                    'A_Email'   => 'agent@acmeinsurance.com',
+                    'A_Email' => 'agent@acmeinsurance.com',
                 ]
             );
         });
@@ -130,7 +132,7 @@ class UserTypesSeeder extends Seeder
                 ['U_Name' => 'Sample Underwriter'],
                 [
                     'U_Company' => 'ACME Insurance',
-                    'U_Email'   => 'underwriter@acmeinsurance.com',
+                    'U_Email' => 'underwriter@acmeinsurance.com',
                 ]
             );
         });

@@ -12,6 +12,7 @@ abstract class Controller
         $domain_parts = explode('.', $hostname);
         $domain = $domain_parts[0];
         $domain = preg_replace('/[^a-z0-9]/', '', $domain);
+
         return $domain;
     }
 
@@ -21,6 +22,7 @@ abstract class Controller
         $domain_parts = explode('.', $hostname);
         $subdomain = $domain_parts[0];
         $subdomain = preg_replace('/[^a-z0-9]/', '', $subdomain);
+
         return $subdomain;
     }
 

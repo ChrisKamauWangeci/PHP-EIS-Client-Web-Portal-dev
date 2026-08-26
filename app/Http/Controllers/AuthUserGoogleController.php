@@ -72,13 +72,13 @@ class AuthUserGoogleController extends Controller
         $tokenData = $response->json();
         // dump($tokenData);
 
-        if (!isset($tokenData['access_token'])) {
+        if (! isset($tokenData['access_token'])) {
             return redirect('/')->with('danger', 'Token failed');
         }
 
         $idToken = $tokenData['id_token'] ?? null;
 
-        if (!$idToken) {
+        if (! $idToken) {
             abort(403, 'Missing id_token');
         }
 
@@ -94,7 +94,7 @@ class AuthUserGoogleController extends Controller
             abort(403, 'Invalid subject');
         }
 
-        if (!$payload || !is_array($payload)) {
+        if (! $payload || ! is_array($payload)) {
             abort(403, 'Invalid token payload');
         }
 
@@ -102,7 +102,7 @@ class AuthUserGoogleController extends Controller
             abort(403, 'Invalid audience');
         }
 
-        if (!in_array($payload['iss'], ['https://accounts.google.com', 'accounts.google.com'])) {
+        if (! in_array($payload['iss'], ['https://accounts.google.com', 'accounts.google.com'])) {
             abort(403, 'Invalid issuer');
         }
 
@@ -135,8 +135,8 @@ class AuthUserGoogleController extends Controller
         $emailDomain = explode('@', $googleUser['email'])[1] ?? null;
 
         if (
-            (!isset($payload['hd']) || !in_array($payload['hd'], $allowedDomains))
-            && !in_array($emailDomain, $allowedDomains)
+            (! isset($payload['hd']) || ! in_array($payload['hd'], $allowedDomains))
+            && ! in_array($emailDomain, $allowedDomains)
         ) {
             abort(403, 'Unauthorized domain');
         }

@@ -42,8 +42,12 @@ class AzureController extends Controller
 
     // Unused resource methods
     public function index() {}
+
     public function create() {}
+
     public function store(Request $request) {}
+
     public function show(string $id) {}
+
     public function destroy(string $id) {}
 }

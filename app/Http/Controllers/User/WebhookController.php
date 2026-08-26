@@ -35,5 +35,4 @@ class WebhookController extends Controller
     {
         return view('user.webhooks.show', compact('webhook'));
     }
-
 }

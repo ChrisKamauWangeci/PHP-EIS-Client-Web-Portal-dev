@@ -29,12 +29,12 @@ class ContractorloginController extends Controller
         ];
 
         $userEmail = session('user.contractor.C_Email');
-        if (!in_array($userEmail, $validEmails)) {
+        if (! in_array($userEmail, $validEmails)) {
             return redirect()
                 ->route('user.utilities.index')
                 ->with('danger', 'Access denied. Please contact support if you need access to this page.');
         }
-        return null;
+
     }
 
     // public function index(Request $request)
@@ -113,9 +113,9 @@ class ContractorloginController extends Controller
                 DB::raw('max(updated_at) as last_activity'),
             ])
             ->leftJoin('Contractor', 'contractorlogins.contractor_id', '=', 'Contractor.id')
-            ->when($contractor, fn($q, $v) => $q->where('contractor', $v))
-            ->when($is_active !== null, fn($q) => $q->whereRaw('ISNULL(Contractor.is_active, 0) = ?', [(int) $is_active]))
-            ->when($location, fn($q, $v) => $q->where('Contractor.C_Location', $v))
+            ->when($contractor, fn ($q, $v) => $q->where('contractor', $v))
+            ->when($is_active !== null, fn ($q) => $q->whereRaw('ISNULL(Contractor.is_active, 0) = ?', [(int) $is_active]))
+            ->when($location, fn ($q, $v) => $q->where('Contractor.C_Location', $v))
             ->when($from, fn ($q, $v) => $q->where('created_at', '>=', Carbon::parse($v)->startOfDay()))
             ->when($to, fn ($q, $v) => $q->where('created_at', '<', Carbon::parse($v)->addDay()->startOfDay()))
             ->groupBy('contractor_id', 'contractor', 'Contractor.C_Location', 'Contractor.is_active')
@@ -127,7 +127,7 @@ class ContractorloginController extends Controller
                 'created_by',
                 DB::raw('count(created_by) as createdbycount'),
             ])
-            ->when($contractor ?? null, fn($q, $v) => $q->where('created_by', $contractor))
+            ->when($contractor ?? null, fn ($q, $v) => $q->where('created_by', $contractor))
             ->when($from, fn ($q, $v) => $q->where('created_at', '>=', Carbon::parse($v)->startOfDay()))
             ->when($to, fn ($q, $v) => $q->where('created_at', '<', Carbon::parse($v)->addDay()->startOfDay()))
             ->groupBy('created_by')
@@ -147,7 +147,7 @@ class ContractorloginController extends Controller
                 'CreatedBy',
                 DB::raw('count(CreatedBy) as createdbycount'),
             ])
-            ->when($contractor ?? null, fn($q, $v) => $q->where('CreatedBy', $contractor))
+            ->when($contractor ?? null, fn ($q, $v) => $q->where('CreatedBy', $contractor))
             ->when($from, fn ($q, $v) => $q->where('Created', '>=', Carbon::parse($v)->startOfDay()))
             ->when($to, fn ($q, $v) => $q->where('Created', '<', Carbon::parse($v)->addDay()->startOfDay()))
             ->groupBy('CreatedBy')
@@ -267,8 +267,8 @@ class ContractorloginController extends Controller
                 DB::raw('max(updated_at) as last_activity'),
             ])
             ->leftJoin('Contractor', 'contractorlogins.contractor_id', '=', 'Contractor.id')
-            ->when($contractor ?? null, fn($q, $v) => $q->where('contractor', $contractor))
-            ->when($location ?? null, fn($q, $v) => $q->where('Contractor.C_Location', $v))
+            ->when($contractor ?? null, fn ($q, $v) => $q->where('contractor', $contractor))
+            ->when($location ?? null, fn ($q, $v) => $q->where('Contractor.C_Location', $v))
             ->when($from, fn ($q, $v) => $q->where('created_at', '>=', Carbon::parse($v)->startOfDay()))
             ->when($to, fn ($q, $v) => $q->where('created_at', '<', Carbon::parse($v)->addDay()->startOfDay()))
             ->groupBy(

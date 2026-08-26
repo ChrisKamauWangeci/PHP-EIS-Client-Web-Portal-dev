@@ -14,8 +14,8 @@ class Webhook extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'payload'  => 'array',
-        'headers'  => 'array',
+        'payload' => 'array',
+        'headers' => 'array',
         'received_at' => 'datetime',
         'processed_at' => 'datetime',
     ];

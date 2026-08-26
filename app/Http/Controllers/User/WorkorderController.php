@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\User;
 
-use App\Helper\Helper;
 use App\Exports\WorkordersExport;
+use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHospitalRequest;
 use App\Http\Requests\UpdateWorkorderHospitalRequest;
@@ -24,20 +24,20 @@ use App\Models\Hospitalraw;
 use App\Models\IncomingApsLog;
 use App\Models\Insuranceagencyexception;
 use App\Models\Insurancecompany;
-use App\Models\Underwriter;
+use App\Models\Northwesternmutual;
 use App\Models\Requestor;
 use App\Models\Requestorrole;
 use App\Models\Statuslist;
 use App\Models\Statustrigger;
+use App\Models\Ticket;
+use App\Models\Underwriter;
 use App\Models\Woin;
-use App\Models\Northwesternmutual;
 use App\Models\Workorder;
 use App\Models\Workorderdetail;
 use App\Models\Workorderduplicate;
 use App\Models\Workorderfiledownload;
 use App\Models\Workorderholdtime;
 use App\Models\Workorderreopen;
-use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -154,26 +154,26 @@ class WorkorderController extends Controller
 
         $query->select($fields);
 
-        $query->when($validated['W_Workorder'] ?? null, fn($q, $v) => $q->where('Workorder.W_Workorder', $v));
-        $query->when($validated['W_Status'] ?? null, fn($q, $v) => $q->where('Workorder.W_Status', $v));
-        $query->when($validated['W_Urgent'] ?? null, fn($q, $v) => $q->where('Workorder.W_Urgent', $v));
-        $query->when($validated['W_InsCompany'] ?? null, fn($q, $v) => $q->where('Workorder.W_InsCompany', $v));
+        $query->when($validated['W_Workorder'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Workorder', $v));
+        $query->when($validated['W_Status'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Status', $v));
+        $query->when($validated['W_Urgent'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Urgent', $v));
+        $query->when($validated['W_InsCompany'] ?? null, fn ($q, $v) => $q->where('Workorder.W_InsCompany', $v));
 
-        $query->when($validated['W_FirstName'] ?? null, fn($q, $v) => $q->where('Workorder.W_FirstName', 'LIKE', '%' . $v . '%'));
-        $query->when($validated['W_LastName'] ?? null, fn($q, $v) => $q->where('Workorder.W_LastName', 'LIKE', '%' . $v . '%'));
-        $query->when($validated['W_SS'] ?? null, fn($q, $v) => $q->where('Workorder.W_SS', 'LIKE', '%' . $v . '%'));
-        $query->when($validated['W_Hospital'] ?? null, fn($q, $v) => $q->where('Workorder.W_Hospital', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_FirstName'] ?? null, fn ($q, $v) => $q->where('Workorder.W_FirstName', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_LastName'] ?? null, fn ($q, $v) => $q->where('Workorder.W_LastName', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_SS'] ?? null, fn ($q, $v) => $q->where('Workorder.W_SS', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_Hospital'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Hospital', 'LIKE', '%' . $v . '%'));
 
-        $query->when($validated['W_DOB'] ?? null, fn($q, $v) => $q->where('Workorder.W_DOB', $v . ' 00:00:00.000'));
+        $query->when($validated['W_DOB'] ?? null, fn ($q, $v) => $q->where('Workorder.W_DOB', $v . ' 00:00:00.000'));
 
-        $query->when($validated['receivedfrom'] ?? null, fn($q, $v) => $q->where('Workorder.W_ReceiveDate', '>=', Carbon::parse($v)->startOfDay()));
-        $query->when($validated['receivedto'] ?? null, fn($q, $v) => $q->where('Workorder.W_ReceiveDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
+        $query->when($validated['receivedfrom'] ?? null, fn ($q, $v) => $q->where('Workorder.W_ReceiveDate', '>=', Carbon::parse($v)->startOfDay()));
+        $query->when($validated['receivedto'] ?? null, fn ($q, $v) => $q->where('Workorder.W_ReceiveDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
 
-        $query->when($validated['completedfrom'] ?? null, fn($q, $v) => $q->where('Workorder.W_CompletedDate', '>=', Carbon::parse($v)->startOfDay()));
-        $query->when($validated['completedto'] ?? null, fn($q, $v) => $q->where('Workorder.W_CompletedDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
+        $query->when($validated['completedfrom'] ?? null, fn ($q, $v) => $q->where('Workorder.W_CompletedDate', '>=', Carbon::parse($v)->startOfDay()));
+        $query->when($validated['completedto'] ?? null, fn ($q, $v) => $q->where('Workorder.W_CompletedDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
 
-        $query->when($validated['followupfrom'] ?? null, fn($q, $v) => $q->where('Workorder.W_FollowUpDt', '>=', Carbon::parse($v)->startOfDay()));
-        $query->when($validated['followupto'] ?? null, fn($q, $v) => $q->where('Workorder.W_FollowUpDt', '<', Carbon::parse($v)->addDay()->startOfDay()));
+        $query->when($validated['followupfrom'] ?? null, fn ($q, $v) => $q->where('Workorder.W_FollowUpDt', '>=', Carbon::parse($v)->startOfDay()));
+        $query->when($validated['followupto'] ?? null, fn ($q, $v) => $q->where('Workorder.W_FollowUpDt', '<', Carbon::parse($v)->addDay()->startOfDay()));
 
         $query->when($validated['W_Owner'] ?? null, function ($q, $v) {
             if ($v == 'empty') {
@@ -334,26 +334,26 @@ class WorkorderController extends Controller
 
         $query->select($fields);
 
-        $query->when($validated['W_Workorder'] ?? null, fn($q, $v) => $q->where('Workorder.W_Workorder', $v));
-        $query->when($validated['W_Status'] ?? null, fn($q, $v) => $q->where('Workorder.W_Status', $v));
-        $query->when($validated['W_Urgent'] ?? null, fn($q, $v) => $q->where('Workorder.W_Urgent', $v));
-        $query->when($validated['W_InsCompany'] ?? null, fn($q, $v) => $q->where('Workorder.W_InsCompany', $v));
+        $query->when($validated['W_Workorder'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Workorder', $v));
+        $query->when($validated['W_Status'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Status', $v));
+        $query->when($validated['W_Urgent'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Urgent', $v));
+        $query->when($validated['W_InsCompany'] ?? null, fn ($q, $v) => $q->where('Workorder.W_InsCompany', $v));
 
-        $query->when($validated['W_FirstName'] ?? null, fn($q, $v) => $q->where('Workorder.W_FirstName', 'LIKE', '%' . $v . '%'));
-        $query->when($validated['W_LastName'] ?? null, fn($q, $v) => $q->where('Workorder.W_LastName', 'LIKE', '%' . $v . '%'));
-        $query->when($validated['W_SS'] ?? null, fn($q, $v) => $q->where('Workorder.W_SS', 'LIKE', '%' . $v . '%'));
-        $query->when($validated['W_Hospital'] ?? null, fn($q, $v) => $q->where('Workorder.W_Hospital', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_FirstName'] ?? null, fn ($q, $v) => $q->where('Workorder.W_FirstName', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_LastName'] ?? null, fn ($q, $v) => $q->where('Workorder.W_LastName', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_SS'] ?? null, fn ($q, $v) => $q->where('Workorder.W_SS', 'LIKE', '%' . $v . '%'));
+        $query->when($validated['W_Hospital'] ?? null, fn ($q, $v) => $q->where('Workorder.W_Hospital', 'LIKE', '%' . $v . '%'));
 
-        $query->when($validated['W_DOB'] ?? null, fn($q, $v) => $q->where('Workorder.W_DOB', $v . ' 00:00:00.000'));
+        $query->when($validated['W_DOB'] ?? null, fn ($q, $v) => $q->where('Workorder.W_DOB', $v . ' 00:00:00.000'));
 
-        $query->when($validated['receivedfrom'] ?? null, fn($q, $v) => $q->where('Workorder.W_ReceiveDate', '>=', Carbon::parse($v)->startOfDay()));
-        $query->when($validated['receivedto'] ?? null, fn($q, $v) => $q->where('Workorder.W_ReceiveDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
+        $query->when($validated['receivedfrom'] ?? null, fn ($q, $v) => $q->where('Workorder.W_ReceiveDate', '>=', Carbon::parse($v)->startOfDay()));
+        $query->when($validated['receivedto'] ?? null, fn ($q, $v) => $q->where('Workorder.W_ReceiveDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
 
-        $query->when($validated['completedfrom'] ?? null, fn($q, $v) => $q->where('Workorder.W_CompletedDate', '>=', Carbon::parse($v)->startOfDay()));
-        $query->when($validated['completedto'] ?? null, fn($q, $v) => $q->where('Workorder.W_CompletedDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
+        $query->when($validated['completedfrom'] ?? null, fn ($q, $v) => $q->where('Workorder.W_CompletedDate', '>=', Carbon::parse($v)->startOfDay()));
+        $query->when($validated['completedto'] ?? null, fn ($q, $v) => $q->where('Workorder.W_CompletedDate', '<', Carbon::parse($v)->addDay()->startOfDay()));
 
-        $query->when($validated['followupfrom'] ?? null, fn($q, $v) => $q->where('Workorder.W_FollowUpDt', '>=', Carbon::parse($v)->startOfDay()));
-        $query->when($validated['followupto'] ?? null, fn($q, $v) => $q->where('Workorder.W_FollowUpDt', '<', Carbon::parse($v)->addDay()->startOfDay()));
+        $query->when($validated['followupfrom'] ?? null, fn ($q, $v) => $q->where('Workorder.W_FollowUpDt', '>=', Carbon::parse($v)->startOfDay()));
+        $query->when($validated['followupto'] ?? null, fn ($q, $v) => $q->where('Workorder.W_FollowUpDt', '<', Carbon::parse($v)->addDay()->startOfDay()));
 
         $query->when($validated['W_Owner'] ?? null, function ($q, $v) {
             if ($v == 'empty') {
@@ -417,12 +417,12 @@ class WorkorderController extends Controller
         $query->orderBy($sort_field, $sort_direction);
 
         $hasDateRange =
-            !empty($filters['receivedfrom']) ||
-            !empty($filters['receivedto']) ||
-            !empty($filters['completedfrom']) ||
-            !empty($filters['completedto']);
+            ! empty($filters['receivedfrom']) ||
+            ! empty($filters['receivedto']) ||
+            ! empty($filters['completedfrom']) ||
+            ! empty($filters['completedto']);
 
-        if (!$hasDateRange) {
+        if (! $hasDateRange) {
             $query->limit(5000);
         }
 
@@ -1070,7 +1070,7 @@ class WorkorderController extends Controller
             $woinUpdate['WI_InsPolicy'] = $workorder->W_InsPolicy;
         }
 
-        if (!empty($woinUpdate)) {
+        if (! empty($woinUpdate)) {
             Woin::query()
                 ->where('WI_WorkOrder', $workorder->W_WorkOrder)
                 ->where('WI_InsName', $workorderold->W_InsCompany)
@@ -1808,7 +1808,7 @@ class WorkorderController extends Controller
             'PRUDENTIAL INSURANCE COMPANY OF AMERICA',
             'BESTOW AGENCY LLC',
             'FFR',
-            'MASSMUTUAL'
+            'MASSMUTUAL',
         ])) {
             $cancelreasons = [
                 '717' => 'APS CANCELLED PER REQUESTOR',
@@ -1855,7 +1855,7 @@ class WorkorderController extends Controller
             'PRUDENTIAL INSURANCE COMPANY OF AMERICA',
             'BESTOW AGENCY LLC',
             'FFR',
-            'MASSMUTUAL'
+            'MASSMUTUAL',
         ])) {
             $cancelreasons = [
                 '717' => 'APS CANCELLED PER REQUESTOR',
@@ -1895,7 +1895,7 @@ class WorkorderController extends Controller
         }
 
         if (in_array($requestor->R_Company, [
-            'MASSMUTUAL'
+            'MASSMUTUAL',
         ])) {
             if ($reason == '718') {
                 $W_Status = 'Complete';

@@ -39,27 +39,26 @@ class DocusigndocumentController extends Controller
             'created_at',
         ]);
 
-        $query->when($filters['environment'] ?? null, fn($q, $v) => $q->where('environment', $v))
-            ->when($filters['db'] ?? null, fn($q, $v) => $q->where('db', $v))
-            ->when($filters['signingtype'] ?? null, fn($q, $v) => $q->where('signingtype', $v))
-            ->when($filters['envelopeid'] ?? null, fn($q, $v) => $q->where('envelopeid', $v))
-            ->when($filters['workorder_id'] ?? null, fn($q, $v) => $q->where('workorder_id', $v))
-            ->when($filters['slug'] ?? null, fn($q, $v) => $q->where('slug', $v))
-            ->when($filters['client'] ?? null, fn($q, $v) => $q->where('client', 'LIKE', '%' . $v . '%'))
-            ->when($filters['facility'] ?? null, fn($q, $v) => $q->where('facility', 'LIKE', '%' . $v . '%'))
-            ->when($filters['requestor'] ?? null, fn($q, $v) => $q->where('requestor', 'LIKE', '%' . $v . '%'))
-            ->when($filters['first_name'] ?? null, fn($q, $v) => $q->where('first_name', 'LIKE', '%' . $v . '%'))
-            ->when($filters['last_name'] ?? null, fn($q, $v) => $q->where('last_name', 'LIKE', '%' . $v . '%'))
-            ->when($filters['email'] ?? null, fn($q, $v) => $q->where('email', $v))
-            ->when($filters['status'] ?? null, fn($q, $v) => $q->where('status', $v))
-            ->when($filters['created_at_from'] ?? null, fn($q, $v) => $q->where('created_at', '>=', Carbon::parse($v)->startOfDay()))
-            ->when($filters['created_at_to'] ?? null, fn($q, $v) => $q->where('created_at', '<', Carbon::parse($v)->addDay()->startOfDay()));
+        $query->when($filters['environment'] ?? null, fn ($q, $v) => $q->where('environment', $v))
+            ->when($filters['db'] ?? null, fn ($q, $v) => $q->where('db', $v))
+            ->when($filters['signingtype'] ?? null, fn ($q, $v) => $q->where('signingtype', $v))
+            ->when($filters['envelopeid'] ?? null, fn ($q, $v) => $q->where('envelopeid', $v))
+            ->when($filters['workorder_id'] ?? null, fn ($q, $v) => $q->where('workorder_id', $v))
+            ->when($filters['slug'] ?? null, fn ($q, $v) => $q->where('slug', $v))
+            ->when($filters['client'] ?? null, fn ($q, $v) => $q->where('client', 'LIKE', '%' . $v . '%'))
+            ->when($filters['facility'] ?? null, fn ($q, $v) => $q->where('facility', 'LIKE', '%' . $v . '%'))
+            ->when($filters['requestor'] ?? null, fn ($q, $v) => $q->where('requestor', 'LIKE', '%' . $v . '%'))
+            ->when($filters['first_name'] ?? null, fn ($q, $v) => $q->where('first_name', 'LIKE', '%' . $v . '%'))
+            ->when($filters['last_name'] ?? null, fn ($q, $v) => $q->where('last_name', 'LIKE', '%' . $v . '%'))
+            ->when($filters['email'] ?? null, fn ($q, $v) => $q->where('email', $v))
+            ->when($filters['status'] ?? null, fn ($q, $v) => $q->where('status', $v))
+            ->when($filters['created_at_from'] ?? null, fn ($q, $v) => $q->where('created_at', '>=', Carbon::parse($v)->startOfDay()))
+            ->when($filters['created_at_to'] ?? null, fn ($q, $v) => $q->where('created_at', '<', Carbon::parse($v)->addDay()->startOfDay()));
 
         $query->when($filters['W_Status'] ?? null, function ($q, $v) {
             $q->whereHas(
                 'workorder',
-                fn($q2) =>
-                $q2->where('W_Status', $v)
+                fn ($q2) => $q2->where('W_Status', $v)
             );
         });
 
@@ -110,9 +109,9 @@ class DocusigndocumentController extends Controller
             DB::raw('avg(datediff(day, created_at, signed_at)) as turnaround'),
         ]);
 
-        $query->when($filters['client'] ?? null, fn($q, $v) => $q->where('client', $v));
-        $query->when($filters['from'] ?? date('Y-m-d'), fn($q, $v) => $q->where('created_at', '>=', $v . ' 00:00:00'));
-        $query->when($filters['to'] ?? date('Y-m-d'), fn($q, $v) => $q->where('created_at', '<=', $v . ' 23:59:59'));
+        $query->when($filters['client'] ?? null, fn ($q, $v) => $q->where('client', $v));
+        $query->when($filters['from'] ?? date('Y-m-d'), fn ($q, $v) => $q->where('created_at', '>=', $v . ' 00:00:00'));
+        $query->when($filters['to'] ?? date('Y-m-d'), fn ($q, $v) => $q->where('created_at', '<=', $v . ' 23:59:59'));
 
         $query->groupBy('client');
 

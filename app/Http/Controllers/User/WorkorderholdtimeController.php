@@ -17,9 +17,9 @@ class WorkorderholdtimeController extends Controller
         $filters = $request->query();
 
         $query = Workorderholdtime::query()
-            ->when($filters['workorder_id'] ?? null, fn($q, $v) => $q->where('workorder_id', $v))
-            ->when($filters['reason'] ?? null, fn($q, $v) => $q->where('reason', 'like', "%$v%"))
-            ->when($filters['created_by'] ?? null, fn($q, $v) => $q->where('created_by', $v))
+            ->when($filters['workorder_id'] ?? null, fn ($q, $v) => $q->where('workorder_id', $v))
+            ->when($filters['reason'] ?? null, fn ($q, $v) => $q->where('reason', 'like', "%$v%"))
+            ->when($filters['created_by'] ?? null, fn ($q, $v) => $q->where('created_by', $v))
             ->when($filters['date_start_from'] ?? null, fn ($q, $v) => $q->where('date_start', '>=', Carbon::parse($v)->startOfDay()))
             ->when($filters['date_start_to'] ?? null, fn ($q, $v) => $q->where('date_start', '<', Carbon::parse($v)->addDay()->startOfDay()))
             ->when($filters['date_end_from'] ?? null, fn ($q, $v) => $q->where('date_end', '>=', Carbon::parse($v)->startOfDay()))

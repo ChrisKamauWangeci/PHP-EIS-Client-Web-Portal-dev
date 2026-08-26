@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 
 class Helper
 {
-
     public static function highlightGroup(?string $value): string
     {
         if ($value === 'Risk Team') {
@@ -46,8 +45,8 @@ class Helper
         }
 
         return collect(preg_split('/[\s,;]+/', $input))
-            ->map(fn($email) => trim($email))
-            ->filter(fn($email) => filter_var($email, FILTER_VALIDATE_EMAIL))
+            ->map(fn ($email) => trim($email))
+            ->filter(fn ($email) => filter_var($email, FILTER_VALIDATE_EMAIL))
             ->unique()
             ->values()
             ->toArray();
@@ -81,7 +80,6 @@ class Helper
             'C3HIE' => 'C3HIE',
         ];
     }
-
 
     public static function ehrproviders()
     {

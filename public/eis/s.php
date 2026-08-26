@@ -9,9 +9,9 @@ function find_dates_between($start_date, $end_date)
     $start_date = DateTime::createFromFormat('Y-m-d', $start_date);
     $end_date = DateTime::createFromFormat('Y-m-d', $end_date);
 
-    $interval = new \DateInterval('P1D');
+    $interval = new DateInterval('P1D');
     $end_date->add($interval);
-    $daterange = new \DatePeriod($start_date, $interval, $end_date);
+    $daterange = new DatePeriod($start_date, $interval, $end_date);
 
     foreach ($daterange as $date) {
 

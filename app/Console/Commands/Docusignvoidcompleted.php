@@ -31,8 +31,7 @@ class Docusignvoidcompleted extends Command
             ->orderBy('created_at', 'asc')
             ->whereHas(
                 'workorder',
-                fn($q2) =>
-                $q2->whereIn('W_Status', ['Complete', 'Cancel'])
+                fn ($q2) => $q2->whereIn('W_Status', ['Complete', 'Cancel'])
             )
             ->limit(50)
             ->get();
@@ -94,6 +93,7 @@ class Docusignvoidcompleted extends Command
             $this->info(now()->format('Y-m-d H:i:s') . ' - Docusign Envelope Voided: ' . $docusigndocument->envelopeid . ' for Workorder: ' . $docusigndocument->workorder_id);
         } catch (\Throwable $e) {
             $this->info(now()->format('Y-m-d H:i:s') . ' - Docusign Error: ' . $e->getMessage());
+
             return;
         }
     }

@@ -19,7 +19,7 @@ class EhrorderCoverpageService
 
         $directory = '\\\\ftpserver2\\ftpserver\\eis\\coverpage_auth\\' . $ehrorder->created_at->format('Ymd') . '\\';
 
-        if (!is_dir($directory)) {
+        if (! is_dir($directory)) {
             mkdir($directory, 0777, true);
         }
 
@@ -39,7 +39,7 @@ class EhrorderCoverpageService
 
         $lorfile = $company?->C_LOR;
 
-        if($ehrorder->company_name == 'USAA') {
+        if ($ehrorder->company_name == 'USAA') {
             $lorfile = 'USAA_LOR.pdf';
         }
 
@@ -79,7 +79,7 @@ class EhrorderCoverpageService
             $command[] = $coverpagePath;
         }
 
-        if(is_file($lor) && $isPdf) {
+        if (is_file($lor) && $isPdf) {
             $command[] = $lor;
         }
 

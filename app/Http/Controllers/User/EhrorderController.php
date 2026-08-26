@@ -6,8 +6,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\IndexEhrorderRequest;
-use App\Http\Requests\UpdateEhrorderRequest;
 use App\Http\Requests\StoreEhrorderRequest;
+use App\Http\Requests\UpdateEhrorderRequest;
 use App\Mail\SmartaccessEmail;
 use App\Models\Ehrorder;
 use App\Models\Ehrordersdocument;
@@ -16,9 +16,9 @@ use App\Models\EpicOrganization;
 use App\Models\Smartaccesstheme;
 use App\Services\EhrorderCoverpageService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EhrorderController extends Controller
 {
@@ -27,18 +27,18 @@ class EhrorderController extends Controller
         $filters = $request->validated();
 
         $query = Ehrorder::query()
-            ->when($filters['id'] ?? null, fn($q, $v) => $q->where('id', $v))
-            ->when($filters['workorder_id'] ?? null, fn($q, $v) => $q->where('workorder_id', $v))
-            ->when($filters['service_provider'] ?? null, fn($q, $v) => $q->where('service_provider', $v))
-            ->when($filters['company_name'] ?? null, fn($q, $v) => $q->where('company_name', $v))
-            ->when($filters['last_name'] ?? null, fn($q, $v) => $q->where('last_name', 'like', "%$v%"))
-            ->when($filters['first_name'] ?? null, fn($q, $v) => $q->where('first_name', 'like', "%$v%"))
-            ->when($filters['gender'] ?? null, fn($q, $v) => $q->where('gender', $v))
-            ->when($filters['status'] ?? null, fn($q, $v) => $q->where('status', $v))
-            ->when($filters['submitted_at_from'] ?? null, fn($q, $v) => $q->whereDate('submitted_at', '>=', $v))
-            ->when($filters['submitted_at_to'] ?? null, fn($q, $v) => $q->whereDate('submitted_at', '<=', $v))
-            ->when($filters['created_at_from'] ?? null, fn($q, $v) => $q->whereDate('created_at', '>=', $v))
-            ->when($filters['created_at_to'] ?? null, fn($q, $v) => $q->whereDate('created_at', '<=', $v))
+            ->when($filters['id'] ?? null, fn ($q, $v) => $q->where('id', $v))
+            ->when($filters['workorder_id'] ?? null, fn ($q, $v) => $q->where('workorder_id', $v))
+            ->when($filters['service_provider'] ?? null, fn ($q, $v) => $q->where('service_provider', $v))
+            ->when($filters['company_name'] ?? null, fn ($q, $v) => $q->where('company_name', $v))
+            ->when($filters['last_name'] ?? null, fn ($q, $v) => $q->where('last_name', 'like', "%$v%"))
+            ->when($filters['first_name'] ?? null, fn ($q, $v) => $q->where('first_name', 'like', "%$v%"))
+            ->when($filters['gender'] ?? null, fn ($q, $v) => $q->where('gender', $v))
+            ->when($filters['status'] ?? null, fn ($q, $v) => $q->where('status', $v))
+            ->when($filters['submitted_at_from'] ?? null, fn ($q, $v) => $q->whereDate('submitted_at', '>=', $v))
+            ->when($filters['submitted_at_to'] ?? null, fn ($q, $v) => $q->whereDate('submitted_at', '<=', $v))
+            ->when($filters['created_at_from'] ?? null, fn ($q, $v) => $q->whereDate('created_at', '>=', $v))
+            ->when($filters['created_at_to'] ?? null, fn ($q, $v) => $q->whereDate('created_at', '<=', $v))
             ->when(($filters['dbfield'] ?? null) && ($filters['dbconditions'] ?? null), function ($q) use ($filters) {
                 $dbfield = $filters['dbfield'];
                 $dbconditions = $filters['dbconditions'];
@@ -160,6 +160,7 @@ class EhrorderController extends Controller
         $ehrorder->created_by = session('user.contractor.C_Name');
         $ehrorder->updated_by = session('user.contractor.C_Name');
         $ehrorder->save();
+
         return redirect()
             ->route('user.ehrorders.show', $ehrorder->id)
             ->with('success', 'Data has been saved');
@@ -188,9 +189,9 @@ class EhrorderController extends Controller
             ->first()?->toArray()
 
             ?? Smartaccesstheme::query()
-            ->where('company_name', 'EIS')
-            ->firstOrFail()
-            ->toArray();
+                ->where('company_name', 'EIS')
+                ->firstOrFail()
+                ->toArray();
     }
 
     public function invitationemailfasten(Request $request, int $id)
@@ -221,7 +222,7 @@ class EhrorderController extends Controller
                 ->to($ehrorder->email_address)
                 ->cc([
                     'anhle@expressimagingservices.com',
-                    'andras@expressimagingservices.com'
+                    'andras@expressimagingservices.com',
                 ])
                 ->send(new SmartaccessEmail($data));
         } catch (\Throwable $e) {
@@ -246,9 +247,9 @@ class EhrorderController extends Controller
     public function coverpage(Request $request, Ehrorder $ehrorder, EhrorderCoverpageService $ehrorderCoverpageService)
     {
         $pdf = $ehrorderCoverpageService->generate($ehrorder);
+
         return $pdf->stream(
             $ehrorder->workorder_id . '-coverpage.pdf'
         );
     }
-
 }

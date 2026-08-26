@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class() extends Migration
 {
     public function up(): void
     {
-        if (!Schema::hasTable('contractorlogins')) {
+        if (! Schema::hasTable('contractorlogins')) {
             Schema::create('contractorlogins', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('contractor_id')->nullable();

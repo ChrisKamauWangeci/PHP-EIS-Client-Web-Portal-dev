@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types=1);
+use App\Helper\Helper;
+use Illuminate\Support\Facades\Facade;
 
 return [
 
@@ -125,9 +127,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'aliases' => Illuminate\Support\Facades\Facade::defaultAliases()->merge([
+    'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'Helper' => App\Helper\Helper::class,
+        'Helper' => Helper::class,
     ])->toArray(),
 
 ];
