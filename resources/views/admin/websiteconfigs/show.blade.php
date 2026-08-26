@@ -5,7 +5,8 @@
             <h1>Websiteconfig</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.websiteconfigs.index') }}" class="btn btn-sm btn-secondary">View Websiteconfigs</a>
+            <a href="{{ route('admin.websiteconfigs.index') }}"
+               class="btn btn-sm btn-secondary">View Websiteconfigs</a>
         </div>
     </div>
 
@@ -22,51 +23,63 @@
         </tr>
         <tr>
             <td>Show Order</td>
-            <td><img src="/img/icon_{{ $websiteconfig->show_order }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->show_order }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Show Facilities</td>
-            <td><img src="/img/icon_{{ $websiteconfig->show_facilities }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->show_facilities }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Show Files</td>
-            <td><img src="/img/icon_{{ $websiteconfig->show_files }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->show_files }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Show Reports</td>
-            <td><img src="/img/icon_{{ $websiteconfig->show_reports }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->show_reports }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Show Forms</td>
-            <td><img src="/img/icon_{{ $websiteconfig->show_forms }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->show_forms }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Show Requestors</td>
-            <td><img src="/img/icon_{{ $websiteconfig->show_requestors }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->show_requestors }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Show Contact Manager</td>
-            <td><img src="/img/icon_{{ $websiteconfig->show_contactmanager }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->show_contactmanager }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Workorders Show All Requestors</td>
-            <td><img src="/img/icon_{{ $websiteconfig->workorders_show_all_requestors }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->workorders_show_all_requestors }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Workorder Inquiry</td>
-            <td><img src="/img/icon_{{ $websiteconfig->workorder_inquiry }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->workorder_inquiry }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Workorder Upload Auth</td>
-            <td><img src="/img/icon_{{ $websiteconfig->workorder_upload_auth }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->workorder_upload_auth }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Workorder Upload APS</td>
-            <td><img src="/img/icon_{{ $websiteconfig->workorder_upload_aps }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->workorder_upload_aps }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Workorder Additional Files</td>
-            <td><img src="/img/icon_{{ $websiteconfig->workorder_additional_files }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $websiteconfig->workorder_additional_files }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Created By</td>
@@ -88,7 +101,8 @@
 
     <br />
 
-    <a href="{{ route('admin.websiteconfigs.edit', $websiteconfig->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.websiteconfigs.edit', $websiteconfig->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
@@ -116,8 +130,10 @@
                         <td>{{ $requestor->R_LoginEmail }}</td>
                         <td>{{ $requestor->R_Email }}</td>
                         <td nowrap>{{ $requestor->login_last }}</td>
-                        <td><img src="/img/icon_{{ $requestor->R_Active }}.png" alt=""></td>
-                        <td><a href="{{ route('admin.requestors.show', $requestor ) }}" class="btn btn-xs btn-secondary">View</a></td>
+                        <td><img src="/img/icon_{{ $requestor->R_Active }}.png"
+                                 alt=""></td>
+                        <td><a href="{{ route('admin.requestors.show', $requestor) }}"
+                               class="btn btn-xs btn-secondary">View</a></td>
                     </tr>
                 @endforeach
             </tbody>

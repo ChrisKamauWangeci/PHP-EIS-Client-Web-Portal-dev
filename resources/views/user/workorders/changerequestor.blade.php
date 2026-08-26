@@ -2,10 +2,12 @@
 
     <div class="row">
         <div class="col-auto">
-            <h1>Change Company / Requestor for Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_LastName }}</h1>
+            <h1>Change Company / Requestor for Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }}
+                {{ $workorder->W_LastName }}</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-secondary">View Workorder</a>
+            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}"
+               class="btn btn-sm btn-secondary">View Workorder</a>
         </div>
     </div>
 
@@ -15,7 +17,8 @@
 
     <div class="col-md-6">
 
-        <form method="post" action="{{ route('user.workorders.changerequestorupdate', $workorder->W_WorkOrder) }}">
+        <form method="post"
+              action="{{ route('user.workorders.changerequestorupdate', $workorder->W_WorkOrder) }}">
             @csrf
             @method('PATCH')
 
@@ -29,23 +32,31 @@
 
             <br />
 
-            New Company: <div id="company" class="fw-bold text-success"></div>
+            New Company: <div id="company"
+                 class="fw-bold text-success"></div>
             <br />
 
-            <x-form.input
-            hx-get="{{ route('user.requestors.autocomplete') }}"
-            hx-trigger="input[target.value.length > 1] delay:500ms"
-            hx-target="#requestor-list"
-            hx-indicator="#spinner"
-            hx-on:blur="setTimeout(() => document.getElementById('requestor-list').innerHTML = '', 200)"
-            name="W_Requestor" label="New Requestor" type="text" :value="old('W_Requestor', $workorder->W_Requestor)" maxlength="100" required />
+            <x-form.input hx-get="{{ route('user.requestors.autocomplete') }}"
+                          hx-trigger="input[target.value.length > 1] delay:500ms"
+                          hx-target="#requestor-list"
+                          hx-indicator="#spinner"
+                          hx-on:blur="setTimeout(() => document.getElementById('requestor-list').innerHTML = '', 200)"
+                          name="W_Requestor"
+                          label="New Requestor"
+                          type="text"
+                          :value="old('W_Requestor', $workorder->W_Requestor)"
+                          maxlength="100"
+                          required />
 
-            <div id="requestor-list" class="list-group shadow"></div>
+            <div id="requestor-list"
+                 class="list-group shadow"></div>
 
             <br />
             <br />
 
-            <x-form.checkbox name="confirn" label="Are you sure? This will change the associated company and the requestor." required />
+            <x-form.checkbox name="confirn"
+                             label="Are you sure? This will change the associated company and the requestor."
+                             required />
 
             <br />
 
@@ -53,7 +64,8 @@
 
             <x-form.button>Submit</x-form.button>
 
-            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-light">Cancel</a>
+            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}"
+               class="btn btn-sm btn-light">Cancel</a>
 
         </form>
 

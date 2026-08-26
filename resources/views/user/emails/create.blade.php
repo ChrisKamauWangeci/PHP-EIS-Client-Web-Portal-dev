@@ -2,11 +2,14 @@
 
     <div class="row">
         <div class="col-auto">
-            <h1>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_LastName }}</h1>
+            <h1>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_LastName }}
+            </h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-secondary">View Workorder</a>
-            <a href="{{ route('user.workorderfiles.show', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-secondary">View Workorder Files</a>
+            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}"
+               class="btn btn-sm btn-secondary">View Workorder</a>
+            <a href="{{ route('user.workorderfiles.show', $workorder->W_WorkOrder) }}"
+               class="btn btn-sm btn-secondary">View Workorder Files</a>
         </div>
     </div>
 
@@ -22,23 +25,51 @@
     <div class="row">
         <div class="col-md-6">
 
-            <form method="post" action="{{ route('user.emails.store') }}">
+            <form method="post"
+                  action="{{ route('user.emails.store') }}">
                 @csrf
 
-                <input type="hidden" name="workorder_id" value="{{ $workorder->W_WorkOrder }}">
-                <input type="hidden" name="file" value="{{ $file }}">
-                <input type="hidden" name="email_type" value="{{ $email_type }}">
+                <input type="hidden"
+                       name="workorder_id"
+                       value="{{ $workorder->W_WorkOrder }}">
+                <input type="hidden"
+                       name="file"
+                       value="{{ $file }}">
+                <input type="hidden"
+                       name="email_type"
+                       value="{{ $email_type }}">
 
-                <x-form.input type="email" name="sender" id="sender" label="Sender" :value="old('sender', $sender)" required />
+                <x-form.input type="email"
+                              name="sender"
+                              id="sender"
+                              label="Sender"
+                              :value="old('sender', $sender)"
+                              required />
                 <br />
 
-                <x-form.input type="email" name="recipient" id="recipient" label="Recipient" :value="old('recipient', $recipient)" required />
+                <x-form.input type="email"
+                              name="recipient"
+                              id="recipient"
+                              label="Recipient"
+                              :value="old('recipient', $recipient)"
+                              required />
                 <br />
 
-                <x-form.input type="subject" name="subject" id="subject" label="Subject" :value="old('subject', $subject)" required maxlength="80" />
+                <x-form.input type="subject"
+                              name="subject"
+                              id="subject"
+                              label="Subject"
+                              :value="old('subject', $subject)"
+                              required
+                              maxlength="80" />
                 <br />
 
-                <x-form.textarea name="body" id="body" label="Body" :value="old('body', $body)" rows="12" maxlength="500" />
+                <x-form.textarea name="body"
+                                 id="body"
+                                 label="Body"
+                                 :value="old('body', $body)"
+                                 rows="12"
+                                 maxlength="500" />
                 <br />
 
                 @if ($file)
@@ -47,7 +78,9 @@
                     @if (!$fileExist)
                         <div class="fw-bold text-danger">File not found! Cannot attach file!</div>
                     @else
-                        <x-form.checkbox name="attachment" label="Send with attached file ?" checked />
+                        <x-form.checkbox name="attachment"
+                                         label="Send with attached file ?"
+                                         checked />
                         <br />
                     @endif
                 @endif

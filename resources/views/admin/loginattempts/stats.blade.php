@@ -17,7 +17,9 @@
             <tbody>
                 @foreach ($loginattempts as $loginattempt)
                     <tr>
-                        <td><a href="{{ route('admin.loginattempts.index', ['ip_address' => $loginattempt->ip_address]) }}">{{ $loginattempt->ip_address }}</a></td>
+                        <td><a
+                               href="{{ route('admin.loginattempts.index', ['ip_address' => $loginattempt->ip_address]) }}">{{ $loginattempt->ip_address }}</a>
+                        </td>
                         <td>{{ $loginattempt->counter }}</td>
                     </tr>
                 @endforeach

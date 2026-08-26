@@ -2,43 +2,73 @@
 
     <h1>Contractors Stats</h1>
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.contractorlogins.stats') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.contractorlogins.stats') }}">
 
         <div class="row">
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.select name="contractor" label="Contractor" :options="$contractors" empty="-" :default="request('contractor')" />
+                <x-form.select name="contractor"
+                               label="Contractor"
+                               :options="$contractors"
+                               empty="-"
+                               :default="request('contractor')" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.select name="location" label="Location" :options="Helper::locations()" empty="-" :default="request('location')" maxlength="50" />
+                <x-form.select name="location"
+                               label="Location"
+                               :options="Helper::locations()"
+                               empty="-"
+                               :default="request('location')"
+                               maxlength="50" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input type="date" name="from" label="From" :value="$from" min="{{ now()->subYear(5)->format('Y-m-d') }}" max="{{ now()->addDays(1)->format('Y-m-d') }}" />
+                <x-form.input type="date"
+                              name="from"
+                              label="From"
+                              :value="$from"
+                              min="{{ now()->subYear(5)->format('Y-m-d') }}"
+                              max="{{ now()->addDays(1)->format('Y-m-d') }}" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input type="date" name="to" label="To" :value="$to" min="{{ now()->subYear(5)->format('Y-m-d') }}" max="{{ now()->addDays(1)->format('Y-m-d') }}" />
+                <x-form.input type="date"
+                              name="to"
+                              label="To"
+                              :value="$to"
+                              min="{{ now()->subYear(5)->format('Y-m-d') }}"
+                              max="{{ now()->addDays(1)->format('Y-m-d') }}" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
                 @php
                     $selected = request()->has('is_active') ? request('is_active') : '';
                 @endphp
-                <x-form.select name="is_active" label="Is Active" :options="['' => 'All', '0' => 'Not Active', '1' => 'Active']" :default="$selected" maxlength="50" />
+                <x-form.select name="is_active"
+                               label="Is Active"
+                               :options="['' => 'All', '0' => 'Not Active', '1' => 'Active']"
+                               :default="$selected"
+                               maxlength="50" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
                 CSV Export
                 <br />
-                <input type="checkbox" name="csv" label="CSV Export" value="1">
+                <input type="checkbox"
+                       name="csv"
+                       label="CSV Export"
+                       value="1">
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.contractorlogins.stats') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.contractorlogins.stats') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
 
         </div>
@@ -90,7 +120,9 @@
                     @endphp
                     <tr>
                         <td nowrap>
-                            <a href="{{ route('user.contractorlogins.statsdaily', ['contractor' => $contractorlogin->contractor, 'from' => $from, 'to' => $to]) }}"><i class="fa-regular fa-clock"></i></a>
+                            <a
+                               href="{{ route('user.contractorlogins.statsdaily', ['contractor' => $contractorlogin->contractor, 'from' => $from, 'to' => $to]) }}"><i
+                                   class="fa-regular fa-clock"></i></a>
                             {{ $contractorlogin->contractor }}
                         </td>
                         <td data-order="{{ $contractorlogin->is_active ? 1 : 0 }}">
@@ -107,7 +139,8 @@
                         <td>{{ $contractorlogin->statustriggers_count }}</td>
                         <td>{{ $contractorlogin->total_page_views }}</td>
                         <td>{{ $contractorlogin->total_time_on_site }}</td>
-                        <td>{{ sprintf('%02d', floor($contractorlogin->total_time_on_site / 3600)) . gmdate(':i:s', $contractorlogin->total_time_on_site % 3600) }}</td>
+                        <td>{{ sprintf('%02d', floor($contractorlogin->total_time_on_site / 3600)) . gmdate(':i:s', $contractorlogin->total_time_on_site % 3600) }}
+                        </td>
                         <td>
                             @if ($contractorlogin->total_time_on_site && $contractorlogin->total_page_views)
                                 {{ intval($contractorlogin->total_time_on_site / $contractorlogin->total_page_views) }}

@@ -5,7 +5,8 @@
             <h1>Report Config Name</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.report_config_names.index') }}" class="btn btn-sm btn-secondary">View Report Config Names</a>
+            <a href="{{ route('user.report_config_names.index') }}"
+               class="btn btn-sm btn-secondary">View Report Config Names</a>
         </div>
     </div>
 
@@ -42,15 +43,18 @@
 
     <br />
 
-    <a href="{{ route('user.report_config_names.edit', $reportConfigName->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.report_config_names.edit', $reportConfigName->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('user.report_config_names.destroy', $reportConfigName->id) }}">
+    <form method="POST"
+          action="{{ route('user.report_config_names.destroy', $reportConfigName->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

@@ -5,7 +5,8 @@
             <h1>Workorder Hold Time</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.workorderholdtimes.index') }}" class="btn btn-sm btn-secondary">View Workorder Hold Times</a>
+            <a href="{{ route('user.workorderholdtimes.index') }}"
+               class="btn btn-sm btn-secondary">View Workorder Hold Times</a>
         </div>
     </div>
 

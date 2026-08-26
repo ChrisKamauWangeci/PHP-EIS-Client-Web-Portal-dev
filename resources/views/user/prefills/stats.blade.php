@@ -55,7 +55,8 @@
                         <td>{{ $prefillform->slug }}</td>
                         <td>{{ $prefillform->counter }}</td>
                         <td>
-                            <a href="/user/files?file=\\ftpserver\ftpserver\facilityformsfillable\{{ $prefillform->slug }}.pdf&download=1">{{ $prefillform->slug }}.pdf</a>
+                            <a
+                               href="/user/files?file=\\ftpserver\ftpserver\facilityformsfillable\{{ $prefillform->slug }}.pdf&download=1">{{ $prefillform->slug }}.pdf</a>
                         </td>
                     </tr>
                 @endforeach

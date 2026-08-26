@@ -20,16 +20,16 @@
         </thead>
         <tbody>
             @foreach ($data['seqsterorders'] as $seqsterorder)
-            <tr>
-                <td>{{ $seqsterorder->workorder_id }}</td>
-                <td>{{ $seqsterorder->company }}</td>
-                <td>{{ $seqsterorder->first_name }} {{ $seqsterorder->last_name }}</td>
-                <td>{{ $seqsterorder->email }}</td>
-                <td>{{ $seqsterorder->api_error }}</td>
-                <td>{{ $seqsterorder->visited_at }}</td>
-                <td>{{ $seqsterorder->status }}</td>
-                <td>{{ $seqsterorder->created }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $seqsterorder->workorder_id }}</td>
+                    <td>{{ $seqsterorder->company }}</td>
+                    <td>{{ $seqsterorder->first_name }} {{ $seqsterorder->last_name }}</td>
+                    <td>{{ $seqsterorder->email }}</td>
+                    <td>{{ $seqsterorder->api_error }}</td>
+                    <td>{{ $seqsterorder->visited_at }}</td>
+                    <td>{{ $seqsterorder->status }}</td>
+                    <td>{{ $seqsterorder->created }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

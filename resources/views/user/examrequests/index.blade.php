@@ -8,15 +8,22 @@
         </div>
     </div>
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.examrequests.index') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.examrequests.index') }}">
         <div class="row">
             <div class="col-4 col-md-2 col-lg-2 pt-2">
-                <x-form.input name="E_WorkOrder" id="E_WorkOrder" label="WorkOrder" :value="$E_WorkOrder" />
+                <x-form.input name="E_WorkOrder"
+                              id="E_WorkOrder"
+                              label="WorkOrder"
+                              :value="$E_WorkOrder" />
             </div>
             <div class="col-4 col-md-2 col-lg-2 pt-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.examrequests.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.examrequests.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
         </div>
     </form>
@@ -44,7 +51,8 @@
                         <td>{{ $examrequest->E_City }}</td>
                         <td>{{ $examrequest->E_State }}</td>
                         <td class="actions">
-                            <a href="{{ route('user.examrequests.show', $examrequest->E_WorkOrder) }}" class="btn btn-xs btn-secondary">view</a>
+                            <a href="{{ route('user.examrequests.show', $examrequest->E_WorkOrder) }}"
+                               class="btn btn-xs btn-secondary">view</a>
                         </td>
                     </tr>
                 @endforeach

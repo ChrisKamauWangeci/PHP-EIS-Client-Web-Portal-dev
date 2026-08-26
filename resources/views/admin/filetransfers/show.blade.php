@@ -5,7 +5,8 @@
             <h1>File Transfer</h1>
         </div>
         <div class="col text-end">
-            <a href="{{ route('admin.filetransfers.index') }}" class="btn btn-sm btn-secondary">View File Transfers</a>
+            <a href="{{ route('admin.filetransfers.index') }}"
+               class="btn btn-sm btn-secondary">View File Transfers</a>
         </div>
     </div>
 

@@ -5,7 +5,8 @@
             <h1>Addon Order</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.addonorders.index') }}" class="btn btn-sm btn-secondary">View Addon Orders</a>
+            <a href="{{ route('user.addonorders.index') }}"
+               class="btn btn-sm btn-secondary">View Addon Orders</a>
         </div>
     </div>
 

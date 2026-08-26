@@ -5,7 +5,8 @@
             <h1>Bill To Picklist</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.billtopicklists.index') }}" class="btn btn-sm btn-secondary">View Bill To Picklists</a>
+            <a href="{{ route('admin.billtopicklists.index') }}"
+               class="btn btn-sm btn-secondary">View Bill To Picklists</a>
         </div>
     </div>
 
@@ -60,7 +61,8 @@
 
     <br />
 
-    <a href="{{ route('admin.billtopicklists.edit', $billtopicklist->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.billtopicklists.edit', $billtopicklist->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />

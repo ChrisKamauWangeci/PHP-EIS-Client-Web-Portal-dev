@@ -5,7 +5,8 @@
             <h1>Workorder</h1>
         </div>
         <div class="col text-end">
-            <a href="{{ route('admin.workorders.index') }}" class="btn btn-sm btn-secondary">View Workorders</a>
+            <a href="{{ route('admin.workorders.index') }}"
+               class="btn btn-sm btn-secondary">View Workorders</a>
         </div>
     </div>
 

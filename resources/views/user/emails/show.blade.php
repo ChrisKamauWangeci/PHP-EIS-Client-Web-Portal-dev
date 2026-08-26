@@ -5,7 +5,8 @@
             <h1>Email</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.emails.index') }}" class="btn btn-sm btn-secondary">View Emails</a>
+            <a href="{{ route('user.emails.index') }}"
+               class="btn btn-sm btn-secondary">View Emails</a>
         </div>
     </div>
 

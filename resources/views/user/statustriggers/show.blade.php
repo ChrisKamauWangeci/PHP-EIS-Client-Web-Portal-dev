@@ -5,7 +5,8 @@
             <h1>Statustrigger</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.statustriggers.index') }}" class="btn btn-sm btn-secondary">View Statustriggers</a>
+            <a href="{{ route('user.statustriggers.index') }}"
+               class="btn btn-sm btn-secondary">View Statustriggers</a>
         </div>
     </div>
 

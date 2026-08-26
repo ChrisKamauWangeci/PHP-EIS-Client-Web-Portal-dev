@@ -37,20 +37,24 @@
 
     <br />
 
-    <a href="{{ route('admin.companyupdates.index') }}" class="btn btn-sm btn-secondary">Company Updates</a>
+    <a href="{{ route('admin.companyupdates.index') }}"
+       class="btn btn-sm btn-secondary">Company Updates</a>
 
     <br />
     <br />
 
-    <a href="{{ route('admin.companyupdates.edit', $companyupdate->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.companyupdates.edit', $companyupdate->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.companyupdates.destroy', $companyupdate->id) }}">
+    <form method="POST"
+          action="{{ route('admin.companyupdates.destroy', $companyupdate->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

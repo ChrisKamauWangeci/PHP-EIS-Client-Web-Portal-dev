@@ -15,8 +15,12 @@
 </style>
 
 <form id="htmx-state">
-    <input type="hidden" name="sort_field" value="{{ request('sort_field') }}">
-    <input type="hidden" name="sort_direction" value="{{ request('sort_direction') }}">
+    <input type="hidden"
+           name="sort_field"
+           value="{{ request('sort_field') }}">
+    <input type="hidden"
+           name="sort_direction"
+           value="{{ request('sort_direction') }}">
 </form>
 
 <div class="table-responsive">
@@ -24,28 +28,25 @@
         <thead>
             <tr>
                 <th>
-                    <a
-                        hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'WorkOrderID', 'sort_direction' => $sort_direction]) }}"
-                        hx-target="#results"
-                        hx-push-url="false">
+                    <a hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'WorkOrderID', 'sort_direction' => $sort_direction]) }}"
+                       hx-target="#results"
+                       hx-push-url="false">
                         Workorder ID
                     </a>
                 </th>
 
                 <th>
-                    <a
-                        hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'AcordReferenceID', 'sort_direction' => $sort_direction]) }}"
-                        hx-target="#results"
-                        hx-push-url="false">
+                    <a hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'AcordReferenceID', 'sort_direction' => $sort_direction]) }}"
+                       hx-target="#results"
+                       hx-push-url="false">
                         Acord Reference ID
                     </a>
                 </th>
 
                 <th>
-                    <a
-                        hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'Inserted', 'sort_direction' => $sort_direction]) }}"
-                        hx-target="#results"
-                        hx-push-url="false">
+                    <a hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'Inserted', 'sort_direction' => $sort_direction]) }}"
+                       hx-target="#results"
+                       hx-push-url="false">
                         Inserted
                     </a>
                 </th>
@@ -57,7 +58,9 @@
         <tbody>
             @foreach ($synodextransmissions as $synodextransmission)
                 <tr id="row-{{ $synodextransmission->id }}">
-                    <td><a href="{{ route('user.workorders.show', $synodextransmission->WorkOrderID) }}">{{ $synodextransmission->WorkOrderID }}</a></td>
+                    <td><a
+                           href="{{ route('user.workorders.show', $synodextransmission->WorkOrderID) }}">{{ $synodextransmission->WorkOrderID }}</a>
+                    </td>
                     <td>{{ $synodextransmission->AcordReferenceID }}</td>
                     <td>{{ $synodextransmission->Inserted?->format('m/d/Y H:i:s') }}</td>
                 </tr>

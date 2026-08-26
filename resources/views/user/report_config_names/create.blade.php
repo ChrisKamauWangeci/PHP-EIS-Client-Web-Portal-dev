@@ -5,7 +5,8 @@
             <h1>Create Report Config</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.report_config_names.index') }}" class="btn btn-sm btn-secondary">View Report Configs</a>
+            <a href="{{ route('user.report_config_names.index') }}"
+               class="btn btn-sm btn-secondary">View Report Configs</a>
         </div>
     </div>
 
@@ -14,10 +15,14 @@
     <div class="row">
         <div class="col-sm-6">
 
-            <form method="post" action="{{ route('user.report_config_names.store') }}">
+            <form method="post"
+                  action="{{ route('user.report_config_names.store') }}">
                 @csrf
 
-                <x-form.input name="report_name" id="report_name" label="Report Name" :value="old('report_name')" />
+                <x-form.input name="report_name"
+                              id="report_name"
+                              label="Report Name"
+                              :value="old('report_name')" />
 
                 <br />
 

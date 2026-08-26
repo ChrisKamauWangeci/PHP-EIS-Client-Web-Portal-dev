@@ -5,7 +5,8 @@
             <h1>Ticket Manager</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.ticketmanagers.index') }}" class="btn btn-sm btn-secondary">View Ticket Managers</a>
+            <a href="{{ route('admin.ticketmanagers.index') }}"
+               class="btn btn-sm btn-secondary">View Ticket Managers</a>
         </div>
     </div>
 
@@ -41,17 +42,20 @@
     <br />
     <br />
 
-    <a href="{{ route('admin.ticketmanagers.edit', $ticketmanager->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.ticketmanagers.edit', $ticketmanager->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
     @if (!$ticketscount)
-    <form method="POST" action="{{ route('admin.ticketmanagers.destroy', $ticketmanager->id) }}">
-        @csrf
-        @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
-    </form>
+        <form method="POST"
+              action="{{ route('admin.ticketmanagers.destroy', $ticketmanager->id) }}">
+            @csrf
+            @method('DELETE')
+            <x-form.button class="btn btn-sm btn-danger"
+                           onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        </form>
     @endif
 
     <br />

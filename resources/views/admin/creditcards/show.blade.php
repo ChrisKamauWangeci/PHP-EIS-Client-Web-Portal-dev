@@ -5,7 +5,8 @@
             <h1>Credit Card</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.creditcards.index') }}" class="btn btn-sm btn-secondary">View Credit Cards</a>
+            <a href="{{ route('admin.creditcards.index') }}"
+               class="btn btn-sm btn-secondary">View Credit Cards</a>
         </div>
     </div>
 
@@ -45,15 +46,18 @@
 
     <br />
 
-    <a href="{{ route('admin.creditcards.edit', $creditcard->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.creditcards.edit', $creditcard->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.creditcards.destroy', $creditcard->id) }}">
+    <form method="POST"
+          action="{{ route('admin.creditcards.destroy', $creditcard->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

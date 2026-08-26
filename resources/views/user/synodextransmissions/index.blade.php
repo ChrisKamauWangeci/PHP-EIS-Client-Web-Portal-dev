@@ -17,17 +17,22 @@
 
     <h1>Synodex Transmissions</h1>
 
-    <form
-        hx-get="{{ route('user.synodextransmissions.index') }}"
-        hx-target="#results"
-        hx-push-url="false"
-        hx-indicator="#loading"
-        hx-trigger="keyup delay:600ms from:input, change from:select, submit">
+    <form hx-get="{{ route('user.synodextransmissions.index') }}"
+          hx-target="#results"
+          hx-push-url="false"
+          hx-indicator="#loading"
+          hx-trigger="keyup delay:600ms from:input, change from:select, submit">
 
         <div class="row">
 
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input name="WorkOrderID" label="Workorder ID" :value="request('WorkOrderID')" type="number" min="1" max="9999999" autocomplete="off" />
+                <x-form.input name="WorkOrderID"
+                              label="Workorder ID"
+                              :value="request('WorkOrderID')"
+                              type="number"
+                              min="1"
+                              max="9999999"
+                              autocomplete="off" />
             </div>
 
             <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 pt-2">
@@ -43,9 +48,8 @@
     <br />
     <br />
 
-    <div
-        id="loading"
-        class="text-muted htmx-indicator">
+    <div id="loading"
+         class="text-muted htmx-indicator">
         <span class="spinner-border spinner-border-sm"></span>
         Loading…
     </div>

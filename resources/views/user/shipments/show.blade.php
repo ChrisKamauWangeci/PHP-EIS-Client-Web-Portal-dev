@@ -5,8 +5,10 @@
             <h1>Shipment - {{ $shipment->id }}</h1>
         </div>
         <div class="col-auto text-end">
-            <a href="/user/shipments" class="btn btn-sm btn-secondary">Shipments</a>
-            <a href="/user/shipments?workorder_id={{ $workorder->W_WorkOrder }}" class="btn btn-sm btn-secondary">View Shipments for # {{ $workorder->W_WorkOrder }}</a>
+            <a href="/user/shipments"
+               class="btn btn-sm btn-secondary">Shipments</a>
+            <a href="/user/shipments?workorder_id={{ $workorder->W_WorkOrder }}"
+               class="btn btn-sm btn-secondary">View Shipments for # {{ $workorder->W_WorkOrder }}</a>
         </div>
     </div>
 

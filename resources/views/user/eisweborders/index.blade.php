@@ -2,34 +2,53 @@
 
     <h1>Eisweborders</h1>
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.eisweborders.index') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.eisweborders.index') }}">
 
         <div class="row">
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input name="2" label="2" :value="request('2')" maxlength="50" />
+                <x-form.input name="2"
+                              label="2"
+                              :value="request('2')"
+                              maxlength="50" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input name="3" label="3" :value="request('3')" maxlength="50" />
+                <x-form.input name="3"
+                              label="3"
+                              :value="request('3')"
+                              maxlength="50" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input name="6" label="6" :value="request('6')" maxlength="50" />
+                <x-form.input name="6"
+                              label="6"
+                              :value="request('6')"
+                              maxlength="50" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input name="7" label="7" :value="request('7')" maxlength="50" />
+                <x-form.input name="7"
+                              label="7"
+                              :value="request('7')"
+                              maxlength="50" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
-                <x-form.input name="23" label="23" :value="request('23')" maxlength="50" />
+                <x-form.input name="23"
+                              label="23"
+                              :value="request('23')"
+                              maxlength="50" />
             </div>
 
             <div class="col-6 col-md-4 col-lg-3 col-xl-2 pt-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.eisweborders.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.eisweborders.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
 
         </div>
@@ -45,7 +64,9 @@
         <table class="table table-sm table-hover table-bordered w-auto">
             <thead>
                 <tr>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'ID', 'sort_direction' => $sort_direction]) }}">ID</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'ID', 'sort_direction' => $sort_direction]) }}">ID</a>
+                    </th>
                     <th>1</th>
                     <th>2</th>
                     <th>3</th>
@@ -114,7 +135,8 @@
                         <td>{{ $eisweborder['29'] }}</td>
                         <td>{{ $eisweborder['30'] }}</td>
                         <td class="actions">
-                            <a href="{{ route('user.eisweborders.show', $eisweborder->ID) }}" class="btn btn-xs btn-secondary">view</a>
+                            <a href="{{ route('user.eisweborders.show', $eisweborder->ID) }}"
+                               class="btn btn-xs btn-secondary">view</a>
                         </td>
                     </tr>
                 @endforeach

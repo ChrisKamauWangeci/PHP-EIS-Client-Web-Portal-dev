@@ -2,12 +2,16 @@
 
     <h1>Create Role</h1>
 
-    <form action="{{ route('admin.roles.store') }}" method="POST">
+    <form action="{{ route('admin.roles.store') }}"
+          method="POST">
         @csrf
 
         <div class="mb-3">
             <label class="form-label">Role Name</label>
-            <input type="text" name="name" class="form-control" required>
+            <input type="text"
+                   name="name"
+                   class="form-control"
+                   required>
         </div>
 
         <h3 class="mt-4">Assign Permissions</h3>
@@ -15,7 +19,9 @@
             @foreach ($permissions as $p)
                 <div class="col-md-3">
                     <label>
-                        <input type="checkbox" name="permissions[]" value="{{ $p->name }}">
+                        <input type="checkbox"
+                               name="permissions[]"
+                               value="{{ $p->name }}">
                         {{ $p->name }}
                     </label>
                 </div>

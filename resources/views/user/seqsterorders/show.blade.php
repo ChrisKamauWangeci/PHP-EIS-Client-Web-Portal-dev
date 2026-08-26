@@ -5,7 +5,8 @@
             <h1>Seqster Order</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.seqsterorders.index') }}" class="btn btn-sm btn-secondary">View Seqster Orders</a>
+            <a href="{{ route('user.seqsterorders.index') }}"
+               class="btn btn-sm btn-secondary">View Seqster Orders</a>
         </div>
     </div>
 
@@ -178,22 +179,27 @@
 
     <h3>Actions</h3>
 
-    <form method="POST" action="{{ route('user.seqsterorders.sendemail', $seqsterorder->id) }}">
+    <form method="POST"
+          action="{{ route('user.seqsterorders.sendemail', $seqsterorder->id) }}">
         @csrf
-        <button type="submit" class="btn btn-sm btn-secondary">Resend Email</button>
+        <button type="submit"
+                class="btn btn-sm btn-secondary">Resend Email</button>
     </form>
 
     <br />
 
-    <a href="{{ route('user.seqsterorders.edit', $seqsterorder->id) }}" class="btn btn-sm btn-primary">Edit</a>
+    <a href="{{ route('user.seqsterorders.edit', $seqsterorder->id) }}"
+       class="btn btn-sm btn-primary">Edit</a>
 
     <br />
     <br />
 
     @if ($seqsterorder->company == 'USAA')
-        <a href="https://usaa.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}" target="_blank">https://usaa.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}</a>
+        <a href="https://usaa.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}"
+           target="_blank">https://usaa.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}</a>
     @else
-        <a href="https://www.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}" target="_blank">https://www.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}</a>
+        <a href="https://www.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}"
+           target="_blank">https://www.expressimagingservices.com/seqsterorders/step1/{{ $seqsterorder->uuid }}</a>
     @endif
 
     <br />

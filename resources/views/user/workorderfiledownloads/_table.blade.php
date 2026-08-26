@@ -15,8 +15,12 @@
 </style>
 
 <form id="htmx-state">
-    <input type="hidden" name="sort_field" value="{{ request('sort_field') }}">
-    <input type="hidden" name="sort_direction" value="{{ request('sort_direction') }}">
+    <input type="hidden"
+           name="sort_field"
+           value="{{ request('sort_field') }}">
+    <input type="hidden"
+           name="sort_direction"
+           value="{{ request('sort_direction') }}">
 </form>
 
 <div class="table-responsive">
@@ -24,19 +28,17 @@
         <thead>
             <tr>
                 <th>
-                    <a
-                        hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'workorder_id', 'sort_direction' => $sort_direction]) }}"
-                        hx-target="#results"
-                        hx-push-url="false">
+                    <a hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'workorder_id', 'sort_direction' => $sort_direction]) }}"
+                       hx-target="#results"
+                       hx-push-url="false">
                         Workorder ID
                     </a>
                 </th>
 
                 <th>
-                    <a
-                        hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'company', 'sort_direction' => $sort_direction]) }}"
-                        hx-target="#results"
-                        hx-push-url="false">
+                    <a hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'company', 'sort_direction' => $sort_direction]) }}"
+                       hx-target="#results"
+                       hx-push-url="false">
                         Company
                     </a>
                 </th>
@@ -45,19 +47,17 @@
                 <th>TIF</th>
 
                 <th>
-                    <a
-                        hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'created_at', 'sort_direction' => $sort_direction]) }}"
-                        hx-target="#results"
-                        hx-push-url="false">
+                    <a hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'created_at', 'sort_direction' => $sort_direction]) }}"
+                       hx-target="#results"
+                       hx-push-url="false">
                         Created
                     </a>
                 </th>
 
                 <th>
-                    <a
-                        hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'updated_at', 'sort_direction' => $sort_direction]) }}"
-                        hx-target="#results"
-                        hx-push-url="false">
+                    <a hx-get="{{ request()->fullUrlWithQuery(['sort_field' => 'updated_at', 'sort_direction' => $sort_direction]) }}"
+                       hx-target="#results"
+                       hx-push-url="false">
                         Updated
                     </a>
                 </th>
@@ -75,7 +75,8 @@
                                 {{ $row->workorder_id }}
                             </a>
                         @else
-                            <a href="https://ehr.expressimagingservices.net/user/workorders/{{ $row->workorder_id }}" target="_blank">
+                            <a href="https://ehr.expressimagingservices.net/user/workorders/{{ $row->workorder_id }}"
+                               target="_blank">
                                 {{ $row->workorder_id }}
                             </a>
                         @endif
@@ -101,14 +102,13 @@
                     <td>{{ $row->updated_at?->format('m/d/Y H:i:s') }}</td>
 
                     <td>
-                        <button
-                            class="btn btn-xs btn-danger"
-                            hx-delete="{{ route('user.workorderfiledownloads.destroy', $row) }}"
-                            hx-vals='{"order_type":"{{ $order_type }}"}'
-                            hx-confirm="Delete this record?"
-                            hx-target="#row-{{ $row->id }}"
-                            hx-swap="delete swap:500ms"
-                            hx-indicator="#loading">
+                        <button class="btn btn-xs btn-danger"
+                                hx-delete="{{ route('user.workorderfiledownloads.destroy', $row) }}"
+                                hx-vals='{"order_type":"{{ $order_type }}"}'
+                                hx-confirm="Delete this record?"
+                                hx-target="#row-{{ $row->id }}"
+                                hx-swap="delete swap:500ms"
+                                hx-indicator="#loading">
                             Delete
                         </button>
                     </td>

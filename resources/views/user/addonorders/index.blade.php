@@ -2,18 +2,23 @@
 
     <h1>Addon Orders</h1>
 
-    <form method="GET" action="{{ route('user.addonorders.index') }}">
+    <form method="GET"
+          action="{{ route('user.addonorders.index') }}">
 
         <div class="row">
 
             <div class="col-md-2">
-                <x-form.input name="workorder_id" label="Workorder ID" :value="request('workorder_id')" autocomplete="off" />
+                <x-form.input name="workorder_id"
+                              label="Workorder ID"
+                              :value="request('workorder_id')"
+                              autocomplete="off" />
             </div>
 
             <div class="col-md-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.addonorders.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.addonorders.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
         </div>
 
@@ -58,7 +63,8 @@
                         <td>{{ $addonorder->hospital }}</td>
                         <td>{{ $addonorder->created }}</td>
                         <td>{{ $addonorder->Updated }}</td>
-                        <td><a href="{{ route('user.addonorders.show', $addonorder->id) }}" class="btn btn-xs btn-secondary">view</a></td>
+                        <td><a href="{{ route('user.addonorders.show', $addonorder->id) }}"
+                               class="btn btn-xs btn-secondary">view</a></td>
                     </tr>
                 @endforeach
             </tbody>

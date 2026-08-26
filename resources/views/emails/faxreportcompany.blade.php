@@ -20,16 +20,16 @@
         </thead>
         <tbody>
             @foreach ($data['faxes'] as $fax)
-            <tr>
-                <td>{{ $fax->workorder }}</td>
-                <td>{{ $fax->applicant_name }}</td>
-                <td>{{ $fax->fax_number }}</td>
-                <td>{{ $fax->page_count }}</td>
-                <td>{{ $fax->number_of_attempts }}</td>
-                <td>{{ $fax->total_transmit_time }}</td>
-                <td>{{ $fax->api_status }}</td>
-                <td>{{ $fax->created_at }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $fax->workorder }}</td>
+                    <td>{{ $fax->applicant_name }}</td>
+                    <td>{{ $fax->fax_number }}</td>
+                    <td>{{ $fax->page_count }}</td>
+                    <td>{{ $fax->number_of_attempts }}</td>
+                    <td>{{ $fax->total_transmit_time }}</td>
+                    <td>{{ $fax->api_status }}</td>
+                    <td>{{ $fax->created_at }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

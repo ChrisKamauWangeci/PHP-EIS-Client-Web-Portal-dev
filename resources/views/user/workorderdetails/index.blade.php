@@ -2,18 +2,23 @@
 
     <h1>Workorder Details</h1>
 
-    <form method="GET" action="{{ route('user.workorderdetails.index') }}">
+    <form method="GET"
+          action="{{ route('user.workorderdetails.index') }}">
 
         <div class="row">
 
             <div class="col-md-2">
-                <x-form.input name="workorder_id" label="Workorder ID" :value="request('workorder_id')" autocomplete="off" />
+                <x-form.input name="workorder_id"
+                              label="Workorder ID"
+                              :value="request('workorder_id')"
+                              autocomplete="off" />
             </div>
 
             <div class="col-md-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.workorderdetails.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.workorderdetails.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
         </div>
 
@@ -44,7 +49,8 @@
                         <td>{{ $workorderdetail->requestorrole }}</td>
                         <td>{{ $workorderdetail->created_at }}</td>
                         <td>{{ $workorderdetail->updated_at }}</td>
-                        <td><a href="{{ route('user.workorderdetails.show', $workorderdetail->id) }}" class="btn btn-xs btn-secondary">view</a></td>
+                        <td><a href="{{ route('user.workorderdetails.show', $workorderdetail->id) }}"
+                               class="btn btn-xs btn-secondary">view</a></td>
                     </tr>
                 @endforeach
             </tbody>

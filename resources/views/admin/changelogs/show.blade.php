@@ -11,7 +11,8 @@
             <h1>Changelog</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.changelogs.index') }}" class="btn btn-sm btn-secondary">View Changelogs</a>
+            <a href="{{ route('admin.changelogs.index') }}"
+               class="btn btn-sm btn-secondary">View Changelogs</a>
         </div>
     </div>
 
@@ -40,7 +41,8 @@
         </tr>
         <tr>
             <td>Is Active</td>
-            <td><img src="/img/icon_{{ $changelog->is_active }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $changelog->is_active }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Created By</td>
@@ -62,25 +64,28 @@
 
     <br />
 
-    <a href="{{ route('admin.changelogs.edit', $changelog->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.changelogs.edit', $changelog->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.changelogs.destroy', $changelog->id) }}">
+    <form method="POST"
+          action="{{ route('admin.changelogs.destroy', $changelog->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />
     <br />
 
-    @if($adminsession['debug'])
-    <div class="bg-light small p-2 d-print-none">
-        changelog
-        @php dump(@$changelog) @endphp
-    </div>
+    @if ($adminsession['debug'])
+        <div class="bg-light small p-2 d-print-none">
+            changelog
+            @php dump(@$changelog) @endphp
+        </div>
     @endif
 
     <br />

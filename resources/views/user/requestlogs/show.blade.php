@@ -5,7 +5,8 @@
             <h1>Request Log</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.requestlogs.index') }}" class="btn btn-sm btn-secondary">View Request Logs</a>
+            <a href="{{ route('user.requestlogs.index') }}"
+               class="btn btn-sm btn-secondary">View Request Logs</a>
         </div>
     </div>
 
@@ -53,7 +54,8 @@
 
     <br />
 
-    <a href="{{ route('user.requestlogs.edit', $requestlog->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.requestlogs.edit', $requestlog->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />

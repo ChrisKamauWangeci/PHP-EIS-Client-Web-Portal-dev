@@ -5,7 +5,8 @@
             <h1>Edit Report Config Name</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.report_config_names.show', $reportConfigName->id) }}" class="btn btn-sm btn-secondary">View Report Config Names</a>
+            <a href="{{ route('user.report_config_names.show', $reportConfigName->id) }}"
+               class="btn btn-sm btn-secondary">View Report Config Names</a>
         </div>
     </div>
 
@@ -18,11 +19,15 @@
     <div class="row">
         <div class="col-sm-6">
 
-            <form method="post" action="{{ route('user.report_config_names.update', $reportConfigName->id ) }}">
+            <form method="post"
+                  action="{{ route('user.report_config_names.update', $reportConfigName->id) }}">
                 @csrf
                 @method('PATCH')
 
-                <x-form.input name="report_name" id="report_name" label="Report Name" :value="old('report_name', $reportConfigName->report_name )" />
+                <x-form.input name="report_name"
+                              id="report_name"
+                              label="Report Name"
+                              :value="old('report_name', $reportConfigName->report_name)" />
                 <br />
 
                 <x-form.button>Submit</x-form.button>

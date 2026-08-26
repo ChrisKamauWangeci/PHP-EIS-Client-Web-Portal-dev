@@ -5,7 +5,8 @@
             <h1>Docusign Document</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.docusigndocuments.index') }}" class="btn btn-sm btn-secondary">View Docusign Documents</a>
+            <a href="{{ route('user.docusigndocuments.index') }}"
+               class="btn btn-sm btn-secondary">View Docusign Documents</a>
         </div>
     </div>
 
@@ -115,8 +116,10 @@
                 @if (is_file('//ftpserver/documents/websiterecords/' . $docusigndocument->workorder_id . '-unsigned.pdf'))
                     {{ $docusigndocument->workorder_id }}-unsigned.pdf
                     <br />
-                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-unsigned.pdf&amp;download=0" target="_blank">view</a>
-                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-unsigned.pdf&amp;download=1" target="_blank">download</a>
+                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-unsigned.pdf&amp;download=0"
+                       target="_blank">view</a>
+                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-unsigned.pdf&amp;download=1"
+                       target="_blank">download</a>
                     <br />
                     <br />
                 @endif
@@ -124,8 +127,10 @@
                 @if (is_file('//ftpserver/documents/websiterecords/' . $docusigndocument->workorder_id . '-signed.pdf'))
                     {{ $docusigndocument->workorder_id }}-signed.pdf
                     <br />
-                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-signed.pdf&amp;download=0" target="_blank">view</a>
-                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-signed.pdf&amp;download=1" target="_blank">download</a>
+                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-signed.pdf&amp;download=0"
+                       target="_blank">view</a>
+                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-signed.pdf&amp;download=1"
+                       target="_blank">download</a>
                     <br />
                     <br />
                 @endif
@@ -133,14 +138,17 @@
                 @if (is_file('//ftpserver/documents/websiterecords/' . $docusigndocument->workorder_id . '-certificate.pdf'))
                     {{ $docusigndocument->workorder_id }}-certificate.pdf
                     <br />
-                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-certificate.pdf&amp;download=0" target="_blank">view</a>
-                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-certificate.pdf&amp;download=1" target="_blank">download</a>
+                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-certificate.pdf&amp;download=0"
+                       target="_blank">view</a>
+                    <a href="/user/files?file=//ftpserver/documents/websiterecords/{{ $docusigndocument->workorder_id }}-certificate.pdf&amp;download=1"
+                       target="_blank">download</a>
                     <br />
                     <br />
                 @endif
 
                 @if ($docusigndocument->status != 'envelope-voided')
-                    <a href="/user/docusigndocuments/download?id={{ $docusigndocument->id }}" class="btn btn-sm btn-secondary">download from docusign</a>
+                    <a href="/user/docusigndocuments/download?id={{ $docusigndocument->id }}"
+                       class="btn btn-sm btn-secondary">download from docusign</a>
                 @else
                     envelope is voided, not downloadable
                 @endif
@@ -181,26 +189,49 @@
 
     <br />
 
-    @if ($docusigndocument->envelopeid && $docusigndocument->signingtype == 'email' && $docusigndocument->status != 'envelope-completed' && $docusigndocument->status != 'envelope-voided')
+    @if (
+        $docusigndocument->envelopeid &&
+            $docusigndocument->signingtype == 'email' &&
+            $docusigndocument->status != 'envelope-completed' &&
+            $docusigndocument->status != 'envelope-voided')
         <h4>Resend Email</h4>
 
         <div class="col-md-4">
 
-            <form method="post" action="{{ route('user.docusignchanges.resend') }}">
+            <form method="post"
+                  action="{{ route('user.docusignchanges.resend') }}">
                 @csrf
                 @method('POST')
 
-                <input type="hidden" name="id" value="{{ $docusigndocument->id }}" />
-                <input type="hidden" name="envelopeid" value="{{ $docusigndocument->envelopeid }}" />
-                <input type="hidden" name="email_before" value="{{ $docusigndocument->email }}" />
+                <input type="hidden"
+                       name="id"
+                       value="{{ $docusigndocument->id }}" />
+                <input type="hidden"
+                       name="envelopeid"
+                       value="{{ $docusigndocument->envelopeid }}" />
+                <input type="hidden"
+                       name="email_before"
+                       value="{{ $docusigndocument->email }}" />
 
-                <x-form.input type="email" name="email" label="Patient Email or Enter New Email" :value="old('email', $docusigndocument->email)" maxlength="50" required />
+                <x-form.input type="email"
+                              name="email"
+                              label="Patient Email or Enter New Email"
+                              :value="old('email', $docusigndocument->email)"
+                              maxlength="50"
+                              required />
                 <br />
 
-                <x-form.input name="reason" label="Resend Reason" :value="old('reason')" maxlength="50" required />
+                <x-form.input name="reason"
+                              label="Resend Reason"
+                              :value="old('reason')"
+                              maxlength="50"
+                              required />
                 <br />
 
-                <x-form.checkbox name="confirmresend" id="confirmresend" label="Confirm" required />
+                <x-form.checkbox name="confirmresend"
+                                 id="confirmresend"
+                                 label="Confirm"
+                                 required />
 
                 <x-form.button>Submit</x-form.button>
 
@@ -210,7 +241,14 @@
     @endif
 
     @php
-        $validStatuses = ['envelope-delivered', 'recipient-delivered', 'envelope-sent', 'envelope-resent', 'recipient-sent', 'recipient-finish-later'];
+        $validStatuses = [
+            'envelope-delivered',
+            'recipient-delivered',
+            'envelope-sent',
+            'envelope-resent',
+            'recipient-sent',
+            'recipient-finish-later',
+        ];
     @endphp
 
     @if ($docusigndocument->envelopeid && in_array($docusigndocument->status, $validStatuses))
@@ -221,12 +259,17 @@
 
         <div class="col-md-4">
 
-            <form method="post" action="{{ route('user.docusignchanges.voidenvelope') }}">
+            <form method="post"
+                  action="{{ route('user.docusignchanges.voidenvelope') }}">
                 @csrf
                 @method('POST')
 
-                <input type="hidden" name="id" value="{{ $docusigndocument->id }}" />
-                <input type="hidden" name="envelopeid" value="{{ $docusigndocument->envelopeid }}" />
+                <input type="hidden"
+                       name="id"
+                       value="{{ $docusigndocument->id }}" />
+                <input type="hidden"
+                       name="envelopeid"
+                       value="{{ $docusigndocument->envelopeid }}" />
 
                 @php
                     $options = [
@@ -235,10 +278,16 @@
                         'Patient refusal to release records' => 'Patient refusal to release records',
                     ];
                 @endphp
-                <x-form.select name="reason" label="Void Reason" :options="$options" required />
+                <x-form.select name="reason"
+                               label="Void Reason"
+                               :options="$options"
+                               required />
                 <br />
 
-                <x-form.checkbox name="confirmvoidenvelope" label="Confirm" id="confirmvoidenvelope" required />
+                <x-form.checkbox name="confirmvoidenvelope"
+                                 label="Confirm"
+                                 id="confirmvoidenvelope"
+                                 required />
 
                 <x-form.button>Submit</x-form.button>
 

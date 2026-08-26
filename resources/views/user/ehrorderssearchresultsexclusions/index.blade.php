@@ -5,24 +5,34 @@
             <h1>EHR Orders Search Results Exclusions</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.ehrorders.index') }}" class="btn btn-sm btn-secondary">View EHR Orders</a>
-            <a href="{{ route('user.ehrorderssearchresults.index') }}" class="btn btn-sm btn-secondary">View EHR Order Search Results</a>
-            <a href="{{ route('user.ehrordersdocuments.index') }}" class="btn btn-sm btn-secondary">View EHR Order Documents</a>
+            <a href="{{ route('user.ehrorders.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Orders</a>
+            <a href="{{ route('user.ehrorderssearchresults.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Order Search Results</a>
+            <a href="{{ route('user.ehrordersdocuments.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Order Documents</a>
         </div>
     </div>
 
     <br />
     <br />
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.ehrorderssearchresultsexclusions.index') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.ehrorderssearchresultsexclusions.index') }}">
         <div class="row">
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 pt-2">
-                <x-form.input name="managing_organization" id="managing_organization" label="Managing Organization" :value="request('managing_organization')" />
+                <x-form.input name="managing_organization"
+                              id="managing_organization"
+                              label="Managing Organization"
+                              :value="request('managing_organization')" />
             </div>
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 pt-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.ehrorderssearchresultsexclusions.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.ehrorderssearchresultsexclusions.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
         </div>
     </form>
@@ -55,7 +65,8 @@
                         <td>{{ $ehrorderssearchresultsexclusion->created_at->format('m/d/Y g:i a') }}</td>
                         <td>{{ $ehrorderssearchresultsexclusion->updated_at->format('m/d/Y g:i a') }}</td>
                         <td>
-                            <a href="{{ route('user.ehrorderssearchresultsexclusions.show', $ehrorderssearchresultsexclusion->id) }}" class="btn btn-xs btn-secondary">View</a>
+                            <a href="{{ route('user.ehrorderssearchresultsexclusions.show', $ehrorderssearchresultsexclusion->id) }}"
+                               class="btn btn-xs btn-secondary">View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -68,7 +79,8 @@
     <br />
     <br />
 
-    <a href="{{ route('user.ehrorderssearchresultsexclusions.create') }}" class="btn btn-sm btn-secondary">Add</a>
+    <a href="{{ route('user.ehrorderssearchresultsexclusions.create') }}"
+       class="btn btn-sm btn-secondary">Add</a>
 
     <br />
     <br />

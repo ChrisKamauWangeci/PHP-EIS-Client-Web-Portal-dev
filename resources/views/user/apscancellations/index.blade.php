@@ -37,20 +37,31 @@
         </div>
     </div>
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.apscancellations.index') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.apscancellations.index') }}">
 
         <div class="row">
 
             <div class="col-4 col-md-2 col-lg-2 pt-2">
-                <x-form.input name="EISWorkOrderID" label="EIS WorkOrder ID" :value="request('EISWorkOrderID')" />
+                <x-form.input name="EISWorkOrderID"
+                              label="EIS WorkOrder ID"
+                              :value="request('EISWorkOrderID')" />
             </div>
 
             <div class="col-4 col-md-2 col-lg-2 pt-2">
-                <x-form.input name="CompanyName" label="Company Name" :value="request('CompanyName')" />
+                <x-form.input name="CompanyName"
+                              label="Company Name"
+                              :value="request('CompanyName')" />
             </div>
 
             <div class="col-4 col-md-2 col-lg-2 pt-2">
-                <x-form.select name="CancellationStatusID" label="Cancellation Status" :options="$cancellationStatusOptions" empty="-" :default="request('CancellationStatusID')" />
+                <x-form.select name="CancellationStatusID"
+                               label="Cancellation Status"
+                               :options="$cancellationStatusOptions"
+                               empty="-"
+                               :default="request('CancellationStatusID')" />
             </div>
 
             <div class="col-4 col-md-2 col-lg-2 pt-2">
@@ -60,18 +71,25 @@
                         '1' => 'Completed',
                     ];
                 @endphp
-                <x-form.select name="IsNotified" label="Is Completed" :options="$notifiedoptions" empty="-" :default="request('IsNotified')" />
+                <x-form.select name="IsNotified"
+                               label="Is Completed"
+                               :options="$notifiedoptions"
+                               empty="-"
+                               :default="request('IsNotified')" />
             </div>
 
             <div class="col-4 col-md-2 col-lg-2 pt-2">
-                <x-form.input name="Username" label="User Name" :value="request('Username')" />
+                <x-form.input name="Username"
+                              label="User Name"
+                              :value="request('Username')" />
             </div>
 
             <div class="col-4 col-md-2 col-lg-2 pt-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
                 &nbsp;
-                <a href="{{ route('user.apscancellations.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.apscancellations.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
 
         </div>
@@ -86,14 +104,28 @@
         <table class="table table-sm table-hover table-bordered w-auto">
             <thead>
                 <tr>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'EISWorkOrderID', 'sort_direction' => $sort_direction]) }}">EIS WorkOrder ID</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'EISWorkOrderID', 'sort_direction' => $sort_direction]) }}">EIS
+                            WorkOrder ID</a></th>
                     <th>Workorder Status</th>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'RequestID', 'sort_direction' => $sort_direction]) }}">Request ID</a></th>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'CompanyName', 'sort_direction' => $sort_direction]) }}">Company Name</a></th>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'CancellationStatusID', 'sort_direction' => $sort_direction]) }}">Cancellation Status</a></th>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'IsNotified', 'sort_direction' => $sort_direction]) }}">Is Completed</a></th>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'Inserted', 'sort_direction' => $sort_direction]) }}">Requested Date</a></th>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'Username', 'sort_direction' => $sort_direction]) }}">Username</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'RequestID', 'sort_direction' => $sort_direction]) }}">Request
+                            ID</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'CompanyName', 'sort_direction' => $sort_direction]) }}">Company
+                            Name</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'CancellationStatusID', 'sort_direction' => $sort_direction]) }}">Cancellation
+                            Status</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'IsNotified', 'sort_direction' => $sort_direction]) }}">Is
+                            Completed</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'Inserted', 'sort_direction' => $sort_direction]) }}">Requested
+                            Date</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'Username', 'sort_direction' => $sort_direction]) }}">Username</a>
+                    </th>
                     <th></th>
                 </tr>
             </thead>

@@ -5,7 +5,8 @@
             <h1>Company</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.companies.index') }}" class="btn btn-sm btn-secondary">View Companies</a>
+            <a href="{{ route('admin.companies.index') }}"
+               class="btn btn-sm btn-secondary">View Companies</a>
         </div>
     </div>
 
@@ -226,7 +227,8 @@
 
     <br />
 
-    <a href="{{ route('admin.companies.edit', $company->id) }}" class="btn btn-sm btn-secondary">Edit Company</a>
+    <a href="{{ route('admin.companies.edit', $company->id) }}"
+       class="btn btn-sm btn-secondary">Edit Company</a>
 
     <br />
     <br />
@@ -234,7 +236,8 @@
     <br />
     <br />
 
-    @if ($adminsession['debug']) :
+    @if ($adminsession['debug'])
+        :
         <div class="bg-light small p-2 d-print-none">
             company
             @dump(@$company)

@@ -5,7 +5,8 @@
             <h1>EHR Order Search Result</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.ehrorderssearchresults.index') }}" class="btn btn-sm btn-secondary">View EHR Order Search Results</a>
+            <a href="{{ route('user.ehrorderssearchresults.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Order Search Results</a>
         </div>
     </div>
 
@@ -66,7 +67,8 @@
         </tr>
         <tr>
             <td>Operation Outcome</td>
-            <td class="{{ !empty($ehrorderssearchresult->operation_outcome) ? 'bg-danger-subtle' : '' }}">{{ $ehrorderssearchresult->operation_outcome }}</td>
+            <td class="{{ !empty($ehrorderssearchresult->operation_outcome) ? 'bg-danger-subtle' : '' }}">
+                {{ $ehrorderssearchresult->operation_outcome }}</td>
         </tr>
         <tr>
             <td>Status</td>
@@ -74,7 +76,8 @@
         </tr>
         <tr>
             <td>Is Active</td>
-            <td><img src="/img/icon_{{ $ehrorderssearchresult->is_active }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $ehrorderssearchresult->is_active }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Created By</td>

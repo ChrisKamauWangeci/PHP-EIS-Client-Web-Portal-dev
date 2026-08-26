@@ -3,7 +3,8 @@
     <table width="100%">
         <tr>
             <td align="">
-                <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::size(60)->generate($workorder->W_WorkOrder)) }}" class="m-2" />
+                <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::size(60)->generate($workorder->W_WorkOrder)) }}"
+                     class="m-2" />
             </td>
         </tr>
     </table>
@@ -56,7 +57,8 @@
                     Dr. Fee: <strong>0.00</strong>
                 </td>
                 <td nowrap>
-                    Patient: <strong>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</strong>
+                    Patient: <strong>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }}
+                        {{ $workorder->W_LastName }}</strong>
                     <br />
                     DOB: <strong>{{ $workorder->W_DOB?->format('m/d/Y') }}</strong>
                     <br />
@@ -95,7 +97,8 @@
 
     <div class="p-1 border">
 
-        <strong>For our record, please complete the section below and fax it back to us at {!! Helper::coverPageFax($usersession) !!}, or call us at {!! Helper::coverPagePhone($usersession) !!}</strong>
+        <strong>For our record, please complete the section below and fax it back to us at {!! Helper::coverPageFax($usersession) !!}, or
+            call us at {!! Helper::coverPagePhone($usersession) !!}</strong>
 
         <br />
 
@@ -118,7 +121,8 @@
 
         <br />
 
-        <strong>Please select from the following options for your preferred method of releasing medical records:</strong>
+        <strong>Please select from the following options for your preferred method of releasing medical
+            records:</strong>
 
         <br />
 

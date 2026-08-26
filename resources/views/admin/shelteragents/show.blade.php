@@ -5,7 +5,8 @@
             <h1>Shelter Agent</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.shelteragents.index') }}" class="btn btn-sm btn-secondary">View Shelter Agents</a>
+            <a href="{{ route('admin.shelteragents.index') }}"
+               class="btn btn-sm btn-secondary">View Shelter Agents</a>
         </div>
     </div>
 
@@ -34,7 +35,8 @@
         </tr>
         <tr>
             <td>Is Active</td>
-            <td><img src="/img/icon_{{ $shelteragent->is_active }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $shelteragent->is_active }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Created By</td>
@@ -56,15 +58,18 @@
 
     <br />
 
-    <a href="{{ route('admin.shelteragents.edit', $shelteragent->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.shelteragents.edit', $shelteragent->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.shelteragents.destroy', $shelteragent->id) }}">
+    <form method="POST"
+          action="{{ route('admin.shelteragents.destroy', $shelteragent->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />
@@ -92,9 +97,11 @@
                             <td>{{ $shelteragent->role }}</td>
                             <td>{{ $shelteragent->sdl_district_number }}</td>
                             <td>{{ $shelteragent->agent_code }}</td>
-                            <td><img src="/img/icon_{{ $shelteragent->is_active }}.png" alt=""></td>
+                            <td><img src="/img/icon_{{ $shelteragent->is_active }}.png"
+                                     alt=""></td>
                             <td>
-                                <a href="{{ route('admin.shelteragents.show', $shelteragent->id) }}" class="btn btn-xs btn-secondary">View</a>
+                                <a href="{{ route('admin.shelteragents.show', $shelteragent->id) }}"
+                                   class="btn btn-xs btn-secondary">View</a>
                             </td>
                         </tr>
                     @endforeach

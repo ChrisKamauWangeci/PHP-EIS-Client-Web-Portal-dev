@@ -5,7 +5,8 @@
             <h1>Workorder Notice</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.workordernotices.index') }}" class="btn btn-sm btn-secondary">View Workorder Notices</a>
+            <a href="{{ route('user.workordernotices.index') }}"
+               class="btn btn-sm btn-secondary">View Workorder Notices</a>
         </div>
     </div>
 
@@ -51,7 +52,8 @@
         <tr>
             <th>Attachment</th>
             <td>
-                <a href="/user/files?file={{ $workordernotice->attachment }}&amp;download=0" target="_blank">{{ basename($workordernotice->attachment) }}</a>
+                <a href="/user/files?file={{ $workordernotice->attachment }}&amp;download=0"
+                   target="_blank">{{ basename($workordernotice->attachment) }}</a>
             </td>
         </tr>
         <tr>

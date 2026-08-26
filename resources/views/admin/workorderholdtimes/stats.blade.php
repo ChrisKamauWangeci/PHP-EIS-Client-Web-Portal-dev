@@ -38,14 +38,14 @@
             type: 'bar',
             data: {
                 labels: [
-                    @foreach($workorderholdtimes as $workorderholdtime)
+                    @foreach ($workorderholdtimes as $workorderholdtime)
                         "{{ $workorderholdtime->year }} / {{ $workorderholdtime->month }}",
                     @endforeach
                 ],
                 datasets: [{
                     label: 'Workorder Hold Times Stats',
                     data: [
-                        @foreach($workorderholdtimes as $workorderholdtime)
+                        @foreach ($workorderholdtimes as $workorderholdtime)
                             {{ $workorderholdtime->counter }},
                         @endforeach
                     ],

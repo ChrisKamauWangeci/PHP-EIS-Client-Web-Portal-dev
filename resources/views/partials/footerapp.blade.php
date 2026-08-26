@@ -14,12 +14,14 @@
     <br />
     <br />
 
-    Security Monitoring: All activities on this system are monitored and logged for security and compliance purposes. Unauthorized access or use may be subject to disciplinary action, prosecution, or penalties under applicable laws.
+    Security Monitoring: All activities on this system are monitored and logged for security and compliance purposes.
+    Unauthorized access or use may be subject to disciplinary action, prosecution, or penalties under applicable laws.
 
     <br />
     <br />
 
-    Confidentiality: You agree to handle all data securely and responsibly, ensuring no unauthorized access to sensitive or confidential information.
+    Confidentiality: You agree to handle all data securely and responsibly, ensuring no unauthorized access to sensitive
+    or confidential information.
 
     <br />
     <br />
@@ -33,7 +35,9 @@
 <div class="p-3 bg-secondary-subtle text-black">
     <div class="row">
         <div class="col-12 col-sm-6">
-            <img src="https://usaa.expressimagingservices.com/images/eis-logo.png" height="40" alt="EIS">
+            <img src="https://usaa.expressimagingservices.com/images/eis-logo.png"
+                 height="40"
+                 alt="EIS">
             <div class="p-1"></div>
             Express Imaging Services, Inc.
             <div></div>

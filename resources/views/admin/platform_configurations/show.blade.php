@@ -5,7 +5,8 @@
             <h1>Platform Configuration</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.platform-configurations.index') }}" class="btn btn-sm btn-secondary">View Platform Configurations</a>
+            <a href="{{ route('admin.platform-configurations.index') }}"
+               class="btn btn-sm btn-secondary">View Platform Configurations</a>
         </div>
     </div>
 
@@ -44,9 +45,9 @@
             <th>Active</th>
             <td>
                 @if ($platformConfiguration->is_active)
-                <span class="text-success">Yes</span>
+                    <span class="text-success">Yes</span>
                 @else
-                <span class="text-danger">No</span>
+                    <span class="text-danger">No</span>
                 @endif
             </td>
         </tr>
@@ -62,15 +63,18 @@
 
     <br />
 
-    <a href="{{ route('admin.platform-configurations.edit', $platformConfiguration->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.platform-configurations.edit', $platformConfiguration->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.platform-configurations.destroy', $platformConfiguration->id) }}">
+    <form method="POST"
+          action="{{ route('admin.platform-configurations.destroy', $platformConfiguration->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

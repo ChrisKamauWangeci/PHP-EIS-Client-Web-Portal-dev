@@ -5,8 +5,10 @@
             <h1>Edit Ticket</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.tickets.show', $ticket->id) }}" class="btn btn-sm btn-secondary">Show Ticket</a>
-            <a href="{{ route('user.tickets.index') }}" class="btn btn-sm btn-secondary">View Tickets</a>
+            <a href="{{ route('user.tickets.show', $ticket->id) }}"
+               class="btn btn-sm btn-secondary">Show Ticket</a>
+            <a href="{{ route('user.tickets.index') }}"
+               class="btn btn-sm btn-secondary">View Tickets</a>
         </div>
     </div>
 
@@ -15,11 +17,14 @@
     <div class="row">
         <div class="col-sm-6">
 
-            <form method="post" action="{{ route('user.tickets.update', $ticket->id ) }}">
+            <form method="post"
+                  action="{{ route('user.tickets.update', $ticket->id) }}">
                 @csrf
                 @method('PATCH')
 
-                <x-form.input name="workorder_id" label="Workorder ID" :value="old('workorder_id', $ticket->workorder_id)" />
+                <x-form.input name="workorder_id"
+                              label="Workorder ID"
+                              :value="old('workorder_id', $ticket->workorder_id)" />
                 <br />
 
                 <br />

@@ -5,7 +5,8 @@
             <h1>Docusign Document</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.docusigndocuments.index') }}" class="btn btn-sm btn-secondary">View Docusign Documents</a>
+            <a href="{{ route('admin.docusigndocuments.index') }}"
+               class="btn btn-sm btn-secondary">View Docusign Documents</a>
         </div>
     </div>
 

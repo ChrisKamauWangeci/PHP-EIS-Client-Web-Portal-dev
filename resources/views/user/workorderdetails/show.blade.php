@@ -5,7 +5,8 @@
             <h1>Workorder Detail</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.workorderdetails.index') }}" class="btn btn-sm btn-secondary">View Workorder Details</a>
+            <a href="{{ route('user.workorderdetails.index') }}"
+               class="btn btn-sm btn-secondary">View Workorder Details</a>
         </div>
     </div>
 

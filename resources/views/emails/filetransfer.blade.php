@@ -18,14 +18,14 @@
         </thead>
         <tbody>
             @foreach ($data['filetransfers'] as $filetransfers)
-            <tr>
-                <td>{{ $filetransfers->id }}</td>
-                <td>{{ $filetransfers->contractor }}</td>
-                <td>{{ $filetransfers->direction }}</td>
-                <td>{{ $filetransfers->file_type }}</td>
-                <td>{{ $filetransfers->filename }}</td>
-                <td>{{ $filetransfers->created_at }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $filetransfers->id }}</td>
+                    <td>{{ $filetransfers->contractor }}</td>
+                    <td>{{ $filetransfers->direction }}</td>
+                    <td>{{ $filetransfers->file_type }}</td>
+                    <td>{{ $filetransfers->filename }}</td>
+                    <td>{{ $filetransfers->created_at }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

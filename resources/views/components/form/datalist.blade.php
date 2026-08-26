@@ -12,10 +12,16 @@
 ])
 
 @if ($label)
-    <x-form.label :for="$attributes->get('id') ?? ($id ?? $name)" :label="$label" :required="$required" />
+    <x-form.label :for="$attributes->get('id') ?? ($id ?? $name)"
+                  :label="$label"
+                  :required="$required" />
 @endif
 
-<input list="{{ $name }}" name="{{ $name }}" type="text" value="{{ $default }}" {{ $attributes->merge(['class' => 'form-select form-select-sm', 'required' => $required ? true : null]) }}>
+<input list="{{ $name }}"
+       name="{{ $name }}"
+       type="text"
+       value="{{ $default }}"
+       {{ $attributes->merge(['class' => 'form-select form-select-sm', 'required' => $required ? true : null]) }}>
 
 <datalist id="{{ $name }}">
     @foreach ($options as $key => $option)

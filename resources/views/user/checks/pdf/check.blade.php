@@ -1,6 +1,7 @@
 <x-pdf-layout title="">
 
-    <div id="date" class="text-right fw-bold">
+    <div id="date"
+         class="text-right fw-bold">
         {{ date('M d, Y') }}
     </div>
 
@@ -11,7 +12,8 @@
             <td class="pl-10 fw-bold">
                 RECIPIENT
             </td>
-            <td align="right" class="pr-1 fw-bold">
+            <td align="right"
+                class="pr-1 fw-bold">
                 ${{ number_format($amount, 2) }}
             </td>
         </tr>
@@ -31,7 +33,9 @@
                 {{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}
             </td>
             <td align="right">
-                <img src="img/signature.png" height="70" class="">
+                <img src="img/signature.png"
+                     height="70"
+                     class="">
             </td>
         </tr>
     </table>
@@ -71,7 +75,8 @@
         Dear Sir/Madam,
         <br />
         <br />
-        Enclosed is tear-away check for the retrieval of medical records belonging to {{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}.
+        Enclosed is tear-away check for the retrieval of medical records belonging to {{ $workorder->W_FirstName }}
+        {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}.
         <br />
         Please process this request promptly. Contact us if further information is needed.
         <br />

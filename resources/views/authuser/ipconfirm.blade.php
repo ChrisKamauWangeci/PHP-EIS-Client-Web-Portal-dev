@@ -12,10 +12,15 @@
     <div class="row">
         <div class="col-11 col-sm-6 col-md-5 col-lg-4">
 
-            <form method="POST" action="{{ route('authuser.ipconfirmin') }}">
+            <form method="POST"
+                  action="{{ route('authuser.ipconfirmin') }}">
                 @csrf
 
-                <x-form.input name="code" label="Verification Code" :value="old('code', $code)" maxlength="8" required />
+                <x-form.input name="code"
+                              label="Verification Code"
+                              :value="old('code', $code)"
+                              maxlength="8"
+                              required />
 
                 <br />
 

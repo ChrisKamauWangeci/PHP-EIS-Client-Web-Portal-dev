@@ -5,7 +5,8 @@
             <h1>Time Card</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.timecards.index') }}" class="btn btn-sm btn-secondary">View Timecards</a>
+            <a href="{{ route('user.timecards.index') }}"
+               class="btn btn-sm btn-secondary">View Timecards</a>
         </div>
     </div>
 

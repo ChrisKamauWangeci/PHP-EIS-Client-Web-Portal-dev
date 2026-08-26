@@ -5,7 +5,8 @@
             <h1>Setting</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.settings.index') }}" class="btn btn-sm btn-secondary">View Settings</a>
+            <a href="{{ route('admin.settings.index') }}"
+               class="btn btn-sm btn-secondary">View Settings</a>
         </div>
     </div>
 
@@ -48,15 +49,18 @@
 
     <br />
 
-    <a href="{{ route('admin.settings.edit', $setting->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.settings.edit', $setting->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.settings.destroy', $setting->id) }}">
+    <form method="POST"
+          action="{{ route('admin.settings.destroy', $setting->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

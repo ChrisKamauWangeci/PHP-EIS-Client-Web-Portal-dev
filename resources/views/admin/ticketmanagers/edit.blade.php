@@ -11,14 +11,21 @@
     <div class="row">
         <div class="col-sm-6">
 
-            <form method="post" action="{{ route('admin.ticketmanagers.update', $ticketmanager->id ) }}">
+            <form method="post"
+                  action="{{ route('admin.ticketmanagers.update', $ticketmanager->id) }}">
                 @csrf
                 @method('PATCH')
 
-                <x-form.input name="name" label="name" :value="old('name', $ticketmanager->name )" required />
+                <x-form.input name="name"
+                              label="name"
+                              :value="old('name', $ticketmanager->name)"
+                              required />
                 <br />
 
-                <x-form.input name="email" label="Email" :value="old('email', $ticketmanager->email )" required />
+                <x-form.input name="email"
+                              label="Email"
+                              :value="old('email', $ticketmanager->email)"
+                              required />
                 <br />
 
                 <x-form.button>Submit</x-form.button>

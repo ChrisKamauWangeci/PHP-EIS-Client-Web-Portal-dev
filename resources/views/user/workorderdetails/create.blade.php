@@ -2,11 +2,14 @@
 
     <div class="row">
         <div class="col-auto">
-            <h2>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</h2>
+            <h2>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }}
+                {{ $workorder->W_LastName }}</h2>
         </div>
         <div class="col text-end">
-            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-secondary">View Workorder</a>
-            <a href="{{ route('user.workorderdetails.index') }}" class="btn btn-sm btn-secondary">View Workorder Details</a>
+            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}"
+               class="btn btn-sm btn-secondary">View Workorder</a>
+            <a href="{{ route('user.workorderdetails.index') }}"
+               class="btn btn-sm btn-secondary">View Workorder Details</a>
         </div>
     </div>
 
@@ -48,13 +51,19 @@
 
                 <h3>Create Workorder Detail</h3>
 
-                <form method="post" action="{{ route('user.workorderdetails.store') }}">
+                <form method="post"
+                      action="{{ route('user.workorderdetails.store') }}">
                     @csrf
 
-                    <input type="hidden" name="workorder_id" value="{{ $workorder->W_WorkOrder }}" />
+                    <input type="hidden"
+                           name="workorder_id"
+                           value="{{ $workorder->W_WorkOrder }}" />
                     <br />
 
-                    <x-form.select name="requestorrole" label="Requestor Role" :value="old('requestorrole')" :options="$requestorroles" />
+                    <x-form.select name="requestorrole"
+                                   label="Requestor Role"
+                                   :value="old('requestorrole')"
+                                   :options="$requestorroles" />
                     <br />
 
                     <x-form.button>Submit</x-form.button>

@@ -5,14 +5,23 @@
     <div class="row">
         <div class="col-11 col-sm-6 col-md-5 col-lg-4">
 
-            <form method="POST" action="{{ route('authuser.in') }}">
+            <form method="POST"
+                  action="{{ route('authuser.in') }}">
                 @csrf
 
-                <x-form.input name="C_Name" label="Name" :value="old('C_Name')" maxlength="50" required />
+                <x-form.input name="C_Name"
+                              label="Name"
+                              :value="old('C_Name')"
+                              maxlength="50"
+                              required />
 
                 <br />
 
-                <x-form.input type="password" name="C_Password" label="Password" maxlength="50" required />
+                <x-form.input type="password"
+                              name="C_Password"
+                              label="Password"
+                              maxlength="50"
+                              required />
 
                 <br />
 
@@ -20,8 +29,8 @@
 
             </form>
 
-            @if($errors->any())
-            <div class="py-4 text-danger">{{$errors->first()}}</div>
+            @if ($errors->any())
+                <div class="py-4 text-danger">{{ $errors->first() }}</div>
             @endif
 
         </div>
@@ -56,11 +65,14 @@
         <br />
         <br />
 
-        Security Monitoring: All activities on this system are monitored and logged for security and compliance purposes. Unauthorized access or use may be subject to disciplinary action, prosecution, or penalties under applicable laws.
+        Security Monitoring: All activities on this system are monitored and logged for security and compliance
+        purposes. Unauthorized access or use may be subject to disciplinary action, prosecution, or penalties under
+        applicable laws.
         <br />
         <br />
 
-        Confidentiality: You agree to handle all data securely and responsibly, ensuring no unauthorized access to sensitive or confidential information.
+        Confidentiality: You agree to handle all data securely and responsibly, ensuring no unauthorized access to
+        sensitive or confidential information.
         <br />
         <br />
 

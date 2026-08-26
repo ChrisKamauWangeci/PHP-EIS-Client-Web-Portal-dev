@@ -5,26 +5,43 @@
             <h1>Daily Stats</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.daily_stats.index') }}" class="btn btn-sm btn-secondary">Daily Stats</a>
-            <a href="{{ route('user.daily_stats.totals') }}" class="btn btn-sm btn-secondary">Daily Stats Totals</a>
+            <a href="{{ route('user.daily_stats.index') }}"
+               class="btn btn-sm btn-secondary">Daily Stats</a>
+            <a href="{{ route('user.daily_stats.totals') }}"
+               class="btn btn-sm btn-secondary">Daily Stats Totals</a>
         </div>
     </div>
 
     {{-- Date Range Filter --}}
-    <form method="get" id="searchform" action="{{ route('user.daily_stats.index') }}">
+    <form method="get"
+          id="searchform"
+          action="{{ route('user.daily_stats.index') }}">
         <div class="row">
             <div class="col-6 col-md-3 col-lg-2 pt-2">
-                <x-form.input name="start" id="start" label="Start Date"
-                    :value="request('start') ?? $start" type="date" autocomplete="off" min="2023-01-01" max="2030-01-01" />
+                <x-form.input name="start"
+                              id="start"
+                              label="Start Date"
+                              :value="request('start') ?? $start"
+                              type="date"
+                              autocomplete="off"
+                              min="2023-01-01"
+                              max="2030-01-01" />
             </div>
             <div class="col-6 col-md-3 col-lg-2 pt-2">
-                <x-form.input name="end" id="end" label="End Date"
-                    :value="request('end') ?? $end" type="date" autocomplete="off" min="2023-01-01" max="2030-01-01" />
+                <x-form.input name="end"
+                              id="end"
+                              label="End Date"
+                              :value="request('end') ?? $end"
+                              type="date"
+                              autocomplete="off"
+                              min="2023-01-01"
+                              max="2030-01-01" />
             </div>
             <div class="col-md-2 pt-2">
                 <label>&nbsp;</label><br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.daily_stats.index') }}" class="btn btn-sm btn-secondary"><i class="fas fa-window-close"></i></a>
+                <a href="{{ route('user.daily_stats.index') }}"
+                   class="btn btn-sm btn-secondary"><i class="fas fa-window-close"></i></a>
             </div>
         </div>
     </form>
@@ -32,15 +49,40 @@
     <br />
 
     <div class="mb-2">
-        <button type="button" class="btn btn-sm btn-secondary" onclick="showAll()">Select All</button>
-        <button type="button" class="btn btn-sm btn-secondary" onclick="hideAll()">Unselect All</button>
+        <button type="button"
+                class="btn btn-sm btn-secondary"
+                onclick="showAll()">Select All</button>
+        <button type="button"
+                class="btn btn-sm btn-secondary"
+                onclick="hideAll()">Unselect All</button>
     </div>
 
-    <canvas id="dailyStatsChart" height="100"></canvas>
+    <canvas id="dailyStatsChart"
+            height="100"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @php
-        $metricFields = ['aps_workorders_received', 'aps_workorders_completed', 'ehr_workorders_received', 'ehr_workorders_completed', 'ehr_orders_created', 'ehr_orders_submitted', 'ehr_orders_search_created', 'ehr_orders_search_submitted', 'ehr_documents_created', 'ehr_documents_received', 'eisweborders_created', 'seqster_orders_created', 'seqster_orders_visited', 'fax_created', 'fax_completed', 'docusign_created', 'docusign_completed', 'requestor_logins', 'contractor_logins'];
+        $metricFields = [
+            'aps_workorders_received',
+            'aps_workorders_completed',
+            'ehr_workorders_received',
+            'ehr_workorders_completed',
+            'ehr_orders_created',
+            'ehr_orders_submitted',
+            'ehr_orders_search_created',
+            'ehr_orders_search_submitted',
+            'ehr_documents_created',
+            'ehr_documents_received',
+            'eisweborders_created',
+            'seqster_orders_created',
+            'seqster_orders_visited',
+            'fax_created',
+            'fax_completed',
+            'docusign_created',
+            'docusign_completed',
+            'requestor_logins',
+            'contractor_logins',
+        ];
 
         $chartData = [];
         foreach ($metricFields as $field) {

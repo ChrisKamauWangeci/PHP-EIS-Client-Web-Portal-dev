@@ -20,21 +20,22 @@
                 @foreach ($companyupdates as $companyupdate)
                     <tr>
                         <td>
-                            <a href="{{ route('user.companyupdates.show', $companyupdate->id ) }}" class="fw-bold text-primary">{{ $companyupdate->name }}</a>
+                            <a href="{{ route('user.companyupdates.show', $companyupdate->id) }}"
+                               class="fw-bold text-primary">{{ $companyupdate->name }}</a>
                         </td>
                         <!-- <td>{{ $companyupdate->created_at->format('M/d/Y') }}</td> -->
                         <td>
                             <div class="float-end">
-                                @if($companyupdate->contractor->count() > 0)
-                                <small>{{ $companyupdate->contractor->first()->pivot->created_at->format('M/d/Y') }}</small>
+                                @if ($companyupdate->contractor->count() > 0)
+                                    <small>{{ $companyupdate->contractor->first()->pivot->created_at->format('M/d/Y') }}</small>
                                 @endif
                             </div>
                         </td>
                         <td>
-                            @if(!$companyupdate->contractor->count())
-                            <i class="fa-regular fa-fw fa-clock text-warning fa-beat"></i> Pending
+                            @if (!$companyupdate->contractor->count())
+                                <i class="fa-regular fa-fw fa-clock text-warning fa-beat"></i> Pending
                             @else
-                            <i class="fa-solid fa-fw fa-square-check text-success"></i> Acknowledged
+                                <i class="fa-solid fa-fw fa-square-check text-success"></i> Acknowledged
                             @endif
                         </td>
                     </tr>

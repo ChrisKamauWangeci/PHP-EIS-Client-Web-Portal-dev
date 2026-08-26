@@ -5,7 +5,8 @@
             <h1>Workorder Notices</h1>
         </div>
         <div class="col text-end">
-            <a href="{{ route('admin.workordernotices.index') }}" class="btn btn-sm btn-secondary">View Workorder Notices</a>
+            <a href="{{ route('admin.workordernotices.index') }}"
+               class="btn btn-sm btn-secondary">View Workorder Notices</a>
         </div>
     </div>
 
@@ -68,7 +69,8 @@
 
     <br />
 
-    <a href="{{ route('admin.workordernotices.edit', $workordernotice->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.workordernotices.edit', $workordernotice->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
 

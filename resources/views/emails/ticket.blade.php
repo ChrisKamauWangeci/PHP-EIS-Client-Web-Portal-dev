@@ -5,7 +5,7 @@
     $ticketcomments = $data['ticketcomments'];
     ?>
 
-        <table class="table table-hover table-bordered table-sm table-hover w-auto">
+    <table class="table table-hover table-bordered table-sm table-hover w-auto">
         <tr>
             <td>ID</td>
             <td>{{ $ticket->id }}</td>
@@ -77,7 +77,8 @@
                     <strong>{!! nl2br(e($ticketcomment->comment ?? '')) !!}</strong>
                     <br />
                     <br />
-                    <small>{{ $ticketcomment->created_by }} - {{ $ticketcomment->created_at->format('m/d/Y H:i') }}</small>
+                    <small>{{ $ticketcomment->created_by }} -
+                        {{ $ticketcomment->created_at->format('m/d/Y H:i') }}</small>
                 </td>
             </tr>
         @endforeach

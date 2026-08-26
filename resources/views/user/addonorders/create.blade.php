@@ -2,11 +2,14 @@
 
     <div class="row">
         <div class="col-auto">
-            <h2>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</h2>
+            <h2>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }}
+                {{ $workorder->W_LastName }}</h2>
         </div>
         <div class="col text-end">
-            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-secondary">View Workorder</a>
-            <a href="{{ route('user.addonorders.index') }}" class="btn btn-sm btn-secondary">View Addon Orders</a>
+            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}"
+               class="btn btn-sm btn-secondary">View Workorder</a>
+            <a href="{{ route('user.addonorders.index') }}"
+               class="btn btn-sm btn-secondary">View Addon Orders</a>
         </div>
     </div>
 
@@ -52,10 +55,13 @@
 
                 <h3>Create Addon Order</h3>
 
-                <form method="post" action="{{ route('user.addonorders.store') }}">
+                <form method="post"
+                      action="{{ route('user.addonorders.store') }}">
                     @csrf
 
-                    <input type="hidden" name="workorder_id" value="{{ $workorder->W_WorkOrder }}" />
+                    <input type="hidden"
+                           name="workorder_id"
+                           value="{{ $workorder->W_WorkOrder }}" />
                     <br />
 
                     @php
@@ -64,7 +70,13 @@
                             'ehl' => 'EHL',
                         ];
                     @endphp
-                    <x-form.select name="newordertype" label="New Order Type" id="newordertype" :options="$options" empty="-" :default="old('newordertype')" required />
+                    <x-form.select name="newordertype"
+                                   label="New Order Type"
+                                   id="newordertype"
+                                   :options="$options"
+                                   empty="-"
+                                   :default="old('newordertype')"
+                                   required />
                     <br />
 
                     @php
@@ -73,7 +85,12 @@
                             'M' => 'M',
                         ];
                     @endphp
-                    <x-form.select name="gender" label="Gender" id="gender" :options="$options" empty=" " :default="old('gender', $workorder->W_Gender)" />
+                    <x-form.select name="gender"
+                                   label="Gender"
+                                   id="gender"
+                                   :options="$options"
+                                   empty=" "
+                                   :default="old('gender', $workorder->W_Gender)" />
                     <br />
 
                     <x-form.button>Submit</x-form.button>

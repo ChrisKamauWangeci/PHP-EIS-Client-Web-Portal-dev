@@ -5,7 +5,8 @@
             <h1>Requestor</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.requestors.index') }}" class="btn btn-sm btn-secondary">View Requestors</a>
+            <a href="{{ route('admin.requestors.index') }}"
+               class="btn btn-sm btn-secondary">View Requestors</a>
         </div>
     </div>
 
@@ -18,7 +19,9 @@
         </tr>
         <tr>
             <td>Company</td>
-            <td><a href="{{ route('admin.requestors.index', ['R_Company' => $requestor->R_Company]) }}">{{ $requestor->R_Company }}</a></td>
+            <td><a
+                   href="{{ route('admin.requestors.index', ['R_Company' => $requestor->R_Company]) }}">{{ $requestor->R_Company }}</a>
+            </td>
         </tr>
         <tr>
             <td>Name</td>
@@ -54,15 +57,18 @@
         </tr>
         <tr>
             <td>Active</td>
-            <td><img src="/img/icon_{{ $requestor->R_Active }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $requestor->R_Active }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Super User</td>
-            <td><img src="/img/icon_{{ $requestor->R_SuperUser }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $requestor->R_SuperUser }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Confirm Email</td>
-            <td><img src="/img/icon_{{ $requestor->R_ConfirmEmail }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $requestor->R_ConfirmEmail }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Status Email Audit</td>
@@ -70,11 +76,13 @@
         </tr>
         <tr>
             <td>View Records</td>
-            <td><img src="/img/icon_{{ $requestor->R_ViewRecords }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $requestor->R_ViewRecords }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>No Order</td>
-            <td><img src="/img/icon_{{ $requestor->R_NoOrder }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $requestor->R_NoOrder }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Password Last Changed</td>
@@ -104,12 +112,14 @@
 
     <br />
 
-    <a href="{{ route('admin.requestors.edit', $requestor->R_ID) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.requestors.edit', $requestor->R_ID) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <a href="{{ route('admin.requestors.password', $requestor->R_ID) }}" class="btn btn-sm btn-secondary">Change Password</a>
+    <a href="{{ route('admin.requestors.password', $requestor->R_ID) }}"
+       class="btn btn-sm btn-secondary">Change Password</a>
 
     <br />
     <br />

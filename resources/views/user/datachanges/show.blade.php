@@ -5,7 +5,8 @@
             <h1>Data Change</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.datachanges.index') }}" class="btn btn-sm btn-secondary">View Data Changes</a>
+            <a href="{{ route('user.datachanges.index') }}"
+               class="btn btn-sm btn-secondary">View Data Changes</a>
         </div>
     </div>
 

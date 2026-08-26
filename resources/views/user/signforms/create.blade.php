@@ -9,29 +9,37 @@
             <h1>In-house Prefill: {{ $data['workorder_id'] }} - {{ $data['patient_full_name'] }}</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.workorders.show', $data['workorder_id']) }}" class="btn btn-sm btn-secondary">View Workorder</a>
-            <a href="{{ route('user.prefills.index') }}" class="btn btn-sm btn-secondary">View Prefills</a>
+            <a href="{{ route('user.workorders.show', $data['workorder_id']) }}"
+               class="btn btn-sm btn-secondary">View Workorder</a>
+            <a href="{{ route('user.prefills.index') }}"
+               class="btn btn-sm btn-secondary">View Prefills</a>
         </div>
     </div>
 
     <br />
     <br />
 
-    <button onclick="fillForm()" class="btn btn-sm btn-warning">1. Create PDF</button>
+    <button onclick="fillForm()"
+            class="btn btn-sm btn-warning">1. Create PDF</button>
     &nbsp;
-    <a id="downloadlink" href="/user/files?file=//ftpserver/documents/sign/{{ $data['workorder_id'] }}-prefill-gs.pdf&amp;download=0" target="_blank" class="btn btn-sm btn-success d-none">2. Download Prefill</a>
+    <a id="downloadlink"
+       href="/user/files?file=//ftpserver/documents/sign/{{ $data['workorder_id'] }}-prefill-gs.pdf&amp;download=0"
+       target="_blank"
+       class="btn btn-sm btn-success d-none">2. Download Prefill</a>
     &nbsp;
-    <a href="{{ route('user.prefills.index', ['workorder_id' => $data['workorder_id']]) }}" class="btn btn-sm btn-secondary">View Prefills</a>
+    <a href="{{ route('user.prefills.index', ['workorder_id' => $data['workorder_id']]) }}"
+       class="btn btn-sm btn-secondary">View Prefills</a>
     <br />
-    <div id="messageBox" class="text-success"></div>
+    <div id="messageBox"
+         class="text-success"></div>
     <br />
 
     <table class="table table-sm table-striped table-bordered w-auto">
         @foreach ($data as $key => $value)
-        <tr>
-            <td>{{ $key }}</td>
-            <td>{{ $value }}</td>
-        </tr>
+            <tr>
+                <td>{{ $key }}</td>
+                <td>{{ $value }}</td>
+            </tr>
         @endforeach
     </table>
 

@@ -21,20 +21,23 @@
                     <td>{{ $role->name }}</td>
                     <td class="small">
                         @foreach ($role->permissions as $permission)
-                        {{ $permission->name }}<br />
+                            {{ $permission->name }}<br />
                         @endforeach
                     </td>
                     <td class="small">
                         @foreach ($role->users as $contractor)
-                        <a href="{{ route('admin.contractors.show', $contractor->id) }}">{{ $contractor->C_Name }}</a>
-                        <br />
+                            <a
+                               href="{{ route('admin.contractors.show', $contractor->id) }}">{{ $contractor->C_Name }}</a>
+                            <br />
                         @endforeach
                     </td>
                     <td nowrap>{{ $role->created_at }}</td>
                     <td nowrap>{{ $role->updated_at }}</td>
                     <td nowrap>
-                        <a class="btn btn-xs btn-secondary" href="{{ route('admin.roles.show', $role) }}">Show</a>
-                        <a class="btn btn-xs btn-secondary" href="{{ route('admin.roles.edit', $role) }}">Edit</a>
+                        <a class="btn btn-xs btn-secondary"
+                           href="{{ route('admin.roles.show', $role) }}">Show</a>
+                        <a class="btn btn-xs btn-secondary"
+                           href="{{ route('admin.roles.edit', $role) }}">Edit</a>
                     </td>
                 </tr>
             @endforeach
@@ -43,7 +46,8 @@
 
     <br />
 
-    <a href="{{ route('admin.roles.create') }}" class="btn btn-sm btn-secondary">Create Role</a>
+    <a href="{{ route('admin.roles.create') }}"
+       class="btn btn-sm btn-secondary">Create Role</a>
 
     <br />
 

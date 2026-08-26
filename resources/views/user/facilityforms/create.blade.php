@@ -5,7 +5,8 @@
             <h1>Create Facility Form</h1>
         </div>
         <div class="col-auto text-end">
-            <a href="{{ route('user.facilityforms.index') }}" class="btn btn-sm btn-secondary">Facility Forms</a>
+            <a href="{{ route('user.facilityforms.index') }}"
+               class="btn btn-sm btn-secondary">Facility Forms</a>
         </div>
     </div>
 
@@ -13,31 +14,55 @@
 
     <div class="col-md-6">
 
-        <form method="post" action="{{ route('user.facilityforms.store') }}">
+        <form method="post"
+              action="{{ route('user.facilityforms.store') }}">
             @csrf
 
-            <x-form.input name="name" label="Name" :value="old('name')" maxlength="50" required />
+            <x-form.input name="name"
+                          label="Name"
+                          :value="old('name')"
+                          maxlength="50"
+                          required />
             <br />
 
-            <x-form.input name="slug" label="Slug" :value="old('slug')" maxlength="50" />
+            <x-form.input name="slug"
+                          label="Slug"
+                          :value="old('slug')"
+                          maxlength="50" />
             <br />
 
-            <x-form.input name="file_name" label="File Name" :value="old('file_name')" maxlength="50" />
+            <x-form.input name="file_name"
+                          label="File Name"
+                          :value="old('file_name')"
+                          maxlength="50" />
             <br />
 
-            <x-form.input name="docusign_templateid_production" label="Docusign Template ID Production" :value="old('docusign_templateid_production')" maxlength="50" />
+            <x-form.input name="docusign_templateid_production"
+                          label="Docusign Template ID Production"
+                          :value="old('docusign_templateid_production')"
+                          maxlength="50" />
             <br />
 
-            <x-form.checkbox name="internal_form" label="Internal Form" />
+            <x-form.checkbox name="internal_form"
+                             label="Internal Form" />
             <br />
 
-            <x-form.input name="website" label="Website" :value="old('website')" maxlength="100" />
+            <x-form.input name="website"
+                          label="Website"
+                          :value="old('website')"
+                          maxlength="100" />
             <br />
 
-            <x-form.input name="version" label="Version" :value="old('version')" maxlength="50" />
+            <x-form.input name="version"
+                          label="Version"
+                          :value="old('version')"
+                          maxlength="50" />
             <br />
 
-            <x-form.input type="date" name="revision_date" label="Revision Date" :value="old('revision_date')" />
+            <x-form.input type="date"
+                          name="revision_date"
+                          label="Revision Date"
+                          :value="old('revision_date')" />
             <br />
 
             <x-form.button>Submit</x-form.button>

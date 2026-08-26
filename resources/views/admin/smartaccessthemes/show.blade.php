@@ -5,7 +5,8 @@
             <h1>Smart Access Theme</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.smartaccessthemes.index') }}" class="btn btn-sm btn-secondary">View Smart Access Themes</a>
+            <a href="{{ route('admin.smartaccessthemes.index') }}"
+               class="btn btn-sm btn-secondary">View Smart Access Themes</a>
         </div>
     </div>
 
@@ -27,28 +28,36 @@
         <tr>
             <th>Background Color</th>
             <td>
-                <div style="width: 15px; height: 15px; background: {{ $smartaccesstheme->backgroundcolor }}; display: inline-block; margin-right: 5px;"></div>
+                <div
+                     style="width: 15px; height: 15px; background: {{ $smartaccesstheme->backgroundcolor }}; display: inline-block; margin-right: 5px;">
+                </div>
                 {{ $smartaccesstheme->backgroundcolor }}
             </td>
         </tr>
         <tr>
             <th>Header Color</th>
             <td>
-                <div style="width: 15px; height: 15px; background: {{ $smartaccesstheme->headercolor }}; display: inline-block; margin-right: 5px;"></div>
+                <div
+                     style="width: 15px; height: 15px; background: {{ $smartaccesstheme->headercolor }}; display: inline-block; margin-right: 5px;">
+                </div>
                 {{ $smartaccesstheme->headercolor }}
             </td>
         </tr>
         <tr>
             <th>Font Color</th>
             <td>
-                <div style="width: 15px; height: 15px; background: {{ $smartaccesstheme->fontcolor }}; display: inline-block; margin-right: 5px;"></div>
+                <div
+                     style="width: 15px; height: 15px; background: {{ $smartaccesstheme->fontcolor }}; display: inline-block; margin-right: 5px;">
+                </div>
                 {{ $smartaccesstheme->fontcolor }}
             </td>
         </tr>
         <tr>
             <th>Logo Background Color</th>
             <td>
-                <div style="width: 15px; height: 15px; background: {{ $smartaccesstheme->logobackgroundcolor }}; display: inline-block; margin-right: 5px;"></div>
+                <div
+                     style="width: 15px; height: 15px; background: {{ $smartaccesstheme->logobackgroundcolor }}; display: inline-block; margin-right: 5px;">
+                </div>
                 {{ $smartaccesstheme->logobackgroundcolor }}
             </td>
         </tr>
@@ -72,15 +81,18 @@
 
     <br />
 
-    <a href="{{ route('admin.smartaccessthemes.edit', $smartaccesstheme->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.smartaccessthemes.edit', $smartaccesstheme->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.smartaccessthemes.destroy', $smartaccesstheme->id) }}">
+    <form method="POST"
+          action="{{ route('admin.smartaccessthemes.destroy', $smartaccesstheme->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

@@ -5,7 +5,8 @@
             <h1>EHR Order Document</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.ehrordersdocuments.index') }}" class="btn btn-sm btn-secondary">View EHR Documents</a>
+            <a href="{{ route('user.ehrordersdocuments.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Documents</a>
         </div>
     </div>
 

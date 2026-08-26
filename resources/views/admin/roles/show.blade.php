@@ -5,7 +5,8 @@
             <h1>Role</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.roles.index') }}" class="btn btn-sm btn-secondary">View Roles</a>
+            <a href="{{ route('admin.roles.index') }}"
+               class="btn btn-sm btn-secondary">View Roles</a>
         </div>
     </div>
 
@@ -50,16 +51,20 @@
 
     <br />
 
-    <a class="btn btn-sm btn-secondary" href="{{ route('admin.roles.edit', $role) }}">Edit</a>
+    <a class="btn btn-sm btn-secondary"
+       href="{{ route('admin.roles.edit', $role) }}">Edit</a>
 
     <br />
     <br />
 
     @if ($role->users->isEmpty())
-        <form action="{{ route('admin.roles.destroy', $role) }}" method="POST" class="d-inline">
+        <form action="{{ route('admin.roles.destroy', $role) }}"
+              method="POST"
+              class="d-inline">
             @csrf
             @method('DELETE')
-            <button class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</button>
+            <button class="btn btn-sm btn-danger"
+                    onclick="return confirm('Delete?')">Delete</button>
         </form>
     @endif
 

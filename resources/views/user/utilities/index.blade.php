@@ -15,8 +15,6 @@
     <br />
 
     @if ($usersession['contractor']['C_SysAdmin'])
-
-
         <a href="{{ route('user.woins.index') }}">Workorder Insurance</a>
 
         <br />
@@ -61,11 +59,18 @@
 
         <br />
         <br />
-
     @endif
 
     @php
-        $validEmails = ['maria_alcantara@ircopy.com', 'melencio_bautista@ircopy.com', 'apadmin@expressimagingservices.com', 'benedict_santos@ircopy.com', 'shaira_manuel@ircopy.com', 'anhle@expressimagingservices.com', 'andras@expressimagingservices.com'];
+        $validEmails = [
+            'maria_alcantara@ircopy.com',
+            'melencio_bautista@ircopy.com',
+            'apadmin@expressimagingservices.com',
+            'benedict_santos@ircopy.com',
+            'shaira_manuel@ircopy.com',
+            'anhle@expressimagingservices.com',
+            'andras@expressimagingservices.com',
+        ];
 
         $stats = false;
         if (in_array(session('user.contractor.C_Email'), $validEmails)) {

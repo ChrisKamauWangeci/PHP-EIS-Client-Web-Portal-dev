@@ -7,13 +7,20 @@
     <div class="row">
         <div class="col-sm-6">
 
-            <form method="post" action="{{ route('admin.ticketmanagers.store') }}">
+            <form method="post"
+                  action="{{ route('admin.ticketmanagers.store') }}">
                 @csrf
 
-                <x-form.input name="name" label="Name" :value="old('name')" required />
+                <x-form.input name="name"
+                              label="Name"
+                              :value="old('name')"
+                              required />
                 <br />
 
-                <x-form.input name="email" label="Email" :value="old('email')" required />
+                <x-form.input name="email"
+                              label="Email"
+                              :value="old('email')"
+                              required />
                 <br />
 
                 <br />

@@ -5,7 +5,8 @@
             <h1>Requestor Role</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.requestorroles.index') }}" class="btn btn-sm btn-secondary">View Requestor Roles</a>
+            <a href="{{ route('admin.requestorroles.index') }}"
+               class="btn btn-sm btn-secondary">View Requestor Roles</a>
         </div>
     </div>
 
@@ -30,11 +31,13 @@
         </tr>
         <tr>
             <td>Active in Order</td>
-            <td><img src="/img/icon_{{ $requestorrole->active_in_order }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $requestorrole->active_in_order }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Active in Search</td>
-            <td><img src="/img/icon_{{ $requestorrole->active_in_search }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $requestorrole->active_in_search }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <td>Created At</td>
@@ -48,7 +51,8 @@
 
     <br />
 
-    <a href="{{ route('admin.requestorroles.edit', $requestorrole->id) }}" class="btn btn-sm btn-secondary"><i class="fas fa-edit"></i> Edit</a>
+    <a href="{{ route('admin.requestorroles.edit', $requestorrole->id) }}"
+       class="btn btn-sm btn-secondary"><i class="fas fa-edit"></i> Edit</a>
 
     <br />
     <br />
@@ -79,9 +83,11 @@
                         <td>{{ $requestor->R_Email }}</td>
                         <td nowrap>{{ $requestor->login_last }}</td>
                         <td>
-                            <img src="/img/icon_{{ $requestor->R_Active }}.png" alt="">
+                            <img src="/img/icon_{{ $requestor->R_Active }}.png"
+                                 alt="">
                         </td>
-                        <td><a href="{{ route('admin.requestors.show', $requestor ) }}" class="btn btn-xs btn-secondary">View</a></td>
+                        <td><a href="{{ route('admin.requestors.show', $requestor) }}"
+                               class="btn btn-xs btn-secondary">View</a></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -91,10 +97,13 @@
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.requestorroles.destroy', $requestorrole->id) }}">
+    <form method="POST"
+          action="{{ route('admin.requestorroles.destroy', $requestorrole->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i> Delete Requestor Role</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i> Delete Requestor
+            Role</x-form.button>
     </form>
 
     <br />

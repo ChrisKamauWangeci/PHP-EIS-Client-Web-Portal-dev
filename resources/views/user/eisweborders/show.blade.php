@@ -6,7 +6,8 @@
             <h1>Eisweborder</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.eisweborders.index') }}" class="btn btn-sm btn-secondary">View EIS Web Orders</a>
+            <a href="{{ route('user.eisweborders.index') }}"
+               class="btn btn-sm btn-secondary">View EIS Web Orders</a>
         </div>
     </div>
 
@@ -21,10 +22,10 @@
         </thead>
         <tbody>
             @foreach ($eisweborder->getOriginal() as $field => $value)
-            <tr>
-                <td>{{ $field }}</td>
-                <td>{{ $value }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $field }}</td>
+                    <td>{{ $value }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

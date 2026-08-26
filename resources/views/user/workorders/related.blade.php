@@ -6,7 +6,8 @@
         }
     </script>
 
-    <div id="app" v-cloak>
+    <div id="app"
+         v-cloak>
 
         <script>
             // window.onunload = refreshParent;
@@ -21,9 +22,13 @@
                 <h1>Hospital: {{ $hospital->H_Hospital }}</h1>
             </div>
             <div class="col-auto text-end">
-                <a href="/user/hospitals/{{ $hospital->H_ID }}/edit" onclick="popup(this.href); return false;" class="btn btn-sm btn-secondary">Edit</a>
+                <a href="/user/hospitals/{{ $hospital->H_ID }}/edit"
+                   onclick="popup(this.href); return false;"
+                   class="btn btn-sm btn-secondary">Edit</a>
                 &nbsp;
-                <button type="button" class="btn btn-sm btn-secondary" onclick="refreshCloseWindow()">Close Window</button>
+                <button type="button"
+                        class="btn btn-sm btn-secondary"
+                        onclick="refreshCloseWindow()">Close Window</button>
             </div>
         </div>
 
@@ -32,26 +37,37 @@
 
         <h5>Related workorders and facilities</h5>
 
-        <button class="btn btn-xs btn-secondary" type="submit" id="search" @click="relatedworkorderssearch('workordername');">Related workorders with matching name</button>
+        <button class="btn btn-xs btn-secondary"
+                type="submit"
+                id="search"
+                @click="relatedworkorderssearch('workordername');">Related workorders with matching name</button>
 
         @if ($hospital->H_Phone)
             &nbsp;
-            <button class="btn btn-xs btn-secondary" type="submit" id="search" @click="relatedworkorderssearch('hospitalphone');">Related facilities with matching phone</button>
+            <button class="btn btn-xs btn-secondary"
+                    type="submit"
+                    id="search"
+                    @click="relatedworkorderssearch('hospitalphone');">Related facilities with matching phone</button>
         @endif
 
         @if ($hospital->H_Fax)
             &nbsp;
-            <button class="btn btn-xs btn-secondary" type="submit" id="search" @click="relatedworkorderssearch('hospitalfax');">Related facilities with matching fax</button>
+            <button class="btn btn-xs btn-secondary"
+                    type="submit"
+                    id="search"
+                    @click="relatedworkorderssearch('hospitalfax');">Related facilities with matching fax</button>
         @endif
 
         <br />
         <br />
 
-        <div class="loading" v-if="relatedworkordersloading">
+        <div class="loading"
+             v-if="relatedworkordersloading">
             <i class="fas fa-sync-alt fa-spin"></i>
         </div>
 
-        <div class="table-responsive" v-if="relatedworkordersdiv">
+        <div class="table-responsive"
+             v-if="relatedworkordersdiv">
             <table class="table table-sm table-bordered w-auto">
                 <thead>
                     <tr>
@@ -68,7 +84,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(relatedworkorder, index) in relatedworkorders" :class="{ 'bg-primary': (relatedworkorder == this.workorder) }">
+                    <tr v-for="(relatedworkorder, index) in relatedworkorders"
+                        :class="{ 'bg-primary': (relatedworkorder == this.workorder) }">
                         <td>@{{ relatedworkorder.W_WorkOrder }}</td>
                         <td>@{{ relatedworkorder.W_FirstName }}</td>
                         <td>@{{ relatedworkorder.W_LastName }}</td>
@@ -79,18 +96,26 @@
                         <td>@{{ relatedworkorder.W_UpdDate }}</td>
                         <td>@{{ relatedworkorder.W_CompletedDate }}</td>
                         <td nowrap>
-                            <button class="btn btn-xs btn-success" :class="{ 'bg-primary': (relatedworkorder == this.workorder) }" v-on:click="workordershow(index);" v-on:mouseover="workordershow(index);">Details</button>
+                            <button class="btn btn-xs btn-success"
+                                    :class="{ 'bg-primary': (relatedworkorder == this.workorder) }"
+                                    v-on:click="workordershow(index);"
+                                    v-on:mouseover="workordershow(index);">Details</button>
                             &nbsp;
-                            <a :href="'/user/workorders/' + relatedworkorder.W_WorkOrder" target="_blank" class="btn btn-xs btn-secondary">Workorder</a>
+                            <a :href="'/user/workorders/' + relatedworkorder.W_WorkOrder"
+                               target="_blank"
+                               class="btn btn-xs btn-secondary">Workorder</a>
                             &nbsp;
-                            <a :href="'/user/hospitals/' + relatedworkorder.H_ID" target="_blank" class="btn btn-xs btn-secondary">View Hospital</a>
+                            <a :href="'/user/hospitals/' + relatedworkorder.H_ID"
+                               target="_blank"
+                               class="btn btn-xs btn-secondary">View Hospital</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="p-3" v-if="relatedworkordershow">
+        <div class="p-3"
+             v-if="relatedworkordershow">
 
             <div class="row">
                 <div class="col-3 col-md-2 border px-1">
@@ -263,17 +288,22 @@
             <div class="row">
                 <div class="col-12 col-sm-6 border p-2">
                     <strong>Status Note</strong>
-                    <textarea rows="11" readonly class="form-control form-control-sm">@{{ workorder.W_Note }}</textarea>
+                    <textarea rows="11"
+                              readonly
+                              class="form-control form-control-sm">@{{ workorder.W_Note }}</textarea>
                 </div>
                 <div class="col-12 col-sm-6 border p-2">
                     <strong>Follow-Up Status</strong>
-                    <textarea rows="11" readonly class="form-control form-control-sm">@{{ workorder.W_FollowUpStatus }}</textarea>
+                    <textarea rows="11"
+                              readonly
+                              class="form-control form-control-sm">@{{ workorder.W_FollowUpStatus }}</textarea>
                 </div>
             </div>
 
         </div>
 
-        <div class="alert alert-danger" v-if="relatedworkordershowerror">
+        <div class="alert alert-danger"
+             v-if="relatedworkordershowerror">
             @{{ relatedworkordershowerrormessage }}
         </div>
 
@@ -306,7 +336,8 @@
                     var searchterm = null;
 
                     if (type == "workordername") {
-                        searchterm = "condition=workordername&W_FirstName=<?= addslashes($workorder->W_FirstName) ?? null ?>&W_LastName=<?= addslashes($workorder->W_LastName) ?? null ?>";
+                        searchterm =
+                            "condition=workordername&W_FirstName=<?= addslashes($workorder->W_FirstName) ?? null ?>&W_LastName=<?= addslashes($workorder->W_LastName) ?? null ?>";
                     }
                     if (type == "hospitalphone") {
                         searchterm = "condition=hospitalphone&H_Phone=" + "<?= $hospital->H_Phone ?? null ?>";

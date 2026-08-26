@@ -5,7 +5,8 @@
             <h1>Fax</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.faxes.index') }}" class="btn btn-sm btn-secondary">View Faxes</a>
+            <a href="{{ route('user.faxes.index') }}"
+               class="btn btn-sm btn-secondary">View Faxes</a>
         </div>
     </div>
 

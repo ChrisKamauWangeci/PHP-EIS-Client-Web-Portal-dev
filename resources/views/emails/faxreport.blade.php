@@ -18,14 +18,14 @@
         </thead>
         <tbody>
             @foreach ($data['faxes'] as $fax)
-            <tr>
-                <td>{{ $fax->id }}</td>
-                <td>{{ $fax->product }}</td>
-                <td>{{ $fax->client }}</td>
-                <td>{{ $fax->file }}</td>
-                <td>{{ $fax->api_status }}</td>
-                <td>{{ $fax->created_at }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $fax->id }}</td>
+                    <td>{{ $fax->product }}</td>
+                    <td>{{ $fax->client }}</td>
+                    <td>{{ $fax->file }}</td>
+                    <td>{{ $fax->api_status }}</td>
+                    <td>{{ $fax->created_at }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>

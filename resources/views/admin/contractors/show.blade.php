@@ -5,7 +5,8 @@
             <h1>Contractor</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.contractors.index') }}" class="btn btn-sm btn-secondary">View Contractors</a>
+            <a href="{{ route('admin.contractors.index') }}"
+               class="btn btn-sm btn-secondary">View Contractors</a>
         </div>
     </div>
 
@@ -71,42 +72,48 @@
         <tr>
             <td>Is Admin</td>
             <td>
-                <img src="/img/icon_{{ $contractor->C_SysAdmin }}.png" alt="">
+                <img src="/img/icon_{{ $contractor->C_SysAdmin }}.png"
+                     alt="">
                 {{ $contractor->C_SysAdmin }}
             </td>
         </tr>
         <tr>
             <td>Is Caller</td>
             <td>
-                <img src="/img/icon_{{ $contractor->C_Caller }}.png" alt="">
+                <img src="/img/icon_{{ $contractor->C_Caller }}.png"
+                     alt="">
                 {{ $contractor->C_Caller }}
             </td>
         </tr>
         <tr>
             <td>Is Active</td>
             <td>
-                <img src="/img/icon_{{ $contractor->is_active }}.png" alt="">
+                <img src="/img/icon_{{ $contractor->is_active }}.png"
+                     alt="">
                 {{ $contractor->is_active }}
             </td>
         </tr>
         <tr>
             <td>Access Level</td>
             <td>
-                <img src="/img/icon_{{ $contractor->accesslevel }}.png" alt="">
+                <img src="/img/icon_{{ $contractor->accesslevel }}.png"
+                     alt="">
                 {{ $contractor->accesslevel }}
             </td>
         </tr>
         <tr>
             <td>Access Files</td>
             <td>
-                <img src="/img/icon_{{ $contractor->access_files }}.png" alt="">
+                <img src="/img/icon_{{ $contractor->access_files }}.png"
+                     alt="">
                 {{ $contractor->access_files }}
             </td>
         </tr>
         <tr>
             <td>Access MFA</td>
             <td>
-                <img src="/img/icon_{{ $contractor->access_mfa }}.png" alt="">
+                <img src="/img/icon_{{ $contractor->access_mfa }}.png"
+                     alt="">
                 {{ $contractor->access_mfa }}
             </td>
         </tr>
@@ -130,12 +137,14 @@
 
     <br />
 
-    <a href="{{ route('admin.contractors.edit', $contractor->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.contractors.edit', $contractor->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <a href="{{ route('admin.contractors.password', $contractor->id) }}" class="btn btn-sm btn-secondary">Change Password</a>
+    <a href="{{ route('admin.contractors.password', $contractor->id) }}"
+       class="btn btn-sm btn-secondary">Change Password</a>
 
     <br />
     <br />
@@ -150,13 +159,11 @@
     <br />
 
     @if (!$workordersownercount && !$workorderscontractorcount)
-
         {{-- <form method="POST" action="{{ route('admin.contractors.destroy', $contractor->id) }}">
             @csrf
             @method('DELETE')
             <x-form.button class="btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
         </form> --}}
-
     @endif
 
     <br />

@@ -29,15 +29,18 @@
 
     <br />
 
-    <a href="{{ route('admin.over60daysnoticeconfigs.edit', $over60daysnoticeconfig->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('admin.over60daysnoticeconfigs.edit', $over60daysnoticeconfig->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('admin.over60daysnoticeconfigs.destroy', $over60daysnoticeconfig->id) }}">
+    <form method="POST"
+          action="{{ route('admin.over60daysnoticeconfigs.destroy', $over60daysnoticeconfig->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

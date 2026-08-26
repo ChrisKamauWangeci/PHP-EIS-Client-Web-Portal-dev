@@ -11,11 +11,15 @@
     <div class="row">
         <div class="col-sm-6">
 
-        <form method="post" action="{{ route('user.contractors.update', $contractor->id ) }}">
+            <form method="post"
+                  action="{{ route('user.contractors.update', $contractor->id) }}">
                 @csrf
                 @method('PATCH')
 
-                <x-form.input name="C_Location" id="C_Location" label="Location" :value="old('C_Location', $contractor->C_Location )" />
+                <x-form.input name="C_Location"
+                              id="C_Location"
+                              label="Location"
+                              :value="old('C_Location', $contractor->C_Location)" />
                 <br />
 
                 <x-form.button>Submit</x-form.button>

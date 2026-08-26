@@ -1,7 +1,9 @@
 <div class="p-3">
     <div class="row">
         <div class="col-12 col-sm-6">
-            <img src="https://usaa.expressimagingservices.com/images/eis-logo.png" height="40" alt="EIS">
+            <img src="https://usaa.expressimagingservices.com/images/eis-logo.png"
+                 height="40"
+                 alt="EIS">
             <div class="p-1"></div>
             Express Imaging Services, Inc.
             <div></div>

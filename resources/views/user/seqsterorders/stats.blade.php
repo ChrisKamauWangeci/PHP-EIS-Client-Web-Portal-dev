@@ -38,14 +38,14 @@
             type: 'bar',
             data: {
                 labels: [
-                    @foreach($seqsterorders as $seqsterorder)
+                    @foreach ($seqsterorders as $seqsterorder)
                         "{{ $seqsterorder->year }} / {{ $seqsterorder->month }}",
                     @endforeach
                 ],
                 datasets: [{
                     label: 'Seqster Orders Stats',
                     data: [
-                        @foreach($seqsterorders as $seqsterorder)
+                        @foreach ($seqsterorders as $seqsterorder)
                             {{ $seqsterorder->counter }},
                         @endforeach
                     ],

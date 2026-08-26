@@ -12,10 +12,15 @@
     <div class="row">
         <div class="col-11 col-sm-6 col-md-5 col-lg-4">
 
-            <form method="post" action="{{ route('authadmin.ipconfirmin') }}">
+            <form method="post"
+                  action="{{ route('authadmin.ipconfirmin') }}">
                 @csrf
 
-                <x-form.input name="code" label="Verification Code" :value="old('code')" maxlength="8" required />
+                <x-form.input name="code"
+                              label="Verification Code"
+                              :value="old('code')"
+                              maxlength="8"
+                              required />
                 <br />
 
                 <x-form.button>Submit</x-form.button>

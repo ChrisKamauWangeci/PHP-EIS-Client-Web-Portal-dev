@@ -4,8 +4,10 @@
         document.addEventListener("DOMContentLoaded", function(event) {
 
             document.getElementById('docusignsubmit').addEventListener('submit', function(event) {
-                document.getElementById("docusignsubmit").querySelector('button[type="submit"]').disabled = true;
-                document.getElementById("docusignsubmit").getElementsByClassName("spin")[0].classList.add("fas", "fa-sync-alt", "fa-spin");
+                document.getElementById("docusignsubmit").querySelector('button[type="submit"]').disabled =
+                    true;
+                document.getElementById("docusignsubmit").getElementsByClassName("spin")[0].classList.add(
+                    "fas", "fa-sync-alt", "fa-spin");
             });
 
         });
@@ -60,7 +62,8 @@
                 <small>workorder_id</small>
                 <br />
                 <strong>
-                    <a href="{{ route('user.workorders.show', $sara['data']['workorder_id']) }}">{{ $sara['data']['workorder_id'] }}</a>
+                    <a
+                       href="{{ route('user.workorders.show', $sara['data']['workorder_id']) }}">{{ $sara['data']['workorder_id'] }}</a>
                 </strong>
             </div>
             <div class="col-sm-12 col-md-3 border p-1">
@@ -249,28 +252,39 @@
 
     <br />
 
-    <a href="{{ route('user.docusigns.edit') }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.docusigns.edit') }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="post" action="{{ route('user.docusigns.sign') }}" id="docusignsubmit" @if ($sara['data']['signingtype'] == 'embedded') target="_blank" @endif>
+    <form method="post"
+          action="{{ route('user.docusigns.sign') }}"
+          id="docusignsubmit"
+          @if ($sara['data']['signingtype'] == 'embedded') target="_blank" @endif>
         @csrf
         @method('POST')
-        <input type="hidden" name="facility" value="{{ $sara['facility_dr'] }}">
-        <input type="hidden" name="slug" value="{{ $sara['slug'] }}">
-        <button type="submit" class="btn btn-secondary btn-sm">Create Docusign API Request <i class="spin"></i></button>
+        <input type="hidden"
+               name="facility"
+               value="{{ $sara['facility_dr'] }}">
+        <input type="hidden"
+               name="slug"
+               value="{{ $sara['slug'] }}">
+        <button type="submit"
+                class="btn btn-secondary btn-sm">Create Docusign API Request <i class="spin"></i></button>
     </form>
 
     <br />
     <br />
 
-    <a href="{{ route('user.workorders.show', $sara['data']['workorder_id']) }}" class="btn btn-sm btn-secondary">View Workorder</a>
+    <a href="{{ route('user.workorders.show', $sara['data']['workorder_id']) }}"
+       class="btn btn-sm btn-secondary">View Workorder</a>
 
     <br />
     <br />
 
-    <a href="{{ route('user.docusigndocuments.index') }}" class="btn btn-sm btn-secondary">Docusign Documents</a>
+    <a href="{{ route('user.docusigndocuments.index') }}"
+       class="btn btn-sm btn-secondary">Docusign Documents</a>
 
     <br />
     <br />

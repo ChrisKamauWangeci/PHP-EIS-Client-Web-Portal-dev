@@ -5,28 +5,48 @@
             <h1>Daily Stats Totals</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.daily_stats.index') }}" class="btn btn-sm btn-secondary">Daily Stats</a>
-            <a href="{{ route('user.daily_stats.totals') }}" class="btn btn-sm btn-secondary">Daily Stats Totals</a>
+            <a href="{{ route('user.daily_stats.index') }}"
+               class="btn btn-sm btn-secondary">Daily Stats</a>
+            <a href="{{ route('user.daily_stats.totals') }}"
+               class="btn btn-sm btn-secondary">Daily Stats Totals</a>
         </div>
     </div>
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.daily_stats.totals') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.daily_stats.totals') }}">
 
         <div class="row">
 
             <div class="col-6 col-md-3 col-lg-2 pt-2">
-                <x-form.input name="start" id="start" label="Start Date" :value="request('start') ?? $start" type="date" autocomplete="off" min="2023-01-01" max="2030-01-01" />
+                <x-form.input name="start"
+                              id="start"
+                              label="Start Date"
+                              :value="request('start') ?? $start"
+                              type="date"
+                              autocomplete="off"
+                              min="2023-01-01"
+                              max="2030-01-01" />
             </div>
 
             <div class="col-6 col-md-3 col-lg-2 pt-2">
-                <x-form.input name="end" id="end" label="End Date" :value="request('end') ?? $end" type="date" autocomplete="off" min="2023-01-01" max="2030-01-01" />
+                <x-form.input name="end"
+                              id="end"
+                              label="End Date"
+                              :value="request('end') ?? $end"
+                              type="date"
+                              autocomplete="off"
+                              min="2023-01-01"
+                              max="2030-01-01" />
             </div>
 
             <div class="col-md-2 pt-2">
                 <label>&nbsp; </label>
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.daily_stats.totals') }}" class="btn btn-sm btn-secondary"><i class="fas fa-window-close"></i></a>
+                <a href="{{ route('user.daily_stats.totals') }}"
+                   class="btn btn-sm btn-secondary"><i class="fas fa-window-close"></i></a>
             </div>
 
         </div>
@@ -87,7 +107,8 @@
     <strong>{{ $fax_created }}</strong> Faxes Created
     <br />
 
-    <strong>{{ $fax_completed }}</strong> Faxes Completed {{ $fax_created > 0 ? number_format($fax_completed / $fax_created * 100, 0) : 0 }}% completion rate.
+    <strong>{{ $fax_completed }}</strong> Faxes Completed
+    {{ $fax_created > 0 ? number_format(($fax_completed / $fax_created) * 100, 0) : 0 }}% completion rate.
     <br />
 
     <br />

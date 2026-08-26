@@ -5,7 +5,8 @@
             <h1>Webhook</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.webhooks.index') }}" class="btn btn-sm btn-secondary">View Webhooks</a>
+            <a href="{{ route('user.webhooks.index') }}"
+               class="btn btn-sm btn-secondary">View Webhooks</a>
         </div>
     </div>
 

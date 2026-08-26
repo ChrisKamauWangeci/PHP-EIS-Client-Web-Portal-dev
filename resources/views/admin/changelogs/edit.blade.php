@@ -1,6 +1,7 @@
 <x-admin-layout>
 
-    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css"
+          rel="stylesheet">
     <style>
         #editor {
             height: 400px;
@@ -12,7 +13,8 @@
             <h1>Edit Changelog</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.changelogs.show', $changelog->id) }}" class="btn btn-sm btn-secondary">View Changelog</a>
+            <a href="{{ route('admin.changelogs.show', $changelog->id) }}"
+               class="btn btn-sm btn-secondary">View Changelog</a>
         </div>
     </div>
 
@@ -25,25 +27,35 @@
     <div class="row">
         <div class="col-sm-8">
 
-            <form method="post" action="{{ route('admin.changelogs.update', $changelog->id ) }}">
+            <form method="post"
+                  action="{{ route('admin.changelogs.update', $changelog->id) }}">
                 @csrf
                 @method('PATCH')
 
-                <x-form.input name="title" label="Title" :value="old('title', $changelog->title )" />
+                <x-form.input name="title"
+                              label="Title"
+                              :value="old('title', $changelog->title)" />
                 <br />
 
                 <div style="margin-top: 10px;">
                     <label for="content">Description:</label>
                     <div id="editor">{!! old('description', $changelog->description) !!}</div>
 
-                    <textarea name="description" id="description" style="display:none;">{!! old('description', $changelog->description) !!}</textarea>
+                    <textarea name="description"
+                              id="description"
+                              style="display:none;">{!! old('description', $changelog->description) !!}</textarea>
                 </div>
                 <br />
 
-                <x-form.input type="date" name="released_at" label="Release Date" :value="old('released_at', $changelog->released_at )" />
+                <x-form.input type="date"
+                              name="released_at"
+                              label="Release Date"
+                              :value="old('released_at', $changelog->released_at)" />
                 <br />
 
-                <x-form.checkbox name="is_active" label="Is Active" :checked="$changelog->is_active" />
+                <x-form.checkbox name="is_active"
+                                 label="Is Active"
+                                 :checked="$changelog->is_active" />
                 <br />
 
                 <x-form.button>Submit</x-form.button>

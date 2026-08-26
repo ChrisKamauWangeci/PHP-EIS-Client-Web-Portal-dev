@@ -5,18 +5,25 @@
     <br />
     <br />
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.report_config_names.index') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.report_config_names.index') }}">
 
         <div class="row">
 
             <div class="col-md-2">
-                <x-form.input name="report_name" id="report_name" label="report_name" :value="request('report_name')" />
+                <x-form.input name="report_name"
+                              id="report_name"
+                              label="report_name"
+                              :value="request('report_name')" />
             </div>
 
             <div class="col-md-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.report_config_names.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.report_config_names.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
         </div>
 
@@ -50,7 +57,8 @@
                         <td>{{ $reportConfigName->created_at->format('m/d/Y g:i a') }}</td>
                         <td>{{ $reportConfigName->updated_at->format('m/d/Y g:i a') }}</td>
                         <td>
-                            <a href="{{ route('user.report_config_names.show', $reportConfigName->id) }}" class="btn btn-xs btn-secondary">View</a>
+                            <a href="{{ route('user.report_config_names.show', $reportConfigName->id) }}"
+                               class="btn btn-xs btn-secondary">View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -63,7 +71,8 @@
     <br />
     <br />
 
-    <a href="{{ route('user.report_config_names.create') }}" class="btn btn-sm btn-secondary">Add</a>
+    <a href="{{ route('user.report_config_names.create') }}"
+       class="btn btn-sm btn-secondary">Add</a>
 
     <br />
     <br />

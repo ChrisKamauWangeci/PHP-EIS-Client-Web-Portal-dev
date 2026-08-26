@@ -1,6 +1,7 @@
 <x-admin-layout>
 
-    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css"
+          rel="stylesheet">
     <style>
         #editor {
             height: 400px;
@@ -12,7 +13,8 @@
             <h1>Create Changelog</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('admin.changelogs.index') }}" class="btn btn-sm btn-secondary">View Changelogs</a>
+            <a href="{{ route('admin.changelogs.index') }}"
+               class="btn btn-sm btn-secondary">View Changelogs</a>
         </div>
     </div>
 
@@ -21,24 +23,34 @@
     <div class="row">
         <div class="col-sm-6">
 
-            <form method="post" action="{{ route('admin.changelogs.store') }}">
+            <form method="post"
+                  action="{{ route('admin.changelogs.store') }}">
                 @csrf
 
-                <x-form.input name="title" label="Title" :value="old('title')" />
+                <x-form.input name="title"
+                              label="Title"
+                              :value="old('title')" />
                 <br />
 
                 <div style="margin-top: 10px;">
                     <label for="content">Description:</label>
                     <div id="editor">{!! old('description') !!}</div>
 
-                    <textarea name="description" id="description" style="display:none;">{!! old('description') !!}</textarea>
+                    <textarea name="description"
+                              id="description"
+                              style="display:none;">{!! old('description') !!}</textarea>
                 </div>
                 <br />
 
-                <x-form.input type="date" name="released_at" label="Release Date" :value="old('released_at')" />
+                <x-form.input type="date"
+                              name="released_at"
+                              label="Release Date"
+                              :value="old('released_at')" />
                 <br />
 
-                <x-form.checkbox name="is_active" label="Is Active" :checked="old('is_active', false)" />
+                <x-form.checkbox name="is_active"
+                                 label="Is Active"
+                                 :checked="old('is_active', false)" />
                 <br />
 
                 <br />

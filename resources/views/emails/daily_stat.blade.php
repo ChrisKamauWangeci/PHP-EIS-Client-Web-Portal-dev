@@ -4,7 +4,9 @@
 
     <p>Period: {{ $startDate }} - {{ $endDate }}</p>
 
-    <table border="1" cellpadding="5" cellspacing="0">
+    <table border="1"
+           cellpadding="5"
+           cellspacing="0">
         <thead>
             <tr>
                 <th>Metric</th>

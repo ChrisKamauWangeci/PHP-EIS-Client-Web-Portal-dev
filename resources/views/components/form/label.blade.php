@@ -4,4 +4,8 @@
     'required' => false,
 ])
 
-<label for="{{ $for }}">{{ $label }}@if($required) <span class="text-danger">*</span>@endif</label>
+<label for="{{ $for }}">
+    {{ $label }}@if ($required)
+        <span class="text-danger">*</span>
+    @endif
+</label>

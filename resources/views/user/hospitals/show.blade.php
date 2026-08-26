@@ -5,9 +5,11 @@
             <h1>{{ $hospital->H_Hospital }}</h1>
         </div>
         <div class="col-auto text-end">
-            <a href="{{ route('user.hospitals.index') }}" class="btn btn-sm btn-secondary">Hospitals</a>
+            <a href="{{ route('user.hospitals.index') }}"
+               class="btn btn-sm btn-secondary">Hospitals</a>
             &nbsp;
-            <a href="{{ route('user.hospitals.edit', $hospital->H_ID) }}" class="btn btn-sm btn-secondary">Edit Hospital</a>
+            <a href="{{ route('user.hospitals.edit', $hospital->H_ID) }}"
+               class="btn btn-sm btn-secondary">Edit Hospital</a>
         </div>
     </div>
 
@@ -215,7 +217,8 @@
 
     <h5>New Facility Form (used for Docusign)</h5>
     @if (is_file('\\\ftpserver\ftpserver\facilityforms\\' . $hospital->H_SpecialAuthFile))
-        <a href="/user/files?file=\\ftpserver\ftpserver\facilityforms\{{ $hospital->H_SpecialAuthFile }}&download=1">\\ftpserver\ftpserver\facilityforms\{{ $hospital->H_SpecialAuthFile }}</a>
+        <a
+           href="/user/files?file=\\ftpserver\ftpserver\facilityforms\{{ $hospital->H_SpecialAuthFile }}&download=1">\\ftpserver\ftpserver\facilityforms\{{ $hospital->H_SpecialAuthFile }}</a>
         <br />
     @else
         Form Not Found
@@ -248,11 +251,18 @@
         <h5>Facility Form File Upload</h5>
 
         @if ($hospital->H_Hospital2)
-            <form method="post" enctype="multipart/form-data" action="{{ route('user.hospitals.fileupload', $hospital->H_ID) }}">
+            <form method="post"
+                  enctype="multipart/form-data"
+                  action="{{ route('user.hospitals.fileupload', $hospital->H_ID) }}">
                 @csrf
-                <input type="hidden" name="filename" value="{{ $authorizationfile }}">
+                <input type="hidden"
+                       name="filename"
+                       value="{{ $authorizationfile }}">
 
-                <x-form.input type="file" name="uploadfile" accept=".pdf,.tif" required />
+                <x-form.input type="file"
+                              name="uploadfile"
+                              accept=".pdf,.tif"
+                              required />
                 <br />
 
                 <x-form.button>Submit</x-form.button>
@@ -429,13 +439,16 @@
             <tbody>
                 @foreach ($workorders as $workorder)
                     <tr>
-                        <td small nowrap>
-                            <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}">{!! $workorder->W_WorkOrder !!}</a>
+                        <td small
+                            nowrap>
+                            <a
+                               href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}">{!! $workorder->W_WorkOrder !!}</a>
                             <br />
                             {!! Helper::statusesIcons($workorder->W_Status) !!}
                             {!! Helper::UrgentIcons($workorder->W_Urgent) !!}
                         </td>
-                        <td>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</td>
+                        <td>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}
+                        </td>
                         <td>{{ $workorder->W_InsPolicy }}</td>
                         <td>
                             {{ $workorder->W_Hospital }}

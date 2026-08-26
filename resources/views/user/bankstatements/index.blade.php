@@ -2,18 +2,23 @@
 
     <h1>Bank Statements</h1>
 
-    <form method="GET" action="{{ route('user.bankstatements.index') }}">
+    <form method="GET"
+          action="{{ route('user.bankstatements.index') }}">
 
         <div class="row">
 
             <div class="col-md-2">
-                <x-form.input name="B_Workorder" label="B_Workorder" :value="request('B_Workorder')" autocomplete="off" />
+                <x-form.input name="B_Workorder"
+                              label="B_Workorder"
+                              :value="request('B_Workorder')"
+                              autocomplete="off" />
             </div>
 
             <div class="col-md-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.bankstatements.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.bankstatements.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
         </div>
 
@@ -29,7 +34,9 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th><a href="{{ Request::fullUrlWithQuery(['sort_field' => 'B_Workorder', 'sort_direction' => $sort_direction]) }}">B_Workorder</a></th>
+                    <th><a
+                           href="{{ Request::fullUrlWithQuery(['sort_field' => 'B_Workorder', 'sort_direction' => $sort_direction]) }}">B_Workorder</a>
+                    </th>
                     <th>Description</th>
                     <th>IssueDate</th>
                     <th>Amount</th>
@@ -52,7 +59,8 @@
                         <td>{{ $bankstatement->B_Note }}</td>
                         <td>{{ $bankstatement->B_IssueBy }}</td>
                         <td>{{ $bankstatement->B_IssueOn }}</td>
-                        <td><a href="{{ route('user.bankstatements.show', $bankstatement->id) }}" class="btn btn-xs btn-secondary">view</a></td>
+                        <td><a href="{{ route('user.bankstatements.show', $bankstatement->id) }}"
+                               class="btn btn-xs btn-secondary">view</a></td>
                     </tr>
                 @endforeach
             </tbody>

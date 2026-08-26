@@ -1,6 +1,7 @@
 <x-pdf-layout title="">
 
-    <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::size(60)->generate($workorder->W_WorkOrder)) }}" class="m-2" />
+    <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::size(60)->generate($workorder->W_WorkOrder)) }}"
+         class="m-2" />
 
     <div class="text-center">
         <h1>EXPRESS IMAGING SERVICES</h1>
@@ -51,7 +52,8 @@
                     Contact: <strong>RELEASE OF INFORMATION</strong>
                 </td>
                 <td nowrap>
-                    Patient: <strong>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</strong>
+                    Patient: <strong>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }}
+                        {{ $workorder->W_LastName }}</strong>
                     <br />
                     DOB: <strong>{{ $workorder->W_DOB?->format('m/d/Y') }}</strong>
                     <br />
@@ -94,7 +96,8 @@
     <div class="p-1 border">
         <strong>Use one of the following options to send records to EIS</strong>
         <br />
-        <strong>UPLOAD:</strong> https://{!! Helper::coverPageSubdomain($usersession) !!}.expressimagingservices.com/upload, Enter the Work Order # {{ $workorder->W_WorkOrder }} and the year {{ $workorder->W_DOB?->format('Y') }} as the DOB of the patient.
+        <strong>UPLOAD:</strong> https://{!! Helper::coverPageSubdomain($usersession) !!}.expressimagingservices.com/upload, Enter the Work Order
+        # {{ $workorder->W_WorkOrder }} and the year {{ $workorder->W_DOB?->format('Y') }} as the DOB of the patient.
         <br />
         <strong>EMAIL:</strong> records@expressimagingservices.com
         <br />

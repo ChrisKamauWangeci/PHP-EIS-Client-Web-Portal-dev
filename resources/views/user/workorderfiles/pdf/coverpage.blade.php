@@ -3,7 +3,8 @@
     <table width="100%">
         <tr>
             <td align="">
-                <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::size(60)->generate($workorder->W_WorkOrder)) }}" class="m-2" />
+                <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::size(60)->generate($workorder->W_WorkOrder)) }}"
+                     class="m-2" />
             </td>
             <td align="right">
                 <strong>{{ $requestnote ?? '1st' }} request</strong>
@@ -12,7 +13,8 @@
                     <h1>EXPRESS IMAGING SERVICES</h1>
                     <strong>P.O. Box 778, Torrance, CA 90508</strong>
                     -
-                    Phone: <strong>{!! Helper::coverPagePhone($usersession) !!}</strong> &nbsp; &nbsp; Fax: <strong>{!! Helper::coverPageFax($usersession) !!}</strong>
+                    Phone: <strong>{!! Helper::coverPagePhone($usersession) !!}</strong> &nbsp; &nbsp; Fax:
+                    <strong>{!! Helper::coverPageFax($usersession) !!}</strong>
                 </div>
 
             </td>
@@ -61,8 +63,10 @@
                     <br />
                     Contact: <strong>RELEASE OF INFORMATION</strong>
                 </td>
-                <td nowrap valign="top">
-                    Patient: <strong>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</strong>
+                <td nowrap
+                    valign="top">
+                    Patient: <strong>{{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }}
+                        {{ $workorder->W_LastName }}</strong>
                     <br />
                     DOB: <strong>{{ $workorder->W_DOB?->format('m/d/Y') }}</strong>
                     <br />
@@ -87,7 +91,9 @@
     <div class="p-1 border">
         <strong>Use one of the following options to send records to EIS</strong>
         <br />
-        <strong>- UPLOAD</strong> https://{!! Helper::coverPageSubdomain($usersession) !!}.expressimagingservices.com/upload, Enter the Work Order # {{ $workorder->W_WorkOrder }} and the year {{ $workorder->W_DOB?->format('Y') }} as the DOB of the patient.
+        <strong>- UPLOAD</strong> https://{!! Helper::coverPageSubdomain($usersession) !!}.expressimagingservices.com/upload, Enter the Work
+        Order # {{ $workorder->W_WorkOrder }} and the year {{ $workorder->W_DOB?->format('Y') }} as the DOB of the
+        patient.
         <br />
         <strong>- EMAIL</strong> records@expressimagingservices.com
         <br />
@@ -126,7 +132,8 @@
 
     </div>
 
-    If payment is required, please call us at {!! Helper::coverPagePhone($usersession) !!} or fax to {!! Helper::coverPageFax($usersession) !!} (alt. fax {!! Helper::coverPageFaxAlt($usersession) !!}). We can pay by credit card.
+    If payment is required, please call us at {!! Helper::coverPagePhone($usersession) !!} or fax to {!! Helper::coverPageFax($usersession) !!} (alt. fax
+    {!! Helper::coverPageFaxAlt($usersession) !!}). We can pay by credit card.
 
     <div class="pt-2 float-end small">
         {{ date('Y-m-d H:i:s') }}

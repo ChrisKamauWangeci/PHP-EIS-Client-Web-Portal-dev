@@ -2,11 +2,14 @@
 
     <div class="row">
         <div class="col">
-            <h1>Workorder Payment: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</h1>
+            <h1>Workorder Payment: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }}
+                {{ $workorder->W_MiddleInit }} {{ $workorder->W_LastName }}</h1>
         </div>
         <div class="col-auto text-end">
-            <a href="{{ route('user.workorderpayments.index') }}" class="btn btn-sm btn-secondary">Workorder Payments</a>
-            <a href="{{ route('user.workorderpayments.index', ['workorder_id' => $workorderpayment->workorder_id]) }}" class="btn btn-sm btn-secondary">View Workorder Payments for # {{ $workorder->W_WorkOrder }}</a>
+            <a href="{{ route('user.workorderpayments.index') }}"
+               class="btn btn-sm btn-secondary">Workorder Payments</a>
+            <a href="{{ route('user.workorderpayments.index', ['workorder_id' => $workorderpayment->workorder_id]) }}"
+               class="btn btn-sm btn-secondary">View Workorder Payments for # {{ $workorder->W_WorkOrder }}</a>
         </div>
     </div>
 
@@ -62,7 +65,8 @@
     <br />
     <br />
 
-    <a href="{{ route('user.workorderpayments.edit', $workorderpayment->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.workorderpayments.edit', $workorderpayment->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />

@@ -5,8 +5,10 @@
             <h1>Ticket</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.tickets.edit', $ticket->id) }}" class="btn btn-sm btn-secondary">Edit Ticket</a>
-            <a href="{{ route('user.tickets.index') }}" class="btn btn-sm btn-secondary">View Tickets</a>
+            <a href="{{ route('user.tickets.edit', $ticket->id) }}"
+               class="btn btn-sm btn-secondary">Edit Ticket</a>
+            <a href="{{ route('user.tickets.index') }}"
+               class="btn btn-sm btn-secondary">View Tickets</a>
         </div>
     </div>
 
@@ -87,7 +89,8 @@
                         <br />
 
                         <div class="text-end">
-                            <small>{{ $ticketcomment->created_by }} - {{ $ticketcomment->created_at->format('m/d/Y H:i:s') }}</small>
+                            <small>{{ $ticketcomment->created_by }} -
+                                {{ $ticketcomment->created_at->format('m/d/Y H:i:s') }}</small>
                         </div>
 
                     </div>
@@ -98,10 +101,14 @@
             <br />
             <br />
 
-            <form method="post" action="{{ route('user.tickets.commentadd', $ticket->id) }}">
+            <form method="post"
+                  action="{{ route('user.tickets.commentadd', $ticket->id) }}">
                 <strong>Add Comment</strong>
                 @csrf
-                <x-form.textarea name="comment" :value="old('comment')" :rows="6" required />
+                <x-form.textarea name="comment"
+                                 :value="old('comment')"
+                                 :rows="6"
+                                 required />
                 <br />
                 <x-form.button>Add Comment</x-form.button>
             </form>
@@ -149,7 +156,8 @@
             <br />
             <br />
 
-            <form method="post" action="{{ route('user.tickets.update', $ticket->id) }}">
+            <form method="post"
+                  action="{{ route('user.tickets.update', $ticket->id) }}">
                 <strong>Change Status</strong>
                 @csrf
                 @method('PATCH')
@@ -161,7 +169,10 @@
                     ];
                 @endphp
 
-                <x-form.select name="status" :options="$statuses" :default="$ticket->status" required />
+                <x-form.select name="status"
+                               :options="$statuses"
+                               :default="$ticket->status"
+                               required />
                 <br />
                 <x-form.button onclick="return confirm('Are you sure?')">Change Status</x-form.button>
             </form>
@@ -171,7 +182,8 @@
 
     <br />
     <br />
-    <a href="{{ route('user.tickets.edit', $ticket->id) }}" class="btn btn-sm btn-secondary">Edit Ticket</a>
+    <a href="{{ route('user.tickets.edit', $ticket->id) }}"
+       class="btn btn-sm btn-secondary">Edit Ticket</a>
     <br />
     <br />
 

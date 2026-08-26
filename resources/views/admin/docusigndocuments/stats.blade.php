@@ -52,7 +52,9 @@
                         <td>{{ ++$i }}</td>
                         <td>{{ $docusigndocumentsform->slug }}</td>
                         <td>{{ $docusigndocumentsform->counter }}</td>
-                        <td><a href="{{ url('admin/files') }}?file=\\ftpserver\ftpserver\facilityforms\{{ $docusigndocumentsform->slug }}.pdf&download=1">{{ $docusigndocumentsform->slug }}.pdf</a></td>
+                        <td><a
+                               href="{{ url('admin/files') }}?file=\\ftpserver\ftpserver\facilityforms\{{ $docusigndocumentsform->slug }}.pdf&download=1">{{ $docusigndocumentsform->slug }}.pdf</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -68,13 +70,15 @@
             type: 'bar',
             data: {
                 labels: [
-                    @foreach ($docusigndocuments as $docusigndocument) "{{ $docusigndocument->year }} / {{ $docusigndocument->month }}",
+                    @foreach ($docusigndocuments as $docusigndocument)
+                        "{{ $docusigndocument->year }} / {{ $docusigndocument->month }}",
                     @endforeach
                 ],
                 datasets: [{
                     label: 'Docusign Documents Stats',
                     data: [
-                        @foreach ($docusigndocuments as $docusigndocument) "{{ $docusigndocument->counter }}",
+                        @foreach ($docusigndocuments as $docusigndocument)
+                            "{{ $docusigndocument->counter }}",
                         @endforeach
                     ],
                     borderWidth: 1

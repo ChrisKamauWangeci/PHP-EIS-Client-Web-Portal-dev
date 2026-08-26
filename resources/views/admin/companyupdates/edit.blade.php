@@ -11,14 +11,21 @@
     <div class="row">
         <div class="col-sm-6">
 
-            <form method="post" action="{{ route('admin.companyupdates.update', $companyupdate->id ) }}">
+            <form method="post"
+                  action="{{ route('admin.companyupdates.update', $companyupdate->id) }}">
                 @csrf
                 @method('PATCH')
 
-                <x-form.input name="name" id="name" label="Contact" :value="old('name', $companyupdate->name )" />
+                <x-form.input name="name"
+                              id="name"
+                              label="Contact"
+                              :value="old('name', $companyupdate->name)" />
                 <br />
 
-                <x-form.input name="filename" id="filename" label="Contact" :value="old('filename', $companyupdate->filename )" />
+                <x-form.input name="filename"
+                              id="filename"
+                              label="Contact"
+                              :value="old('filename', $companyupdate->filename)" />
                 <br />
 
                 <br />

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\User\FollowUpStatusReviewController;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthUser;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +47,7 @@ Route::get('/admin', function () {
     return redirect('/authadmin/login');
 });
 
-Route::get('/clear', fn () => '')->name('clear');
+Route::get('/clear', fn() => '')->name('clear');
 
 Route::group([
     'name' => 'user.',
@@ -251,13 +252,19 @@ Route::group([
     Route::post('/llm/chat', [App\Http\Controllers\User\LlmController::class, 'chat'])->name('llm.chat');
     Route::post('/spell/chat', [App\Http\Controllers\User\SpellController::class, 'chat'])->name('spell.chat');
 
+    ##########################################################################################################################
+    Route::post('/llm/follow-up-status-review/{workorder:W_WorkOrder}', [FollowUpStatusReviewController::class, 'review'])
+        ->name('llm.followupstatusreview.review');
+
+    ##########################################################################################################################
+
+
     Route::get('/contractorlogins/stats', [App\Http\Controllers\User\ContractorloginController::class, 'stats'])->name('contractorlogins.stats');
     Route::get('/contractorlogins/statsdaily', [App\Http\Controllers\User\ContractorloginController::class, 'statsdaily'])->name('contractorlogins.statsdaily');
 
     Route::resource('orders', App\Http\Controllers\User\OrderController::class);
 
     Route::resource('eisweborders', App\Http\Controllers\User\EisweborderController::class);
-
 });
 
 Route::group([
@@ -343,5 +350,4 @@ Route::group([
     Route::resource('permissions', \App\Http\Controllers\Admin\PermissionController::class);
 
     Route::resource('azure', \App\Http\Controllers\Admin\AzureController::class);
-
 });

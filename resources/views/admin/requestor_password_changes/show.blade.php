@@ -37,7 +37,8 @@
             <td>Country</td>
             <td>
                 {{ $requestorPasswordChange->country_iso }}
-                <img src="/img/flags/gif/{{ strtolower($requestorPasswordChange->country_iso ?? '') }}.gif" alt="">
+                <img src="/img/flags/gif/{{ strtolower($requestorPasswordChange->country_iso ?? '') }}.gif"
+                     alt="">
             </td>
         </tr>
         <tr>

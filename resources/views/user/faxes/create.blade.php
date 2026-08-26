@@ -18,7 +18,8 @@
 
     <div class="row">
         <div class="col-auto">
-            <h1>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_LastName }}</h1>
+            <h1>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_LastName }}
+            </h1>
         </div>
         <div class="col text-end d-print-none">
             <!-- <a href="{{ route('user.faxes.index') }}" class="btn btn-sm btn-secondary">Faxes</a>
@@ -35,11 +36,16 @@
     <div class="row">
         <div class="col-md-6">
 
-            <form method="post" action="{{ route('user.faxes.store') }}">
+            <form method="post"
+                  action="{{ route('user.faxes.store') }}">
                 @csrf
 
-                <input type="hidden" name="workorder_id" value="{{ $workorder->W_WorkOrder }}">
-                <input type="hidden" name="file" value="{{ $file }}">
+                <input type="hidden"
+                       name="workorder_id"
+                       value="{{ $workorder->W_WorkOrder }}">
+                <input type="hidden"
+                       name="file"
+                       value="{{ $file }}">
 
                 File
                 <br />
@@ -50,7 +56,8 @@
                 <br />
                 <strong>{{ $hospital->H_Hospital }}</strong>
                 <br />
-                Fax: <span id="hospitalfax" class="text-decoration-underline font-weight-bold">{{ $hospital->H_Fax }}</span>
+                Fax: <span id="hospitalfax"
+                      class="text-decoration-underline font-weight-bold">{{ $hospital->H_Fax }}</span>
                 <br />
                 <br />
                 Copy Service
@@ -58,7 +65,8 @@
                 <strong>{{ $copyservice->C_CopyService ?? '-' }}</strong>
                 <br />
                 @if (isset($copyservice->C_Fax))
-                    Fax: <span id="copyservicefax" class="text-decoration-underline font-weight-bold">{{ $copyservice->C_Fax }}</span>
+                    Fax: <span id="copyservicefax"
+                          class="text-decoration-underline font-weight-bold">{{ $copyservice->C_Fax }}</span>
                     <br />
                 @endif
                 <br />
@@ -67,11 +75,19 @@
                 <strong>{{ $roi->R_ROIname ?? '-' }}</strong>
                 <br />
                 @if (isset($roi->R_Fax))
-                    Fax: <span id="roifax" class="text-decoration-underline font-weight-bold">{{ $roi->R_Fax }}</span>
+                    Fax: <span id="roifax"
+                          class="text-decoration-underline font-weight-bold">{{ $roi->R_Fax }}</span>
                     <br />
                 @endif
                 <br />
-                <x-form.input type="number" name="fax_number" id="fax_number" label="Fax Number" :value="$hospital->H_Fax" required min=1000000000 max=99999999999 />
+                <x-form.input type="number"
+                              name="fax_number"
+                              id="fax_number"
+                              label="Fax Number"
+                              :value="$hospital->H_Fax"
+                              required
+                              min=1000000000
+                              max=99999999999 />
                 <br />
                 <br />
                 <x-form.errors />

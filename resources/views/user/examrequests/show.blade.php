@@ -5,7 +5,8 @@
             <h1>Exam Request</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.examrequests.index') }}" class="btn btn-sm btn-secondary">View Exam Requests</a>
+            <a href="{{ route('user.examrequests.index') }}"
+               class="btn btn-sm btn-secondary">View Exam Requests</a>
         </div>
     </div>
 
@@ -136,7 +137,8 @@
 
     <br />
 
-    <a href="{{ route('user.examrequests.edit', $examrequest->E_WorkOrder) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.examrequests.edit', $examrequest->E_WorkOrder) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />

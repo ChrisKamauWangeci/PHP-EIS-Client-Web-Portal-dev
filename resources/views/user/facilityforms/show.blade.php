@@ -5,7 +5,8 @@
             <h1>Facility Form</h1>
         </div>
         <div class="col text-end">
-            <a href="{{ route('user.facilityforms.index') }}" class="btn btn-sm btn-secondary">Facility Forms</a>
+            <a href="{{ route('user.facilityforms.index') }}"
+               class="btn btn-sm btn-secondary">Facility Forms</a>
         </div>
     </div>
 
@@ -38,7 +39,8 @@
         </tr>
         <tr>
             <th>Internal Form</th>
-            <td><img src="/img/icon_{{ $facilityform->internal_form }}.png" alt=""></td>
+            <td><img src="/img/icon_{{ $facilityform->internal_form }}.png"
+                     alt=""></td>
         </tr>
         <tr>
             <th>SignNow Template ID</th>
@@ -70,9 +72,11 @@
         </tr>
     </table>
 
-    <a href="/user/hospitals?dbfield=H_Docusign&dbconditions=isequalto&dbvalue={{ $facilityform->slug }}">Hospital Docusign Count</a>
+    <a href="/user/hospitals?dbfield=H_Docusign&dbconditions=isequalto&dbvalue={{ $facilityform->slug }}">Hospital
+        Docusign Count</a>
     <br />
-    <a href="/user/hospitals?dbfield=H_SpecialAuthFile&dbconditions=isequalto&dbvalue={{ $facilityform->file_name }}">Hospital Special Auth File Count</a>
+    <a href="/user/hospitals?dbfield=H_SpecialAuthFile&dbconditions=isequalto&dbvalue={{ $facilityform->file_name }}">Hospital
+        Special Auth File Count</a>
     <br />
     <br />
 
@@ -89,8 +93,12 @@
 
             <br />
 
-            <a href="/user/files?file={{ $file }}&download=0" class="btn btn-sm btn-secondary" target="_blank">view</a>
-            <a href="/user/files?file={{ $file }}&download=1" class="btn btn-sm btn-secondary" target="_self">download</a>
+            <a href="/user/files?file={{ $file }}&download=0"
+               class="btn btn-sm btn-secondary"
+               target="_blank">view</a>
+            <a href="/user/files?file={{ $file }}&download=1"
+               class="btn btn-sm btn-secondary"
+               target="_self">download</a>
         @else
             <div class="text-danger">{{ $file }} does not exist</div>
         @endif
@@ -98,10 +106,17 @@
         <br />
         <br />
 
-        <form method="post" enctype="multipart/form-data" action="{{ route('user.facilityforms.fileupload', $facilityform->id) }}">
+        <form method="post"
+              enctype="multipart/form-data"
+              action="{{ route('user.facilityforms.fileupload', $facilityform->id) }}">
             @csrf
-            <input type="hidden" name="filename" value="{{ $facilityform->file_name }}">
-            <x-form.input type="file" name="uploadfile" accept=".pdf" required />
+            <input type="hidden"
+                   name="filename"
+                   value="{{ $facilityform->file_name }}">
+            <x-form.input type="file"
+                          name="uploadfile"
+                          accept=".pdf"
+                          required />
             <div class="p-1"></div>
             <x-form.button>Upload</x-form.button>
         </form>
@@ -123,8 +138,12 @@
 
             <br />
 
-            <a href="/user/files?file={{ $file }}&download=0" class="btn btn-sm btn-secondary" target="_blank">view</a>
-            <a href="/user/files?file={{ $file }}&download=1" class="btn btn-sm btn-secondary" target="_self">download</a>
+            <a href="/user/files?file={{ $file }}&download=0"
+               class="btn btn-sm btn-secondary"
+               target="_blank">view</a>
+            <a href="/user/files?file={{ $file }}&download=1"
+               class="btn btn-sm btn-secondary"
+               target="_self">download</a>
         @else
             <div class="text-danger">{{ $file }} does not exist</div>
         @endif
@@ -132,11 +151,20 @@
         <br />
         <br />
 
-        <form method="post" enctype="multipart/form-data" action="{{ route('user.facilityforms.fileupload', $facilityform->id) }}">
+        <form method="post"
+              enctype="multipart/form-data"
+              action="{{ route('user.facilityforms.fileupload', $facilityform->id) }}">
             @csrf
-            <input type="hidden" name="filetype" value="facilityformsfillable">
-            <input type="hidden" name="filename" value="{{ $facilityform->file_name }}">
-            <x-form.input type="file" name="uploadfile" accept=".pdf" required />
+            <input type="hidden"
+                   name="filetype"
+                   value="facilityformsfillable">
+            <input type="hidden"
+                   name="filename"
+                   value="{{ $facilityform->file_name }}">
+            <x-form.input type="file"
+                          name="uploadfile"
+                          accept=".pdf"
+                          required />
             <div class="p-1"></div>
             <x-form.button>Upload</x-form.button>
         </form>
@@ -146,15 +174,19 @@
     <br />
     <br />
 
-    <a href="{{ route('user.facilityforms.edit', $facilityform->id) }}" class="btn btn-sm btn-secondary">Edit Facility Form</a>
+    <a href="{{ route('user.facilityforms.edit', $facilityform->id) }}"
+       class="btn btn-sm btn-secondary">Edit Facility Form</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('user.facilityforms.destroy', $facilityform->id) }}" onclick="return confirm('Are You Sure Want to Delete?')">
+    <form method="POST"
+          action="{{ route('user.facilityforms.destroy', $facilityform->id) }}"
+          onclick="return confirm('Are You Sure Want to Delete?')">
         @csrf
         @method('DELETE')
-        <button class="btn btn-sm btn-danger" type="submit">Delete Facility Form: {{ $facilityform->name }}</button>
+        <button class="btn btn-sm btn-danger"
+                type="submit">Delete Facility Form: {{ $facilityform->name }}</button>
     </form>
 
     <br />

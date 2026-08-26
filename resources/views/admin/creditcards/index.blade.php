@@ -32,7 +32,8 @@
                         <td>{{ $creditcard->created }}</td>
                         <td>{{ $creditcard->modified }}</td>
                         <td>
-                            <a href="{{ route('admin.creditcards.show', $creditcard->id ) }}" class="btn btn-xs btn-secondary">View</a>
+                            <a href="{{ route('admin.creditcards.show', $creditcard->id) }}"
+                               class="btn btn-xs btn-secondary">View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -44,7 +45,8 @@
 
     <br />
 
-    <a href="{{ route('admin.creditcards.create') }}" class="btn btn-sm btn-secondary">Add</a>
+    <a href="{{ route('admin.creditcards.create') }}"
+       class="btn btn-sm btn-secondary">Add</a>
 
     <br />
     <br />

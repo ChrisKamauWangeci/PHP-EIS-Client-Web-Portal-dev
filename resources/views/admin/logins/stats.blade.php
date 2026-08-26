@@ -17,7 +17,9 @@
             <tbody>
                 @foreach ($logins as $login)
                     <tr>
-                        <td><a href="{{ route('admin.logins.index', ['ip_address' => $login->ip_address]) }}">{{ $login->ip_address }}</a></td>
+                        <td><a
+                               href="{{ route('admin.logins.index', ['ip_address' => $login->ip_address]) }}">{{ $login->ip_address }}</a>
+                        </td>
                         <td>{{ $login->counter }}</td>
                     </tr>
                 @endforeach

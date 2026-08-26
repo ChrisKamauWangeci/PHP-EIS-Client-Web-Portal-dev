@@ -110,25 +110,43 @@
 
             Email: {{ $passwordreset->email }}
 
-            <form method="post" action="{{ route('passwordresets.update', $passwordreset->id) }}">
+            <form method="post"
+                  action="{{ route('passwordresets.update', $passwordreset->id) }}">
                 @method('PUT')
                 @csrf
-                <input type="hidden" name="token" value="{{ $passwordreset->token }}">
+                <input type="hidden"
+                       name="token"
+                       value="{{ $passwordreset->token }}">
 
                 <br />
 
-                <x-form.input name="C_Password" label="Password" id="C_Password" type="password" required maxlength="13" onkeyup="passwordValidate(this.value)" />
-                <span class="small" id="eye_btn">show password</span>
+                <x-form.input name="C_Password"
+                              label="Password"
+                              id="C_Password"
+                              type="password"
+                              required
+                              maxlength="13"
+                              onkeyup="passwordValidate(this.value)" />
+                <span class="small"
+                      id="eye_btn">show password</span>
 
                 <br />
                 <br />
 
-                <x-form.input name="passwordconfirm" label="Password Confirm" id="passwordconfirm" type="password" required maxlength="13" onkeyup="passwordConfirm(this.value)" />
+                <x-form.input name="passwordconfirm"
+                              label="Password Confirm"
+                              id="passwordconfirm"
+                              type="password"
+                              required
+                              maxlength="13"
+                              onkeyup="passwordConfirm(this.value)" />
 
                 <br />
 
-                <div id="password_helper" class="text-danger small"></div>
-                <div id="password_helper_confirm" class="text-danger small"></div>
+                <div id="password_helper"
+                     class="text-danger small"></div>
+                <div id="password_helper_confirm"
+                     class="text-danger small"></div>
 
                 <br />
 

@@ -5,7 +5,8 @@
             <h1>Cancellation Request</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.apscancellations.index') }}" class="btn btn-sm btn-secondary">View  Cancellation Requests</a>
+            <a href="{{ route('user.apscancellations.index') }}"
+               class="btn btn-sm btn-secondary">View Cancellation Requests</a>
         </div>
     </div>
 
@@ -60,7 +61,8 @@
 
     <br />
 
-    <a href="{{ route('user.apscancellations.edit', $apscancellation->CancellationID) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.apscancellations.edit', $apscancellation->CancellationID) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />

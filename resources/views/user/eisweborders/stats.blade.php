@@ -38,14 +38,14 @@
             type: 'bar',
             data: {
                 labels: [
-                    @foreach($docusigndocuments as $docusigndocument)
+                    @foreach ($docusigndocuments as $docusigndocument)
                         "{{ $docusigndocument->year }} / {{ $docusigndocument->month }}",
                     @endforeach
                 ],
                 datasets: [{
                     label: 'Docusign Documents Stats',
                     data: [
-                        @foreach($docusigndocuments as $docusigndocument)
+                        @foreach ($docusigndocuments as $docusigndocument)
                             {{ $docusigndocument->counter }},
                         @endforeach
                     ],

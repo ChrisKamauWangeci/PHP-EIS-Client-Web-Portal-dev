@@ -6,21 +6,23 @@
         }
     </style>
 
-    <div id="app" v-cloak>
+    <div id="app"
+         v-cloak>
 
         <div class="row">
             <div class="col-auto">
-                <h1>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_LastName }}</h1>
+                <h1>Workorder: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }}
+                    {{ $workorder->W_LastName }}</h1>
             </div>
             <div class="col text-end">
-                <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-secondary">View Workorder</a>
+                <a href="{{ route('user.workorders.show', $workorder->W_WorkOrder) }}"
+                   class="btn btn-sm btn-secondary">View Workorder</a>
             </div>
         </div>
 
         <br />
 
         @if ($hospitalcurrent)
-
             <div class="row">
                 <div class="col-auto">
                     Current Facility / Hospital:
@@ -51,11 +53,11 @@
                     <br />
                 </div>
                 <div class="col-auto">
-                    <a href="{{ route('user.hospitals.edit', $hospitalcurrent->H_ID) }}" class="btn btn-sm btn-secondary">Edit Hospital</a>
+                    <a href="{{ route('user.hospitals.edit', $hospitalcurrent->H_ID) }}"
+                       class="btn btn-sm btn-secondary">Edit Hospital</a>
                     <br />
                 </div>
             </div>
-
         @endif
 
         <hr>
@@ -65,65 +67,112 @@
                 <h3>Search Facility</h3>
             </div>
             <div class="col text-end">
-                <a href="/user/hospitals/create" onclick="popup(this.href); return false;">Create New Hospital</a>
+                <a href="/user/hospitals/create"
+                   onclick="popup(this.href); return false;">Create New Hospital</a>
             </div>
         </div>
 
         <div class="row">
 
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                Hospital <span v-if="search.H_Hospital" @click="resetfield('H_Hospital')"><i class="fa-solid fa-xmark"></i></span>
+                Hospital <span v-if="search.H_Hospital"
+                      @click="resetfield('H_Hospital')"><i class="fa-solid fa-xmark"></i></span>
                 <br />
-                <input type="text" name="H_Hospital" v-model="search.H_Hospital" v-on:change="searchHospitals();" class="form-control form-control-sm" autocomplete="off">
+                <input type="text"
+                       name="H_Hospital"
+                       v-model="search.H_Hospital"
+                       v-on:change="searchHospitals();"
+                       class="form-control form-control-sm"
+                       autocomplete="off">
                 <br />
             </div>
 
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                Address <span v-if="search.H_Address" @click="resetfield('H_Address')"><i class="fa-solid fa-xmark"></i></span>
+                Address <span v-if="search.H_Address"
+                      @click="resetfield('H_Address')"><i class="fa-solid fa-xmark"></i></span>
                 <br />
-                <input type="text" name="H_Address" v-model="search.H_Address" v-on:change="searchHospitals();" class="form-control form-control-sm" autocomplete="off">
+                <input type="text"
+                       name="H_Address"
+                       v-model="search.H_Address"
+                       v-on:change="searchHospitals();"
+                       class="form-control form-control-sm"
+                       autocomplete="off">
                 <br />
             </div>
 
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                City <span v-if="search.H_City" @click="resetfield('H_City')"><i class="fa-solid fa-xmark"></i></span>
+                City <span v-if="search.H_City"
+                      @click="resetfield('H_City')"><i class="fa-solid fa-xmark"></i></span>
                 <br />
-                <input type="text" name="H_City" v-model="search.H_City" v-on:change="searchHospitals();" class="form-control form-control-sm" autocomplete="off">
-                <br />
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-1">
-                State <span v-if="search.H_State" @click="resetfield('H_State')"><i class="fa-solid fa-xmark"></i></span>
-                <br />
-                <input type="text" name="H_State" v-model="search.H_State" v-on:change="searchHospitals();" class="form-control form-control-sm" autocomplete="off" maxlength="2">
-                <br />
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-1">
-                Zip <span v-if="search.H_Zip" @click="resetfield('H_Zip')"><i class="fa-solid fa-xmark"></i></span>
-                <br />
-                <input type="text" name="H_Zip" v-model="search.H_Zip" v-on:change="searchHospitals();" class="form-control form-control-sm" autocomplete="off">
+                <input type="text"
+                       name="H_City"
+                       v-model="search.H_City"
+                       v-on:change="searchHospitals();"
+                       class="form-control form-control-sm"
+                       autocomplete="off">
                 <br />
             </div>
 
             <div class="col-6 col-sm-4 col-md-3 col-lg-1">
-                Phone <span v-if="search.H_Phone" @click="resetfield('H_Phone')"><i class="fa-solid fa-xmark"></i></span>
+                State <span v-if="search.H_State"
+                      @click="resetfield('H_State')"><i class="fa-solid fa-xmark"></i></span>
                 <br />
-                <input type="text" name="H_Phone" v-model="search.H_Phone" v-on:change="searchHospitals();" class="form-control form-control-sm" autocomplete="off">
+                <input type="text"
+                       name="H_State"
+                       v-model="search.H_State"
+                       v-on:change="searchHospitals();"
+                       class="form-control form-control-sm"
+                       autocomplete="off"
+                       maxlength="2">
                 <br />
             </div>
 
             <div class="col-6 col-sm-4 col-md-3 col-lg-1">
-                Fax <span v-if="search.H_Fax" @click="resetfield('H_Fax')"><i class="fa-solid fa-xmark"></i></span>
+                Zip <span v-if="search.H_Zip"
+                      @click="resetfield('H_Zip')"><i class="fa-solid fa-xmark"></i></span>
                 <br />
-                <input type="text" name="H_Fax" v-model="search.H_Fax" v-on:change="searchHospitals();" class="form-control form-control-sm" autocomplete="off">
+                <input type="text"
+                       name="H_Zip"
+                       v-model="search.H_Zip"
+                       v-on:change="searchHospitals();"
+                       class="form-control form-control-sm"
+                       autocomplete="off">
+                <br />
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3 col-lg-1">
+                Phone <span v-if="search.H_Phone"
+                      @click="resetfield('H_Phone')"><i class="fa-solid fa-xmark"></i></span>
+                <br />
+                <input type="text"
+                       name="H_Phone"
+                       v-model="search.H_Phone"
+                       v-on:change="searchHospitals();"
+                       class="form-control form-control-sm"
+                       autocomplete="off">
+                <br />
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3 col-lg-1">
+                Fax <span v-if="search.H_Fax"
+                      @click="resetfield('H_Fax')"><i class="fa-solid fa-xmark"></i></span>
+                <br />
+                <input type="text"
+                       name="H_Fax"
+                       v-model="search.H_Fax"
+                       v-on:change="searchHospitals();"
+                       class="form-control form-control-sm"
+                       autocomplete="off">
                 <br />
             </div>
 
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                 <label>Action</label>
                 <br />
-                <button class="btn btn-sm btn-secondary" type="submit" id="search" v-on:click="searchHospitals();">
+                <button class="btn btn-sm btn-secondary"
+                        type="submit"
+                        id="search"
+                        v-on:click="searchHospitals();">
                     <span v-if="searching">
                         <i class="fas fa-sync-alt fa-spin"></i>
                     </span>
@@ -131,7 +180,10 @@
                         <i class="fas fa-search"></i>
                     </span>
                     Search
-                </button> <button class="btn btn-sm btn-secondary" type="submit" id="reset" v-on:click="reset();">Reset</button>
+                </button> <button class="btn btn-sm btn-secondary"
+                        type="submit"
+                        id="reset"
+                        v-on:click="reset();">Reset</button>
                 <br />
             </div>
 
@@ -143,7 +195,8 @@
             </div>
         </span>
 
-        <div class="table-responsive" v-if="hospitals">
+        <div class="table-responsive"
+             v-if="hospitals">
             <table class="table table-sm table-hover table-bordered w-auto">
                 <thead>
                     <tr>
@@ -161,26 +214,37 @@
                     <tr v-for="h in sortedHospitals">
                         <td>@{{ h.H_ID }}</td>
                         <td>
-                            <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" :data-bs-title="'hospital: ' + h.H_Hospital + '<br />affiliate: ' + h.H_Affiliate + '<br />copyservice: ' + h.H_CopyService + '<br />contact: ' + h.H_ContactName">
+                            <div data-bs-toggle="tooltip"
+                                 data-bs-placement="top"
+                                 data-bs-html="true"
+                                 :data-bs-title="'hospital: ' + h.H_Hospital + '<br />affiliate: ' + h.H_Affiliate +
+                                     '<br />copyservice: ' + h.H_CopyService + '<br />contact: ' + h.H_ContactName">
                                 @{{ h.H_Hospital }}
                             </div>
                         </td>
-                        <td>@{{ h.H_Address }}, @{{ h.H_City }}, @{{ h.H_State }} @{{ h.H_Zip }}</td>
+                        <td>@{{ h.H_Address }}, @{{ h.H_City }}, @{{ h.H_State }}
+                            @{{ h.H_Zip }}</td>
                         <td>@{{ h.H_Phone }}</td>
                         <td>@{{ h.H_Fax }}</td>
                         <td class="small">@{{ h.H_UpdUser }}</td>
-                        <td class="small" nowrap>@{{ h.H_UpdDate }}</td>
+                        <td class="small"
+                            nowrap>@{{ h.H_UpdDate }}</td>
                         <td nowrap>
-                            <button class="btn btn-xs btn-success" v-on:click="getHospital(h.H_ID);">Select</button>&nbsp;
-                            <a :href="'/user/hospitals/' + h.H_ID" target="_blank" class="btn btn-xs btn-secondary">View</a>
-                            <a :href="'/user/hospitals/' + h.H_ID" target="_blank" class="btn btn-xs btn-secondary">Edit</a>
+                            <button class="btn btn-xs btn-success"
+                                    v-on:click="getHospital(h.H_ID);">Select</button>&nbsp;
+                            <a :href="'/user/hospitals/' + h.H_ID"
+                               target="_blank"
+                               class="btn btn-xs btn-secondary">View</a>
+                            <a :href="'/user/hospitals/' + h.H_ID"
+                               target="_blank"
+                               class="btn btn-xs btn-secondary">Edit</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <small>sort=@{{currentSort}}, dir=@{{currentSortDir}}</small>
+        <small>sort=@{{ currentSort }}, dir=@{{ currentSortDir }}</small>
 
         <br />
         <span id="ready"></span>
@@ -194,20 +258,38 @@
 
                 @if ($workorder->W_Status == 'Incomplete')
 
-                    <form method="post" action="{{ route('user.workorders.workorderhospitalupdate', $workorder->W_WorkOrder) }}">
+                    <form method="post"
+                          action="{{ route('user.workorders.workorderhospitalupdate', $workorder->W_WorkOrder) }}">
                         @csrf
                         @method('PATCH')
 
-                        <input type="hidden" name="W_WorkOrder" value="{{ $workorder->W_WorkOrder }}">
+                        <input type="hidden"
+                               name="W_WorkOrder"
+                               value="{{ $workorder->W_WorkOrder }}">
 
-                        <x-form.input name="H_ID" label="Hospital ID" :value="old('H_ID')" class="form-control form-control-sm readonly bg-light" readonly style="pointer-events: none;" required />
+                        <x-form.input name="H_ID"
+                                      label="Hospital ID"
+                                      :value="old('H_ID')"
+                                      class="form-control form-control-sm readonly bg-light"
+                                      readonly
+                                      style="pointer-events: none;"
+                                      required />
                         <br />
 
-                        <x-form.input name="hospital_name" label="Hospital" :value="old('hospital_name')" maxlength="50" required />
+                        <x-form.input name="hospital_name"
+                                      label="Hospital"
+                                      :value="old('hospital_name')"
+                                      maxlength="50"
+                                      required />
                         <br />
 
                         @if (!$workorder->W_Owner)
-                            <x-form.select name="W_Owner" label="Transfer Assigned To" :options="$contractorsselects" empty="-" :value="old('W_Owner')" required />
+                            <x-form.select name="W_Owner"
+                                           label="Transfer Assigned To"
+                                           :options="$contractorsselects"
+                                           empty="-"
+                                           :value="old('W_Owner')"
+                                           required />
                             <br />
                         @endif
 
@@ -229,7 +311,9 @@
 
                         <x-form.button>Submit</x-form.button>
                         &nbsp;
-                        <a href="#" @click="resethospital()" class="btn btn-sm btn-secondary">Reset</a>
+                        <a href="#"
+                           @click="resethospital()"
+                           class="btn btn-sm btn-secondary">Reset</a>
 
                         <br />
                         <br />
@@ -240,7 +324,6 @@
                     </form>
                     <br />
                     <br />
-
                 @else
                     Workorder status is: {{ $workorder->W_Status }}
                 @endif
@@ -255,38 +338,51 @@
                 <br />
 
                 @if ($hospitalraw && $workorder->W_WebUploadID)
-
                     <h3>Save New Facility</h3>
-                    <form method="post" action="{{ route('user.workorders.workorderhospitalstore') }}">
+                    <form method="post"
+                          action="{{ route('user.workorders.workorderhospitalstore') }}">
                         @csrf
                         @method('PATCH')
 
-                        <input type="hidden" name="W_WorkOrder" value="{{ $workorder->W_WorkOrder }}">
+                        <input type="hidden"
+                               name="W_WorkOrder"
+                               value="{{ $workorder->W_WorkOrder }}">
 
                         <span @click="copyRawHospital('H_Hospital');">Hospital <i class="fas fa-search"></i></span>
-                        <x-form.input name="H_Hospital" :value="old('H_Hospital', $hospitalraw->R_Hospital)" maxlength="50" required />
+                        <x-form.input name="H_Hospital"
+                                      :value="old('H_Hospital', $hospitalraw->R_Hospital)"
+                                      maxlength="50"
+                                      required />
 
                         <br />
 
                         <span @click="copyRawHospital('H_Address');">Address <i class="fas fa-search"></i></span>
-                        <x-form.input name="H_Address" :value="old('H_Address', $hospitalraw->R_Address)" maxlength="50" />
+                        <x-form.input name="H_Address"
+                                      :value="old('H_Address', $hospitalraw->R_Address)"
+                                      maxlength="50" />
 
                         <br />
 
                         <div class="row">
                             <div class="col-4 col-md-6">
                                 <span @click="copyRawHospital('H_City');">City <i class="fas fa-search"></i></span>
-                                <x-form.input name="H_City" :value="old('H_City', $hospitalraw->R_City)" maxlength="50" />
+                                <x-form.input name="H_City"
+                                              :value="old('H_City', $hospitalraw->R_City)"
+                                              maxlength="50" />
                                 <br />
                             </div>
                             <div class="col-4 col-md-3">
                                 <span @click="copyRawHospital('H_State');">State <i class="fas fa-search"></i></span>
-                                <x-form.input name="H_State" :value="old('H_State', $hospitalraw->R_State)" maxlength="2" />
+                                <x-form.input name="H_State"
+                                              :value="old('H_State', $hospitalraw->R_State)"
+                                              maxlength="2" />
                                 <br />
                             </div>
                             <div class="col-4 col-md-3">
                                 <span @click="copyRawHospital('H_Zip');">Zip <i class="fas fa-search"></i></span>
-                                <x-form.input name="H_Zip" :value="old('H_Zip', $hospitalraw->R_Zip)" maxlength="50" />
+                                <x-form.input name="H_Zip"
+                                              :value="old('H_Zip', $hospitalraw->R_Zip)"
+                                              maxlength="50" />
                                 <br />
                             </div>
                         </div>
@@ -294,27 +390,37 @@
                         <div class="row">
                             <div class="col-4 col-md-4 col-lg-5">
                                 <span @click="copyRawHospital('H_Phone');">Phone <i class="fas fa-search"></i></span>
-                                <x-form.input name="H_Phone" :value="old('H_Phone', $hospitalraw->R_Phone)" maxlength="50" />
+                                <x-form.input name="H_Phone"
+                                              :value="old('H_Phone', $hospitalraw->R_Phone)"
+                                              maxlength="50" />
                                 <br />
                             </div>
                             <div class="col-4 col-md-4 col-lg-3">
                                 Phone Ext
-                                <x-form.input name="H_PhoneExt" :value="old('H_PhoneExt', $hospitalraw->R_PhoneExt)" maxlength="50" />
+                                <x-form.input name="H_PhoneExt"
+                                              :value="old('H_PhoneExt', $hospitalraw->R_PhoneExt)"
+                                              maxlength="50" />
                                 <br />
                             </div>
                             <div class="col-4 col-md-4 col-lg-4">
                                 <span @click="copyRawHospital('H_Fax');">Fax <i class="fas fa-search"></i></span>
-                                <x-form.input name="H_Fax" :value="old('H_Fax', $hospitalraw->R_Fax)" maxlength="50" />
+                                <x-form.input name="H_Fax"
+                                              :value="old('H_Fax', $hospitalraw->R_Fax)"
+                                              maxlength="50" />
                                 <br />
                             </div>
                         </div>
 
-                        <x-form.textarea name="H_Note" label="Note" :value="old('H_Note', $workorder->H_Note )" :rows="4" />
+                        <x-form.textarea name="H_Note"
+                                         label="Note"
+                                         :value="old('H_Note', $workorder->H_Note)"
+                                         :rows="4" />
                         <br />
 
                         <x-form.button>Submit</x-form.button>
                         &nbsp;
-                        <a href="{{ route('user.workorders.hospitalchange', $workorder->W_WorkOrder) }}" class="btn btn-sm btn-secondary">Reset</a>
+                        <a href="{{ route('user.workorders.hospitalchange', $workorder->W_WorkOrder) }}"
+                           class="btn btn-sm btn-secondary">Reset</a>
                     </form>
                     <br />
                     <br />
@@ -442,8 +548,10 @@
                             this.searching = false;
 
                             this.$nextTick(() => {
-                                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-                                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+                                const tooltipTriggerList = document.querySelectorAll(
+                                    '[data-bs-toggle="tooltip"]')
+                                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl =>
+                                    new bootstrap.Tooltip(tooltipTriggerEl))
                             });
                         })
                         .catch(error => {

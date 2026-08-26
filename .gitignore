@@ -25,4 +25,5 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
-tests/Doc/combined_code.txt
+tests/Doc/
+dump.py

@@ -5,7 +5,8 @@
             <h1>File Transfer</h1>
         </div>
         <div class="col text-end">
-            <a href="{{ route('user.filetransfers.index') }}" class="btn btn-sm btn-secondary">View File Transfers</a>
+            <a href="{{ route('user.filetransfers.index') }}"
+               class="btn btn-sm btn-secondary">View File Transfers</a>
         </div>
     </div>
 
@@ -26,7 +27,9 @@
         </tr>
         <tr>
             <td>Workorder ID</td>
-            <td><a href="{{ route('user.workorders.show', $filetransfer->workorder_id) }}">{{ $filetransfer->workorder_id }}</a></td>
+            <td><a
+                   href="{{ route('user.workorders.show', $filetransfer->workorder_id) }}">{{ $filetransfer->workorder_id }}</a>
+            </td>
         </tr>
         <tr>
             <td>Contractor ID</td>

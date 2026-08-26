@@ -5,7 +5,8 @@
             <h1>Insurance Company</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.insurancecompanies.index') }}" class="btn btn-sm btn-secondary">View Insurance Companies</a>
+            <a href="{{ route('user.insurancecompanies.index') }}"
+               class="btn btn-sm btn-secondary">View Insurance Companies</a>
         </div>
     </div>
 

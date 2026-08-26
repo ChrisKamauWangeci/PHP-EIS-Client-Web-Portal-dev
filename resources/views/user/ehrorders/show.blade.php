@@ -5,9 +5,12 @@
             <h1>EHR Order</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.ehrorders.index') }}" class="btn btn-sm btn-secondary">View EHR Orders</a>
-            <a href="{{ route('user.ehrorderssearchresults.index') }}" class="btn btn-sm btn-secondary">View EHR Order Search Results</a>
-            <a href="{{ route('user.ehrordersdocuments.index') }}" class="btn btn-sm btn-secondary">View EHR Order Documents</a>
+            <a href="{{ route('user.ehrorders.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Orders</a>
+            <a href="{{ route('user.ehrorderssearchresults.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Order Search Results</a>
+            <a href="{{ route('user.ehrordersdocuments.index') }}"
+               class="btn btn-sm btn-secondary">View EHR Order Documents</a>
         </div>
     </div>
 
@@ -97,14 +100,18 @@
         <tr>
             <td>Auth File</td>
             <td>
-                <a href="/user/files?file={{ $ehrorder->auth_file_path }}&amp;download=0" target="_blank" class="">{{ $ehrorder->auth_file_path }}</a>
+                <a href="/user/files?file={{ $ehrorder->auth_file_path }}&amp;download=0"
+                   target="_blank"
+                   class="">{{ $ehrorder->auth_file_path }}</a>
             </td>
         </tr>
         @if ($ehrorder->service_provider == 'epic')
             <tr>
                 <td>Epic - Coverpage + Auth File</td>
                 <td>
-                    <a href="/user/files?file=\\FTPSERVER2\ftpserver\eis\coverpage_auth\{{ $ehrorder->created_at->format('Ymd') }}\{{ $ehrorder->id }}-coverpage_auth.pdf&amp;download=0" target="_blank" class="">\\FTPSERVER2\ftpserver\eis\coverpage_auth\{{ $ehrorder->created_at->format('Ymd') }}\{{ $ehrorder->id }}-coverpage_auth.pdf</a>
+                    <a href="/user/files?file=\\FTPSERVER2\ftpserver\eis\coverpage_auth\{{ $ehrorder->created_at->format('Ymd') }}\{{ $ehrorder->id }}-coverpage_auth.pdf&amp;download=0"
+                       target="_blank"
+                       class="">\\FTPSERVER2\ftpserver\eis\coverpage_auth\{{ $ehrorder->created_at->format('Ymd') }}\{{ $ehrorder->id }}-coverpage_auth.pdf</a>
                 </td>
             </tr>
         @endif
@@ -190,7 +197,8 @@
                         <td>{{ $ehrorderssearchresult->created_at->format('m/d/Y H:i:s') }}</td>
                         <td>{{ $ehrorderssearchresult->updated_at->format('m/d/Y H:i:s') }}</td>
                         <td>
-                            <a href="{{ route('user.ehrorderssearchresults.show', $ehrorderssearchresult->id) }}" class="btn btn-xs btn-secondary">View</a>
+                            <a href="{{ route('user.ehrorderssearchresults.show', $ehrorderssearchresult->id) }}"
+                               class="btn btn-xs btn-secondary">View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -240,7 +248,8 @@
                         <td>{{ $ehrordersdocument->created_at->format('m/d/Y H:i:s') }}</td>
                         <td>{{ $ehrordersdocument->updated_at->format('m/d/Y H:i:s') }}</td>
                         <td>
-                            <a href="{{ route('user.ehrordersdocuments.show', $ehrordersdocument->id) }}" class="btn btn-xs btn-secondary">View</a>
+                            <a href="{{ route('user.ehrordersdocuments.show', $ehrordersdocument->id) }}"
+                               class="btn btn-xs btn-secondary">View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -250,12 +259,14 @@
 
     <br />
 
-    <a href="{{ route('user.ehrorders.edit', $ehrorder->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.ehrorders.edit', $ehrorder->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <a href="{{ route('user.ehrorders.coverpage', $ehrorder->id) }}" class="btn btn-sm btn-secondary">Cover Page</a>
+    <a href="{{ route('user.ehrorders.coverpage', $ehrorder->id) }}"
+       class="btn btn-sm btn-secondary">Cover Page</a>
 
     <br />
     <br />
@@ -280,8 +291,8 @@
                         <h5 class="card-title mb-3">SMART Access - Fasten Health</h5>
 
                         <a href="{{ route('user.ehrorders.invitationemailfasten', $ehrorder->id) }}"
-                            target="_blank"
-                            class="btn btn-sm btn-secondary">
+                           target="_blank"
+                           class="btn btn-sm btn-secondary">
                             Preview Invitation Email
                         </a>
 
@@ -297,9 +308,12 @@
                         <br />
                         <br />
 
-                        <form method="POST" action="{{ route('user.ehrorders.invitationemailfasten', $ehrorder->id) }}">
+                        <form method="POST"
+                              action="{{ route('user.ehrorders.invitationemailfasten', $ehrorder->id) }}">
                             @csrf
-                            <button type="submit" class="btn btn-sm btn-secondary" onclick="return confirm('Are you sure?')">Send Invitation Email</button>
+                            <button type="submit"
+                                    class="btn btn-sm btn-secondary"
+                                    onclick="return confirm('Are you sure?')">Send Invitation Email</button>
                         </form>
 
                         <!-- <br /> -->

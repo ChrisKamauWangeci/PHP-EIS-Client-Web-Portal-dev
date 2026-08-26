@@ -1,21 +1,26 @@
 <x-user-layout title="">
 
-    <div v-cloak id="workorderholdtimes">
+    <div v-cloak
+         id="workorderholdtimes">
 
         <div class="row">
             <div class="col-auto">
-                <h1>Workorder Hold Times: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }} {{ $workorder->W_LastName }}</h1>
+                <h1>Workorder Hold Times: {{ $workorder->W_WorkOrder }} - {{ $workorder->W_FirstName }}
+                    {{ $workorder->W_LastName }}</h1>
             </div>
         </div>
 
         <br />
 
-        <button class="btn btn-sm btn-secondary" @click="getworkorderholdtimes">Refresh <span v-if="!workorderholdtimes"><i class="fas fa-sync-alt fa-spin"></i></span></button>
+        <button class="btn btn-sm btn-secondary"
+                @click="getworkorderholdtimes">Refresh <span v-if="!workorderholdtimes"><i
+                   class="fas fa-sync-alt fa-spin"></i></span></button>
 
         <br />
         <br />
 
-        <div class="table-responsive" v-if="workorderholdtimes">
+        <div class="table-responsive"
+             v-if="workorderholdtimes">
             <table class="table table-sm table-hover table-bordered w-auto">
                 <thead>
                     <tr>
@@ -45,7 +50,8 @@
                         <td nowrap>
                             &nbsp;
                             <span v-if="!workorderholdtimeexisting.date_end">
-                                <button class="btn btn-xs btn-secondary" @click="close(workorderholdtimeexisting.id)">Close</button>
+                                <button class="btn btn-xs btn-secondary"
+                                        @click="close(workorderholdtimeexisting.id)">Close</button>
                             </span>
                         </td>
                     </tr>
@@ -61,90 +67,159 @@
 
                 <h3>Add Hold Time</h3>
 
-                <form method="post" @submit.prevent="store()" accept-charset="utf-8">
+                <form method="post"
+                      @submit.prevent="store()"
+                      accept-charset="utf-8">
 
                     <label for="reason">Reason</label>
-                    <select name="reason" id="reason" v-model="reason" @change="reasonchange($event)" class="form-select form-select-sm" required>
-                        <option v-for="item in reasons" :value="item">@{{ item }}</option>
+                    <select name="reason"
+                            id="reason"
+                            v-model="reason"
+                            @change="reasonchange($event)"
+                            class="form-select form-select-sm"
+                            required>
+                        <option v-for="item in reasons"
+                                :value="item">@{{ item }}</option>
                     </select>
                     <br />
 
-                    <div v-if="reason == 'Special Authorization Prefill' || reason == 'Special Authorization Non Prefill'">
+                    <div
+                         v-if="reason == 'Special Authorization Prefill' || reason == 'Special Authorization Non Prefill'">
 
                         Requirements
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_1" v-model="requirements" value="1" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_1"
+                               v-model="requirements"
+                               value="1" />
                         <label for="requirement_1">Rejected for E-Signature</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_2" v-model="requirements" value="2" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_2"
+                               v-model="requirements"
+                               value="2" />
                         <label for="requirement_2">TPO Statement Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_3" v-model="requirements" value="3" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_3"
+                               v-model="requirements"
+                               value="3" />
                         <label for="requirement_3">Revocation Statement Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_4" v-model="requirements" value="4" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_4"
+                               v-model="requirements"
+                               value="4" />
                         <label for="requirement_4">Facility Information Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_5" v-model="requirements" value="5" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_5"
+                               v-model="requirements"
+                               value="5" />
                         <label for="requirement_5">Sensitive Information</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_6" v-model="requirements" value="6" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_6"
+                               v-model="requirements"
+                               value="6" />
                         <label for="requirement_6">Illegible Form Provided</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_8" v-model="requirements" value="8" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_8"
+                               v-model="requirements"
+                               value="8" />
                         <label for="requirement_8">Voice Signature Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements[]" id="requirement_9" v-model="requirements" value="9" />
+                        <input type="checkbox"
+                               name="requirements[]"
+                               id="requirement_9"
+                               v-model="requirements"
+                               value="9" />
                         <label for="requirement_9">Date of Signature Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements" id="requirement_10" v-model="requirements" value="10" />
+                        <input type="checkbox"
+                               name="requirements"
+                               id="requirement_10"
+                               v-model="requirements"
+                               value="10" />
                         <label for="requirement_10">Form Requested Per Requestor</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements" id="requirement_11" v-model="requirements" value="11" />
+                        <input type="checkbox"
+                               name="requirements"
+                               id="requirement_11"
+                               v-model="requirements"
+                               value="11" />
                         <label for="requirement_11">Facility Form Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements" id="requirement_12" v-model="requirements" value="12" />
+                        <input type="checkbox"
+                               name="requirements"
+                               id="requirement_12"
+                               v-model="requirements"
+                               value="12" />
                         <label for="requirement_12">Rejected for Docu-sign</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements" id="requirement_13" v-model="requirements" value="13" />
+                        <input type="checkbox"
+                               name="requirements"
+                               id="requirement_13"
+                               v-model="requirements"
+                               value="13" />
                         <label for="requirement_13">Disclosure/Redisclosure Statement Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements" id="requirement_14" v-model="requirements" value="14" />
+                        <input type="checkbox"
+                               name="requirements"
+                               id="requirement_14"
+                               v-model="requirements"
+                               value="14" />
                         <label for="requirement_14">Additional Patient Information Required</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements" id="requirement_15" v-model="requirements" value="15" />
+                        <input type="checkbox"
+                               name="requirements"
+                               id="requirement_15"
+                               v-model="requirements"
+                               value="15" />
                         <label for="requirement_15">Invalid Form Provided</label>
 
                         <br />
 
-                        <input type="checkbox" name="requirements" id="requirement_17" v-model="requirements" value="17" />
+                        <input type="checkbox"
+                               name="requirements"
+                               id="requirement_17"
+                               v-model="requirements"
+                               value="17" />
                         <label for="requirement_17">Rejected For Voice Signature</label>
 
                         <br />
@@ -153,19 +228,41 @@
                     </div>
 
                     <label for="status-note">Status Note</label>
-                    <textarea name="status_note" id="status-note" v-model="status_note" :required="reason != 'Special Authorization Prefill'" rows="3" maxlength="500" class="form-control form-control-sm" aria-required="true"></textarea>
-                    <div class="small" id="counter-status-note-start"></div>
+                    <textarea name="status_note"
+                              id="status-note"
+                              v-model="status_note"
+                              :required="reason != 'Special Authorization Prefill'"
+                              rows="3"
+                              maxlength="500"
+                              class="form-control form-control-sm"
+                              aria-required="true"></textarea>
+                    <div class="small"
+                         id="counter-status-note-start"></div>
                     <br />
 
                     <label for="date-start">Start Date</label>
-                    <input type="date" name="date_start" v-model="date_start" label="Start Date" class="form-control form-control-sm" id="date-start" value="{{ date('Y-m-d') }}" min="{{ now()->subDays(30)->format('Y-m-d') }}" max="{{ now()->addDays(30)->format('Y-m-d') }}" required>
+                    <input type="date"
+                           name="date_start"
+                           v-model="date_start"
+                           label="Start Date"
+                           class="form-control form-control-sm"
+                           id="date-start"
+                           value="{{ date('Y-m-d') }}"
+                           min="{{ now()->subDays(30)->format('Y-m-d') }}"
+                           max="{{ now()->addDays(30)->format('Y-m-d') }}"
+                           required>
                     <br />
 
                     @if ($subdomain == 'eisdev' || $subdomain == 'eisuat')
-
-                        <input type="checkbox" name="nohold" id="nohold" v-model="isChecked" :true-value="1" :false-value="0" class="form-check-input border border-black">
-                        <label class="form-check-label" for="nohold"> Do not put case on hold </label>
-
+                        <input type="checkbox"
+                               name="nohold"
+                               id="nohold"
+                               v-model="isChecked"
+                               :true-value="1"
+                               :false-value="0"
+                               class="form-check-input border border-black">
+                        <label class="form-check-label"
+                               for="nohold"> Do not put case on hold </label>
                     @endif
 
                     <br />
@@ -173,7 +270,8 @@
 
                     <x-form.button>Submit</x-form.button>
 
-                    <div v-if="showStoreMessage" class="small text-success pt-2">Submitted!</div>
+                    <div v-if="showStoreMessage"
+                         class="small text-success pt-2">Submitted!</div>
 
                 </form>
 
@@ -197,20 +295,42 @@
 
                     <br />
 
-                    <form method="post" @submit.prevent="update()" accept-charset="utf-8">
+                    <form method="post"
+                          @submit.prevent="update()"
+                          accept-charset="utf-8">
 
                         <label for="status-note-end">Status Note</label>
-                        <textarea name="status_note_end" id="status-note-end" v-model="status_note_end" :required="workorderholdtime.reason != 'Special Authorization'" rows="3" maxlength="500" class="form-control form-control-sm" aria-required="true"></textarea>
-                        <div class="small" id="counter-status-note-end"></div>
+                        <textarea name="status_note_end"
+                                  id="status-note-end"
+                                  v-model="status_note_end"
+                                  :required="workorderholdtime.reason != 'Special Authorization'"
+                                  rows="3"
+                                  maxlength="500"
+                                  class="form-control form-control-sm"
+                                  aria-required="true"></textarea>
+                        <div class="small"
+                             id="counter-status-note-end"></div>
                         <br />
 
                         <label for="date-end">End Date</label>
-                        <input type="date" name="date_end" v-model="date_end" label="End Date" class="form-control form-control-sm" id="date-end" value="{{ date('Y-m-d') }}" :min="workorderholdtime ? workorderholdtime.date_start : '{{ now()->subDays(30)->format('Y-m-d') }}'" max="{{ now()->addDays(30)->format('Y-m-d') }}" required>
+                        <input type="date"
+                               name="date_end"
+                               v-model="date_end"
+                               label="End Date"
+                               class="form-control form-control-sm"
+                               id="date-end"
+                               value="{{ date('Y-m-d') }}"
+                               :min="workorderholdtime ? workorderholdtime.date_start :
+                                   '{{ now()->subDays(30)->format('Y-m-d') }}'"
+                               max="{{ now()->addDays(30)->format('Y-m-d') }}"
+                               required>
                         <br />
 
                         <x-form.button>Submit</x-form.button>
                         &nbsp;
-                        <button class="btn btn-sm btn-secondary" type="reset" @click="workorderholdtime_id = null; workorderholdtime = null;">Reset</button>
+                        <button class="btn btn-sm btn-secondary"
+                                type="reset"
+                                @click="workorderholdtime_id = null; workorderholdtime = null;">Reset</button>
 
                     </form>
                 </div>
@@ -224,7 +344,6 @@
     </div>
 
     <script type="module">
-
         function textAreaCharacterCounter(textareaId, counterId) {
             const textarea = document.getElementById(textareaId);
             const counter = document.getElementById(counterId);
@@ -306,7 +425,8 @@
                     workorderholdtimes.value = null;
                     reasons.value = JSON.parse(JSON.stringify(reasonsorig));
                     try {
-                        const response = await fetch('/api/workorderholdtimes?&workorder_id={{ $workorder->W_WorkOrder }}')
+                        const response = await fetch(
+                            '/api/workorderholdtimes?&workorder_id={{ $workorder->W_WorkOrder }}')
                         const result = await response.json()
                         workorderholdtimes.value = result;
                         for (const key in result) {
@@ -341,7 +461,7 @@
                             status_note: this.status_note,
                             date_start: this.date_start,
                             <?php if ($subdomain == 'eisdev' || $subdomain == 'eisuat') : ?>
-                                nohold: this.isChecked,
+                            nohold: this.isChecked,
                             <?php endif; ?>
                         })
                     };
@@ -354,7 +474,7 @@
                         this.status_note = null;
 
                         <?php if ($subdomain == 'eisdev' || $subdomain == 'eisuat') : ?>
-                            this.isChecked = false;
+                        this.isChecked = false;
                         <?php endif; ?>
 
                         this.showStoreMessage = true;
@@ -394,7 +514,8 @@
                     };
 
                     try {
-                        const response = await fetch('/api/workorderholdtimes/' + this.workorderholdtime_id, requestOptions)
+                        const response = await fetch('/api/workorderholdtimes/' + this.workorderholdtime_id,
+                            requestOptions)
                         const result = await response.json();
                         status_note_end.value = null;
                         workorderholdtime_id.value = null;

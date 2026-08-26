@@ -2,18 +2,23 @@
 
     <h1>Workorder Insurance</h1>
 
-    <form method="GET" action="{{ route('user.woins.index') }}">
+    <form method="GET"
+          action="{{ route('user.woins.index') }}">
 
         <div class="row">
 
             <div class="col-md-2">
-                <x-form.input name="WI_WorkOrder" label="Workorder ID" :value="request('WI_WorkOrder')" autocomplete="off" />
+                <x-form.input name="WI_WorkOrder"
+                              label="Workorder ID"
+                              :value="request('WI_WorkOrder')"
+                              autocomplete="off" />
             </div>
 
             <div class="col-md-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.woins.index') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.woins.index') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
         </div>
 
@@ -66,7 +71,8 @@
                         <td>{{ $woin->WI_ReferenceNo }}</td>
                         <td>{{ $woin->WI_AuthFee }}</td>
                         <td>{{ $woin->WI_LargeCase }}</td>
-                        <td><a href="{{ route('user.woins.show', $woin->WI_WorkOrder) }}" class="btn btn-xs btn-secondary">view</a></td>
+                        <td><a href="{{ route('user.woins.show', $woin->WI_WorkOrder) }}"
+                               class="btn btn-xs btn-secondary">view</a></td>
                     </tr>
                 @endforeach
             </tbody>

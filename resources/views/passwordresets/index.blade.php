@@ -10,10 +10,18 @@
             <br />
             <br />
 
-            <form method="post" action="{{ route('passwordresets.index') }}">
+            <form method="post"
+                  action="{{ route('passwordresets.index') }}">
                 @csrf
 
-                <x-form.input type="email" name="C_Email" label="Email" :value="old('C_Email')" required autofocus  minlength="5" maxlength="50" />
+                <x-form.input type="email"
+                              name="C_Email"
+                              label="Email"
+                              :value="old('C_Email')"
+                              required
+                              autofocus
+                              minlength="5"
+                              maxlength="50" />
 
                 <br />
 

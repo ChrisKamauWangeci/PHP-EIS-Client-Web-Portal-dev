@@ -5,7 +5,8 @@
             <h1>Incoming APS Log</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.incoming_aps_logs.index') }}" class="btn btn-sm btn-secondary">View Incoming APS Logs</a>
+            <a href="{{ route('user.incoming_aps_logs.index') }}"
+               class="btn btn-sm btn-secondary">View Incoming APS Logs</a>
         </div>
     </div>
 

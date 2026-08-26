@@ -5,7 +5,8 @@
             <h1>Purge Config</h1>
         </div>
         <div class="col text-end d-print-none">
-            <a href="{{ route('user.purge_configs.index') }}" class="btn btn-sm btn-secondary">View Purge Configs</a>
+            <a href="{{ route('user.purge_configs.index') }}"
+               class="btn btn-sm btn-secondary">View Purge Configs</a>
         </div>
     </div>
 
@@ -60,15 +61,18 @@
 
     <br />
 
-    <a href="{{ route('user.purge_configs.edit', $purgeConfig->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+    <a href="{{ route('user.purge_configs.edit', $purgeConfig->id) }}"
+       class="btn btn-sm btn-secondary">Edit</a>
 
     <br />
     <br />
 
-    <form method="POST" action="{{ route('user.purge_configs.destroy', $purgeConfig->id) }}">
+    <form method="POST"
+          action="{{ route('user.purge_configs.destroy', $purgeConfig->id) }}">
         @csrf
         @method('DELETE')
-        <x-form.button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</x-form.button>
+        <x-form.button class="btn btn-sm btn-danger"
+                       onclick="return confirm('Are you sure?')">Delete</x-form.button>
     </form>
 
     <br />

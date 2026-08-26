@@ -4,26 +4,43 @@
 
     <h1>Docusign Documents Stats</h1>
 
-    <form method="get" accept-charset="utf-8" id="searchform" action="{{ route('user.docusigndocuments.stats') }}">
+    <form method="get"
+          accept-charset="utf-8"
+          id="searchform"
+          action="{{ route('user.docusigndocuments.stats') }}">
 
         <div class="row">
 
             <div class="col-4 col-md-4 col-lg-2 pt-2">
-                <x-form.input name="client" label="client" :value="request('client')" maxlength="50" />
+                <x-form.input name="client"
+                              label="client"
+                              :value="request('client')"
+                              maxlength="50" />
             </div>
 
             <div class="col-6 col-md-3 col-lg-2 pt-2">
-                <x-form.input type="date" name="from" label="from" :value="request('from') ?? now()->format('Y-m-d')" min="{{ now()->subYear(5)->format('Y-m-d') }}" max="{{ now()->addDays(1)->format('Y-m-d') }}" />
+                <x-form.input type="date"
+                              name="from"
+                              label="from"
+                              :value="request('from') ?? now()->format('Y-m-d')"
+                              min="{{ now()->subYear(5)->format('Y-m-d') }}"
+                              max="{{ now()->addDays(1)->format('Y-m-d') }}" />
             </div>
 
             <div class="col-6 col-md-3 col-lg-2 pt-2">
-                <x-form.input type="date" name="to" label="to" :value="request('to') ?? now()->format('Y-m-d')" min="{{ now()->subYear(5)->format('Y-m-d') }}" max="{{ now()->addDays(1)->format('Y-m-d') }}" />
+                <x-form.input type="date"
+                              name="to"
+                              label="to"
+                              :value="request('to') ?? now()->format('Y-m-d')"
+                              min="{{ now()->subYear(5)->format('Y-m-d') }}"
+                              max="{{ now()->addDays(1)->format('Y-m-d') }}" />
             </div>
 
             <div class="col-6 col-md-2 pt-2">
                 <br />
                 <x-form.button>Submit</x-form.button>
-                <a href="{{ route('user.docusigndocuments.stats') }}" class="btn btn-sm btn-secondary">Reset</a>
+                <a href="{{ route('user.docusigndocuments.stats') }}"
+                   class="btn btn-sm btn-secondary">Reset</a>
             </div>
 
         </div>
@@ -91,7 +108,8 @@
     <br />
     <br />
 
-    <a href="{{ route('user.docusigndocuments.index') }}" class="btn btn-sm btn-secondary">Docusign Documents</a>
+    <a href="{{ route('user.docusigndocuments.index') }}"
+       class="btn btn-sm btn-secondary">Docusign Documents</a>
 
     <br />
     <br />
