@@ -64,7 +64,7 @@ class FollowUpStatusReviewService
 
         // Fallback representation if LLM fails to return revised_status_note
         $noteTexts = array_map(
-            fn ($item) => is_array($item) ? ($item['note'] ?? '') : (string) $item,
+            fn($item) => is_array($item) ? ($item['note'] ?? '') : (string) $item,
             $followUpStatus
         );
         $fallbackNote = implode("\n", array_filter($noteTexts));
@@ -236,14 +236,16 @@ class FollowUpStatusReviewService
         $response = Http::withHeaders([
             'api-key' => $this->apiKey,
             'Content-Type' => 'application/json',
-        ])->post($url, [
-            'messages' => [
-                ['role' => 'system', 'content' => $systemPrompt],
-                ['role' => 'user', 'content' => $userContent],
-            ],
-            'response_format' => ['type' => 'json_object'],
-            'temperature' => 0,
-        ]);
+        ])
+            ->timeout(15) // Prevent hanging if the API is unresponsive
+            ->post($url, [
+                'messages' => [
+                    ['role' => 'system', 'content' => $systemPrompt],
+                    ['role' => 'user', 'content' => $userContent],
+                ],
+                'response_format' => ['type' => 'json_object'],
+                'temperature' => 0,
+            ])->throw(); // Throws RequestException on 4xx/5xx errors
 
         return json_decode($response->json('choices.0.message.content') ?? '{}', true);
     }

@@ -1053,34 +1053,6 @@
                     <span id="llm1-timer" class="ms-2 text-muted"></span>
                 @endif
 
-                <br />
-
-                @if ($subdomain == 'eisdev')
-                    <br />
-
-
-                    <button hx-indicator="#spinner3"
-                        hx-post="{{ route('user.llm.followupstatusreview.review', $workorder->W_WorkOrder) }}"
-                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}' hx-target="#llm_followupstatusreview"
-                        hx-target="#llm_followupstatusreview" hx-swap="innerHTML" hx-disabled-elt="self"
-                        class="btn btn-xs btn-success">
-                        AI Status Review <span id="spinner3" class="htmx-indicator"><i
-                                class="fa-solid fa-spinner fa-spin"></i></span>
-                    </button>
-
-                    &nbsp;
-
-                    <span id="llm_followupstatusreview-timer" class="ms-2 text-muted"></span>
-                @endif
-                &nbsp;
-
-                <br />
-                <br />
-                <div id="llm_followupstatusreview"></div>
-                <br />
-
-
-
             </div>
 
             <div class="col-12 col-sm-6 border border-4 border-white p-2 bg-success bg-opacity-10">
@@ -1127,6 +1099,29 @@
                             class="spin"></i></button>
 
                 </form>
+
+                @if ($subdomain == 'eisdev')
+                    <br />
+
+                    <button hx-indicator="#spinner3"
+                        hx-post="{{ route('user.llm.followupstatusreview.review', $workorder->W_WorkOrder) }}"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}' hx-target="#llm_followupstatusreview"
+                        hx-target="#llm_followupstatusreview" hx-swap="innerHTML" hx-disabled-elt="self"
+                        class="btn btn-xs btn-success">
+                        AI Status Review <span id="spinner3" class="htmx-indicator"><i
+                                class="fa-solid fa-spinner fa-spin"></i></span>
+                    </button>
+
+                    &nbsp;
+
+                    <span id="llm_followupstatusreview-timer" class="ms-2 text-muted"></span>
+                @endif
+
+                &nbsp;
+
+                <br />
+                <div id="llm_followupstatusreview"></div>
+                <br />
 
             </div>
         </div>

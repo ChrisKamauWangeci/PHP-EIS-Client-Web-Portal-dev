@@ -21,7 +21,15 @@ class FollowUpStatusReviewController extends Controller
 
         $ageDays = (int) ($workorder->W_ReceiveDate ? $workorder->W_ReceiveDate->diffInDays(now()) : 0);
 
-        $result = $reviewService->reviewNote($followUpStatus, $ageDays);
+        try {
+            $result = $reviewService->reviewNote($followUpStatus, $ageDays);
+        } catch (\Exception $e) {
+            // Catch connection timeouts or 500 errors from Azure
+            $result = [
+                'error' => true,
+                'message' => 'The AI review service is currently offline or unreachable. Please try again later.',
+            ];
+        }
 
         return view('user.workorders.partials._followupstatus_review_result', compact('result'));
     }
