@@ -205,9 +205,7 @@
         }
     </script>
 
-    <div id="app"
-         v-cloak
-         class="container-fluid">
+    <div id="app" v-cloak class="container-fluid">
 
         <div class="row sticky-top bg-body pt-1 border shadow-sm">
             <div class="col px-1">
@@ -229,21 +227,19 @@
             <div class="col-auto float-end d-print-none px-1">
 
                 <a href="{{ route('user.workorders.edit', $workorder->W_WorkOrder) }}"
-                   class="btn btn-sm btn-secondary">Edit</a>
+                    class="btn btn-sm btn-secondary">Edit</a>
                 &nbsp;
                 @if ($usersession['contractor']['access_files'])
                     <a href="{{ route('user.workorderfiles.show', $workorder->W_WorkOrder) }}"
-                       class="btn btn-sm btn-secondary">Files</a>
+                        class="btn btn-sm btn-secondary">Files</a>
                     &nbsp;
                 @endif
                 <a href="{{ route('user.workorderprefills.index', ['workorder_id' => $workorder->W_WorkOrder]) }}"
-                   class="btn btn-sm btn-secondary">Prefills</a>
+                    class="btn btn-sm btn-secondary">Prefills</a>
                 &nbsp;
-                <a href="{{ url()->full() }}"
-                   class="btn btn-sm btn-secondary"><i class="fa-solid fa-rotate"></i></a>
+                <a href="{{ url()->full() }}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-rotate"></i></a>
                 &nbsp;
-                <a href="#bottom"
-                   class="btn btn-sm btn-secondary"><i class="fa-solid fa-angles-down"></i></a>
+                <a href="#bottom" class="btn btn-sm btn-secondary"><i class="fa-solid fa-angles-down"></i></a>
 
             </div>
         </div>
@@ -261,11 +257,9 @@
             </div>
             <div class="col-6 col-md-2 border px-1">
                 Company
-                <span data-bs-trigger="click"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      data-bs-title="{{ $workorder->Company_C_Instruction ?? '-' }}"><i
-                       class="fa-solid fa-circle-info"></i></span>
+                <span data-bs-trigger="click" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="{{ $workorder->Company_C_Instruction ?? '-' }}"><i
+                        class="fa-solid fa-circle-info"></i></span>
                 <br />
                 <strong>{{ $workorder->Company_C_Name }}</strong>
             </div>
@@ -294,16 +288,14 @@
             </div>
             <div class="col-6 col-md-2 border px-1">
                 Requestor
-                <span data-bs-trigger="click"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      data-bs-title="{{ $workorder->Requestor_R_Email ?? '-' }}"><i
-                       class="fa-solid fa-circle-info"></i></span>
+                <span data-bs-trigger="click" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="{{ $workorder->Requestor_R_Email ?? '-' }}"><i
+                        class="fa-solid fa-circle-info"></i></span>
 
                 @if (in_array($workorder->W_Status, ['Incomplete', 'Complete'], true) &&
                         ($usersession['contractor']['C_SysAdmin'] ?? false))
                     <small><a
-                           href="{{ route('user.workorders.changerequestor', $workorder->W_WorkOrder) }}">Change</a></small>
+                            href="{{ route('user.workorders.changerequestor', $workorder->W_WorkOrder) }}">Change</a></small>
                 @endif
 
                 <br />
@@ -365,7 +357,7 @@
                             }
                         @endphp
                         <a href="/user/workorderfiles/file?file={{ urlencode($authform . $workorder->W_AuthorizedFile) }}&amp;workorder_id={{ $workorder->W_WorkOrder }}&amp;download=1"
-                           target="_blank">{{ $workorder->W_AuthorizedFile }}</a>
+                            target="_blank">{{ $workorder->W_AuthorizedFile }}</a>
                     </strong>
                 @endif
             </div>
@@ -374,12 +366,9 @@
 
                 {{-- <a href="#" id="" data-bs-toggle="modal" data-bs-target="#modal" onclick="showModal('{{ route('user.workorderfiledownloads.index', ['order_type' => 'aps', 'workorder_id' => $workorder->W_WorkOrder]) }}')" class="small">Downloads</a> --}}
 
-                <a href="#"
-                   id=""
-                   data-bs-toggle="modal"
-                   data-bs-target="#modal"
-                   onclick="showModal('{{ route('user.workorderfiletransfers.index', ['order_type' => 'aps', 'workorder_id' => $workorder->W_WorkOrder]) }}')"
-                   class="small">Download History</a>
+                <a href="#" id="" data-bs-toggle="modal" data-bs-target="#modal"
+                    onclick="showModal('{{ route('user.workorderfiletransfers.index', ['order_type' => 'aps', 'workorder_id' => $workorder->W_WorkOrder]) }}')"
+                    class="small">Download History</a>
 
                 <br />
                 <strong>{{ $workorder->W_ImageFile }}</strong>
@@ -455,7 +444,7 @@
             </div>
             <div class="col-6 col-md-2 border px-1">
                 Follow up Date - <a href="{{ route('user.workorders.edit', $workorder->W_WorkOrder) }}"
-                   class="small">Edit</a>
+                    class="small">Edit</a>
                 <br />
                 <strong>{{ $workorder->W_FollowUpDt?->format('m/d/Y') }}</strong>
             </div>
@@ -509,7 +498,7 @@
             </div>
 
             <div
-                 class="col-6 col-md-2 border px-1 {{ $workorder->post_issue_audit ? 'bg-danger text-white fw-bold' : '' }}">
+                class="col-6 col-md-2 border px-1 {{ $workorder->post_issue_audit ? 'bg-danger text-white fw-bold' : '' }}">
                 Post Issue Audit Case
                 <br />
                 <strong>
@@ -517,7 +506,7 @@
                 </strong>
             </div>
             <div
-                 class="col-6 col-md-2 border px-1 {{ (float) ($workorder->W_DrFee1 ?? 0) + (float) ($workorder->W_DrFee2 ?? 0) != (float) ($workorder->W_DrFee ?? 0) ? 'bg-danger-subtle' : '' }}">
+                class="col-6 col-md-2 border px-1 {{ (float) ($workorder->W_DrFee1 ?? 0) + (float) ($workorder->W_DrFee2 ?? 0) != (float) ($workorder->W_DrFee ?? 0) ? 'bg-danger-subtle' : '' }}">
                 Dr Fee
                 <br />
                 <small>{{ $workorder->W_DrFee1 }} + {{ $workorder->W_DrFee2 }} =
@@ -544,8 +533,7 @@
 
         <div class="row">
             <div class="col-12 bg-light border py-1 border-secondary bg-primary-subtle">
-                <strong>Applicant</strong> <button class="btn btn-xs btn-secondary"
-                        id="applicantinfodisplay">Display
+                <strong>Applicant</strong> <button class="btn btn-xs btn-secondary" id="applicantinfodisplay">Display
                     Applicant Info</button>
                 @php
                     $class = 'btn btn-xs btn-info float-end';
@@ -555,8 +543,7 @@
                 @endphp
                 @if ($subdomain == 'eisdev')
                     <a href="/user/workorders?search=1&database=eis&amp;W_FirstName={{ $workorder->W_FirstName }}&amp;W_LastName={{ $workorder->W_LastName }}&amp;W_SS={{ $workorder->W_SS }}&amp;W_DOB={{ $workorder->W_DOB?->format('Y-m-d') }}"
-                       class="{{ $class }}"
-                       target="_blank">Search Matching Orders</a>
+                        class="{{ $class }}" target="_blank">Search Matching Orders</a>
                 @endif
             </div>
             <div class="col-4 col-md-2 border px-1">
@@ -631,7 +618,7 @@
                     <div class="col-6 col-md-1 border p-1">
                         @if (str_contains($usersession['contractor']['C_Email'] ?? '', 'expressimagingservices.com'))
                             <a href="{{ route('user.examrequests.edit', $workorder->W_WorkOrder) }}"
-                               class="btn btn-sm btn-secondary">Edit</a>
+                                class="btn btn-sm btn-secondary">Edit</a>
                         @endif
                     </div>
                 @endif
@@ -663,16 +650,16 @@
                     (phone)
                     <br />
                     <a href="/user/hospitals?H_Fax={{ $hospital->H_Fax }}"
-                       onclick="popup(this.href); return false;">{{ $hospital->H_Fax }}</a> (fax)
+                        onclick="popup(this.href); return false;">{{ $hospital->H_Fax }}</a> (fax)
                     <div class="p-1"></div>
                     Copy Service:
                     @if ($hospital->H_CopyService)
                         <br />
                         <a href="/user/copyservices?C_CopyService={{ e($hospital->H_CopyService) }}"
-                           onclick="popup(this.href); return false;"
-                           class="fw-bold">{{ $hospital->H_CopyService }}</a>
+                            onclick="popup(this.href); return false;"
+                            class="fw-bold">{{ $hospital->H_CopyService }}</a>
                         <span class="btn btn-xs btn-success"
-                              @click="getCopyservice(@js($hospital->H_CopyService ?? ''))">show</span>
+                            @click="getCopyservice(@js($hospital->H_CopyService ?? ''))">show</span>
                         <br />
                     @endif
                     <br />
@@ -680,10 +667,8 @@
                     @if ($hospital->H_ROI)
                         <br />
                         <a href="/user/rois?R_ROIname={{ $hospital->H_ROI }}"
-                           onclick="popup(this.href); return false;"
-                           class="fw-bold">{{ $hospital->H_ROI }}</a>
-                        <span class="btn btn-xs btn-success"
-                              @click="getRoi(@js($hospital->H_ROI ?? ''))">show</span>
+                            onclick="popup(this.href); return false;" class="fw-bold">{{ $hospital->H_ROI }}</a>
+                        <span class="btn btn-xs btn-success" @click="getRoi(@js($hospital->H_ROI ?? ''))">show</span>
                         <br />
                     @endif
                     <br />
@@ -698,7 +683,7 @@
                             @if ($workorder->Company_C_Name != 'PLICO-WCL')
                                 <br />
                                 <a href="/user/workorders/docusign/{{ $workorder->W_WorkOrder }}"
-                                   class="btn btn-xs btn-success">SARA Client with Docusign</a>
+                                    class="btn btn-xs btn-success">SARA Client with Docusign</a>
                                 <br />
                             @endif
 
@@ -727,19 +712,19 @@
 
                         @if (in_array($workorder->Company_C_Name, $docusignCompanies))
                             <a href="/user/workorders/docusign/{{ $workorder->W_WorkOrder }}"
-                               class="btn btn-xs btn-success">SARA Client with Docusign</a>
+                                class="btn btn-xs btn-success">SARA Client with Docusign</a>
                             <div class="p-1"></div>
                         @endif
 
                         <a href="{{ route('user.docusigndocuments.index', ['workorder_id' => $workorder->W_WorkOrder]) }}"
-                           class="btn btn-xs btn-secondary">Docusign Documents</a>
+                            class="btn btn-xs btn-secondary">Docusign Documents</a>
                         <div class="p-1"></div>
 
                     @endif
 
                     @if ($inhouseprefill)
                         <a href="{{ route('user.signforms.index', ['W_WorkOrder' => $workorder->W_WorkOrder]) }}"
-                           class="btn btn-xs btn-primary">In-house Prefill</a>
+                            class="btn btn-xs btn-primary">In-house Prefill</a>
                         <div class="p-1"></div>
                     @endif
 
@@ -753,32 +738,25 @@
 
                 @if ($hospital && !empty(trim($hospital->H_Note ?? '')))
                     <div class="p-1"></div>
-                    <button class="btn btn-xs btn-secondary"
-                            id="hospitalnotedisplay">Display Caller
+                    <button class="btn btn-xs btn-secondary" id="hospitalnotedisplay">Display Caller
                         Instructions</button>
                 @endif
 
                 <div class="p-1"></div>
-                <button class="btn btn-xs btn-secondary"
-                        @click="getHospitalraw(@js($workorder->W_WorkOrder))">Display
+                <button class="btn btn-xs btn-secondary" @click="getHospitalraw(@js($workorder->W_WorkOrder))">Display
                     Facility Raw</button>
 
                 @if ($hospital)
                     <div class="p-1"></div>
-                    <a href="/user/hospitals/{{ $hospital->H_ID }}"
-                       onclick="popup(this.href); return false;"
-                       class="btn btn-xs btn-secondary">Facility View</a>
+                    <a href="/user/hospitals/{{ $hospital->H_ID }}" onclick="popup(this.href); return false;"
+                        class="btn btn-xs btn-secondary">Facility View</a>
 
-                    <a href="#"
-                       id=""
-                       data-bs-toggle="modal"
-                       data-bs-target="#modal"
-                       onclick="showModal('/user/hospitals/{{ $hospital->H_ID }}')"
-                       class="btn btn-xs btn-secondary">Facility View Modal</a>
+                    <a href="#" id="" data-bs-toggle="modal" data-bs-target="#modal"
+                        onclick="showModal('/user/hospitals/{{ $hospital->H_ID }}')"
+                        class="btn btn-xs btn-secondary">Facility View Modal</a>
                     <div class="p-1"></div>
                     <a href="/user/workorders/related/{{ $workorder->W_WorkOrder }}"
-                       onclick="popup(this.href); return false;"
-                       class="btn btn-xs btn-secondary">Workorder Facility
+                        onclick="popup(this.href); return false;" class="btn btn-xs btn-secondary">Workorder Facility
                         Related</a>
                 @endif
 
@@ -786,7 +764,7 @@
                     <div class="p-1"></div>
                     @if (!$workorder->W_Hospital || $usersession['contractor']['C_SysAdmin'])
                         <a href="{{ route('user.workorders.hospitalchange', $workorder->W_WorkOrder) }}"
-                           class="btn btn-xs btn-secondary">Facility Upload</a>
+                            class="btn btn-xs btn-secondary">Facility Upload</a>
                     @else
                         Facility already uploaded
                     @endif
@@ -795,8 +773,7 @@
                 <div class="p-1"></div>
 
                 <a href="/user/faxes?workorder={{ $workorder->W_WorkOrder }}"
-                   onclick="popup(this.href); return false;"
-                   class="btn btn-xs btn-secondary">Fax Logs</a>
+                    onclick="popup(this.href); return false;" class="btn btn-xs btn-secondary">Fax Logs</a>
 
             </div>
             <div class="col-md-9 border p-1">
@@ -818,20 +795,16 @@
 
         @if ($hospital)
             @if (trim($hospital->H_Note ?? ''))
-                <div class="row border mt-2 p-2"
-                     id="hospitalnote">
+                <div class="row border mt-2 p-2" id="hospitalnote">
                     <h5>Facility Note</h5>
                     {!! nl2br(e($hospital->H_Note ?? '')) !!}
                 </div>
             @endif
         @endif
 
-        <div class="row mt-2 border"
-             v-if="infowindow">
+        <div class="row mt-2 border" v-if="infowindow">
             <div class="col-12 p-2">
-                <button type="button"
-                        class="btn btn-xs mb-2 btn-danger"
-                        @click="infowindowhide()">hide</button>
+                <button type="button" class="btn btn-xs mb-2 btn-danger" @click="infowindowhide()">hide</button>
                 <h5 v-html="infowindowlabel"></h5>
                 <div v-html="infowindow"></div>
             </div>
@@ -929,29 +902,20 @@
 
         <br />
 
-        <div class="modal modal-xl fade"
-             id="modal"
-             tabindex="-1"
-             aria-labelledby="modallabel"
-             aria-hidden="true"
-             hx-push-url="false">
+        <div class="modal modal-xl fade" id="modal" tabindex="-1" aria-labelledby="modallabel"
+            aria-hidden="true" hx-push-url="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5"
-                            id="modallabel"></h1>
-                        <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                        <h1 class="modal-title fs-5" id="modallabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="modal-body overflow-auto"
-                         id="modaltext">
+                    <div class="modal-body overflow-auto" id="modaltext">
                     </div>
                     <div class="modal-footer">
-                        <button type="button"
-                                class="btn btn-sm btn-secondary"
-                                data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-sm btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -959,19 +923,16 @@
 
         <div class="row">
             <div class="col-6 mt-auto">
-                <a href="#"
-                   id=""
-                   data-bs-toggle="modal"
-                   data-bs-target="#modal"
-                   onclick="showModal('/user/workorderholdtimes/detail?workorder_id={{ $workorder->W_WorkOrder }}')"
-                   class="btn btn-sm btn-warning position-relative">
+                <a href="#" id="" data-bs-toggle="modal" data-bs-target="#modal"
+                    onclick="showModal('/user/workorderholdtimes/detail?workorder_id={{ $workorder->W_WorkOrder }}')"
+                    class="btn btn-sm btn-warning position-relative">
                     <i class="fa-regular fa-clock"></i> Hold Times
                     @if ($workorderholdtimescount)
                         <span
-                              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $workorderholdtimescount }}</span>
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $workorderholdtimescount }}</span>
                     @else
                         <span
-                              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{{ $workorderholdtimescount }}
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{{ $workorderholdtimescount }}
                             <i class="fa-solid fa-thumbs-up"></i></span>
                     @endif
                 </a>
@@ -979,17 +940,15 @@
                 @if ($subdomain == 'eisdev1')
                     &nbsp;
                     <button class='btn btn-sm btn-secondary'
-                            hx-get="/user/workorderholdtimes/detail?workorder_id={{ $workorder->W_WorkOrder }}"
-                            hx-select="#content"
-                            hx-on:click="htmx.toggleClass('#holdtimes', 'd-none')"
-                            hx-target="#holdtimes">
+                        hx-get="/user/workorderholdtimes/detail?workorder_id={{ $workorder->W_WorkOrder }}"
+                        hx-select="#content" hx-on:click="htmx.toggleClass('#holdtimes', 'd-none')"
+                        hx-target="#holdtimes">
                         Hold Times - HTMX
                     </button>
 
                     <div class="p-2"></div>
 
-                    <div id="holdtimes"
-                         class="d-none"></div>
+                    <div id="holdtimes" class="d-none"></div>
                 @endif
 
                 <div class="p-2"></div>
@@ -999,12 +958,9 @@
                 @if ($incomingapslog)
                     <strong>Incoming APS Log</strong>
                     &nbsp;
-                    <a href="#"
-                       id=""
-                       data-bs-toggle="modal"
-                       data-bs-target="#modal"
-                       onclick="showModal('/user/incoming_aps_logs?workorder={{ $workorder->W_WorkOrder }}')"
-                       class="btn btn-xs btn-secondary">view all logs</a>
+                    <a href="#" id="" data-bs-toggle="modal" data-bs-target="#modal"
+                        onclick="showModal('/user/incoming_aps_logs?workorder={{ $workorder->W_WorkOrder }}')"
+                        class="btn btn-xs btn-secondary">view all logs</a>
                     <br />
                     Source: <strong>{{ $incomingapslog->source }}</strong><br />
                     New file: <strong>{{ $incomingapslog->new_file }}</strong><br />
@@ -1022,19 +978,15 @@
 
                 <strong class="h6 fw-bold">Status Note</strong>
                 &nbsp;
-                <span data-bs-toggle="modal"
-                      data-bs-target="#modal"
-                      data-label="Status Note"
-                      id="statusnoteview"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <span data-bs-toggle="modal" data-bs-target="#modal" data-label="Status Note" id="statusnoteview"><i
+                        class="fa-solid fa-magnifying-glass"></i></span>
                 &nbsp;
-                <i class="fa-solid fa-maximize"
-                   onclick="expand();"></i>
+                <i class="fa-solid fa-maximize" onclick="expand();"></i>
 
                 <div class="p-1"></div>
 
                 <div class="overflow-auto bg-body p-2 border expandables"
-                     style="height: 300px;  word-break: break-all;"
-                     id="statusnotetext">
+                    style="height: 300px;  word-break: break-all;" id="statusnotetext">
                     <strong>New Status Notes:</strong>
                     <br />
                     @foreach ($statustriggers as $statustrigger)
@@ -1049,81 +1001,85 @@
                 <br />
 
                 <form method="post"
-                      action="{{ route('user.workorders.updatestatusnote', $workorder->W_WorkOrder) }}"
-                      id="statusnoteform">
+                    action="{{ route('user.workorders.updatestatusnote', $workorder->W_WorkOrder) }}"
+                    id="statusnoteform">
                     @method('PATCH')
                     @csrf
 
                     Follow up Date <span id="w-note-date2"></span>
-                    <input type="date"
-                           name="w_note_date"
-                           id="w-note-date"
-                           class="form-control form-control-sm required"
-                           value="{{ date('Y-m-d') }}"
-                           min="{{ now()->subMonths(3)->toDateString() }}"
-                           max="{{ now()->addMonths(3)->toDateString() }}"
-                           autocomplete="off"
-                           required />
+                    <input type="date" name="w_note_date" id="w-note-date"
+                        class="form-control form-control-sm required" value="{{ date('Y-m-d') }}"
+                        min="{{ now()->subMonths(3)->toDateString() }}"
+                        max="{{ now()->addMonths(3)->toDateString() }}" autocomplete="off" required />
                     <br />
 
-                    <x-form.select name="statusnoteid"
-                                   id="statusnoteid"
-                                   label="Status"
-                                   :options="$statusnotes"
-                                   empty="-"
-                                   :default="old('statusnoteid')"
-                                   required />
+                    <x-form.select name="statusnoteid" id="statusnoteid" label="Status" :options="$statusnotes"
+                        empty="-" :default="old('statusnoteid')" required />
                     <br />
 
-                    <x-form.textarea name="note"
-                                     id="note"
-                                     label="Note"
-                                     :value="old('note')"
-                                     :rows="5"
-                                     minlength="5"
-                                     maxlength="900"
-                                     required />
-                    <div class="small counter"
-                         id="counter1"></div>
+                    <x-form.textarea name="note" id="note" label="Note" :value="old('note')" :rows="5"
+                        minlength="5" maxlength="900" required />
+                    <div class="small counter" id="counter1"></div>
                     <br />
 
-                    <button class="btn btn-sm btn-secondary submitbutton"
-                            type="submit">Submit <i class="spin"></i></button>
+                    <button class="btn btn-sm btn-secondary submitbutton" type="submit">Submit <i
+                            class="spin"></i></button>
 
                 </form>
 
                 @if ($subdomain == 'eisdev')
                     <br />
 
+
                     <div id="llm1"></div>
 
-                    <button hx-indicator="#spinner"
-                            hx-post="/user/spell/chat"
-                            hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                            hx-vals='js:{ text: document.getElementById("note").value, prompt: "basic" }'
-                            hx-target="#llm1"
-                            hx-swap="innerHTML"
-                            hx-disabled-elt="self"
-                            class="btn btn-xs btn-success">
-                        AI Azure OpenAI - Basic<span id="spinner"
-                              class="htmx-indicator"><i class="fa-solid fa-spinner fa-spin"></i></span>
+
+                    <button hx-indicator="#spinner" hx-post="/user/spell/chat"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
+                        hx-vals='js:{ text: document.getElementById("note").value, prompt: "basic" }'
+                        hx-target="#llm1" hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
+                        AI Azure OpenAI - Basic<span id="spinner" class="htmx-indicator"><i
+                                class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                     &nbsp;
-                    <button hx-indicator="#spinner"
-                            hx-post="/user/spell/chat"
-                            hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                            hx-vals='js:{ text: document.getElementById("note").value, prompt: "eis" }'
-                            hx-target="#llm1"
-                            hx-swap="innerHTML"
-                            hx-disabled-elt="self"
-                            class="btn btn-xs btn-success">
-                        AI Azure OpenAI - EIS<span id="spinner"
-                              class="htmx-indicator"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                    <button hx-indicator="#spinner" hx-post="/user/spell/chat"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
+                        hx-vals='js:{ text: document.getElementById("note").value, prompt: "eis" }' hx-target="#llm1"
+                        hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
+                        AI Azure OpenAI - EIS<span id="spinner" class="htmx-indicator"><i
+                                class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                     &nbsp;
-                    <span id="llm1-timer"
-                          class="ms-2 text-muted"></span>
+                    <span id="llm1-timer" class="ms-2 text-muted"></span>
                 @endif
+
+                <br />
+
+                @if ($subdomain == 'eisdev')
+                    <br />
+
+
+                    <button hx-indicator="#spinner3"
+                        hx-post="{{ route('user.llm.followupstatusreview.review', $workorder->W_WorkOrder) }}"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}' hx-target="#llm_followupstatusreview"
+                        hx-target="#llm_followupstatusreview" hx-swap="innerHTML" hx-disabled-elt="self"
+                        class="btn btn-xs btn-success">
+                        AI Status Review <span id="spinner3" class="htmx-indicator"><i
+                                class="fa-solid fa-spinner fa-spin"></i></span>
+                    </button>
+
+                    &nbsp;
+
+                    <span id="llm_followupstatusreview-timer" class="ms-2 text-muted"></span>
+                @endif
+                &nbsp;
+
+                <br />
+                <br />
+                <div id="llm_followupstatusreview"></div>
+                <br />
+
+
 
             </div>
 
@@ -1131,87 +1087,46 @@
 
                 <strong class="h6 fw-bold">Follow-Up Status</strong>
                 &nbsp;
-                <span data-bs-toggle="modal"
-                      data-bs-target="#modal"
-                      data-label="Follow-Up Status"
-                      id="followupstatusview"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <span data-bs-toggle="modal" data-bs-target="#modal" data-label="Follow-Up Status"
+                    id="followupstatusview"><i class="fa-solid fa-magnifying-glass"></i></span>
                 &nbsp;
-                <i class="fa-solid fa-maximize"
-                   onclick="expand();"></i>
+                <i class="fa-solid fa-maximize" onclick="expand();"></i>
 
                 <div class="p-1"></div>
 
                 <div class="overflow-auto bg-body p-2 border expandables"
-                     style="height: 300px; word-break: break-all;"
-                     id="followupstatustext">
+                    style="height: 300px; word-break: break-all;" id="followupstatustext">
                     {!! nl2br(e($workorder->W_FollowUpStatus ?? '')) !!}
                 </div>
 
                 <br />
 
                 <form method="post"
-                      action="{{ route('user.workorders.updatefollowupstatus', $workorder->W_WorkOrder) }}"
-                      id="followupstatusnoteform">
+                    action="{{ route('user.workorders.updatefollowupstatus', $workorder->W_WorkOrder) }}"
+                    id="followupstatusnoteform">
                     @method('PATCH')
                     @csrf
 
                     Follow up Date <span id="w-follow-up-status-date2"></span>
-                    <input type="date"
-                           name="w_follow_up_status_date"
-                           id="w-follow-up-status-date"
-                           class="form-control form-control-sm required"
-                           autocomplete="off"
-                           value="{{ date('Y-m-d') }}"
-                           min="{{ now()->subMonths(3)->toDateString() }}"
-                           max="{{ now()->addMonths(3)->toDateString() }}"
-                           required />
+                    <input type="date" name="w_follow_up_status_date" id="w-follow-up-status-date"
+                        class="form-control form-control-sm required" autocomplete="off"
+                        value="{{ date('Y-m-d') }}" min="{{ now()->subMonths(3)->toDateString() }}"
+                        max="{{ now()->addMonths(3)->toDateString() }}" required />
                     <br />
 
-                    <x-form.select name="followupstatuslists"
-                                   id="followupstatuslists"
-                                   label="Status"
-                                   :options="$followupstatuslists"
-                                   empty="-"
-                                   required />
+                    <x-form.select name="followupstatuslists" id="followupstatuslists" label="Status"
+                        :options="$followupstatuslists" empty="-" required />
                     <br />
 
-                    <x-form.textarea name="W_FollowUpStatus"
-                                     id="W_FollowUpStatus"
-                                     label="Note"
-                                     :value="old('W_FollowUpStatus')"
-                                     :rows="5"
-                                     minlength="5"
-                                     maxlength="500"
-                                     required />
-                    <div class="small counter"
-                         id="counter2"></div>
+                    <x-form.textarea name="W_FollowUpStatus" id="W_FollowUpStatus" label="Note" :value="old('W_FollowUpStatus')"
+                        :rows="5" minlength="5" maxlength="500" required />
+                    <div class="small counter" id="counter2"></div>
                     <br />
 
-                    <button class="btn btn-sm btn-secondary submitbutton"
-                            type="submit">Submit <i class="spin"></i></button>
+                    <button class="btn btn-sm btn-secondary submitbutton" type="submit">Submit <i
+                            class="spin"></i></button>
 
                 </form>
-
-                @if ($subdomain == 'eisdev')
-                    <br />
-
-                    <button hx-indicator="#spinner"
-                            hx-post="/llm/follow-up-status-review/{{ $workorder->W_WorkOrder }}"
-                            hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                            hx-include="#note"
-                            hx-target="#llm_review"
-                            hx-swap="innerHTML"
-                            hx-disabled-elt="self"
-                            class="btn btn-xs btn-primary">
-                        AI Status Note Review <span id="spinner"
-                              class="htmx-indicator"><i class="fa-solid fa-spinner fa-spin"></i></span>
-                    </button>
-                    &nbsp;
-                    <span id="llm1-timer"
-                          class="ms-2 text-muted"></span>
-                @endif
-
-                <div id="llm1"></div>
 
             </div>
         </div>
@@ -1231,32 +1146,23 @@
 
                     <div id="llm2"></div>
 
-                    <button hx-indicator="#spinner"
-                            hx-post="/user/spell/chat"
-                            hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                            hx-vals='js:{ text: document.getElementById("W_Note3").value, prompt: "basic" }'
-                            hx-target="#llm2"
-                            hx-swap="innerHTML"
-                            hx-disabled-elt="self"
-                            class="btn btn-xs btn-success">
-                        AI Azure OpenAI - Basic<span id="spinner"
-                              class="htmx-indicator"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                    <button hx-indicator="#spinner" hx-post="/user/spell/chat"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
+                        hx-vals='js:{ text: document.getElementById("W_Note3").value, prompt: "basic" }'
+                        hx-target="#llm2" hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
+                        AI Azure OpenAI - Basic<span id="spinner" class="htmx-indicator"><i
+                                class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                     &nbsp;
-                    <button hx-indicator="#spinner"
-                            hx-post="/user/spell/chat"
-                            hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                            hx-vals='js:{ text: document.getElementById("W_Note3").value, prompt: "eis" }'
-                            hx-target="#llm2"
-                            hx-swap="innerHTML"
-                            hx-disabled-elt="self"
-                            class="btn btn-xs btn-success">
-                        AI Azure OpenAI - EIS<span id="spinner"
-                              class="htmx-indicator"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                    <button hx-indicator="#spinner" hx-post="/user/spell/chat"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
+                        hx-vals='js:{ text: document.getElementById("W_Note3").value, prompt: "eis" }'
+                        hx-target="#llm2" hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
+                        AI Azure OpenAI - EIS<span id="spinner" class="htmx-indicator"><i
+                                class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                     &nbsp;
-                    <span id="llm2-timer"
-                          class="ms-2 text-muted"></span>
+                    <span id="llm2-timer" class="ms-2 text-muted"></span>
                 @endif
 
             </div>
@@ -1299,7 +1205,7 @@
                                             <td>
                                                 {!! Helper::ticketStatusIcon($ticket->status) !!}
                                                 <a href="{{ route('user.tickets.show', $ticket->id) }}"
-                                                   class="btn btn-xs btn-secondary">View</a>
+                                                    class="btn btn-xs btn-secondary">View</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -1313,42 +1219,29 @@
                     <h5>Requestlog</h5>
 
                     <a href="/user/requestlogs/?workorder_id={{ $workorder->W_WorkOrder }}"
-                       onclick="popup(this.href); return false;"
-                       class="btn btn-xs btn-secondary">Requestlogs
+                        onclick="popup(this.href); return false;" class="btn btn-xs btn-secondary">Requestlogs
                         Popup</a>
 
                     <div class="p-2"></div>
 
-                    <form method="post"
-                          action="{{ route('user.requestlogs.store') }}"
-                          id="requestlogform">
+                    <form method="post" action="{{ route('user.requestlogs.store') }}" id="requestlogform">
                         @csrf
                         @method('POST')
 
-                        <input type="hidden"
-                               name="workorder_id"
-                               value="{{ $workorder->W_WorkOrder }}">
+                        <input type="hidden" name="workorder_id" value="{{ $workorder->W_WorkOrder }}">
 
-                        <x-form.select name="request_type"
-                                       label="Request Type"
-                                       id="request_type"
-                                       :options="Helper::requesttypes()"
-                                       empty="-"
-                                       required />
+                        <x-form.select name="request_type" label="Request Type" id="request_type" :options="Helper::requesttypes()"
+                            empty="-" required />
                         <br />
 
-                        <x-form.textarea name="notes"
-                                         label="Notes"
-                                         :value="old('notes')"
-                                         :rows="8"
-                                         minlength="5"
-                                         required />
+                        <x-form.textarea name="notes" label="Notes" :value="old('notes')" :rows="8"
+                            minlength="5" required />
                         <br />
 
                         <br />
 
-                        <button class="btn btn-sm btn-secondary"
-                                type="submit">Submit <i class="spin"></i></button>
+                        <button class="btn btn-sm btn-secondary" type="submit">Submit <i
+                                class="spin"></i></button>
                     </form>
                 @endif
             </div>
@@ -1390,11 +1283,11 @@
 
                 @if ($hospital && $workorder->W_Status == 'Incomplete')
                     <a href="{{ route('user.workorders.payment', [$workorder->W_WorkOrder, 'dr' => 1]) }}"
-                       class="btn btn-xs btn-secondary">Edit</a>
+                        class="btn btn-xs btn-secondary">Edit</a>
                 @endif
                 @if ($hospital && $workorder->W_Status != 'Incomplete' && $usersession['contractor']['C_Invoice'])
                     <a href="{{ route('user.workorders.paymentnote', [$workorder->W_WorkOrder, 'dr' => 1]) }}"
-                       class="btn btn-xs btn-secondary">Edit Note</a>
+                        class="btn btn-xs btn-secondary">Edit Note</a>
                 @endif
 
             </div>
@@ -1426,11 +1319,11 @@
 
                 @if ($hospital && $workorder->W_Status == 'Incomplete')
                     <a href="{{ route('user.workorders.payment', [$workorder->W_WorkOrder, 'dr' => 2]) }}"
-                       class="btn btn-xs btn-secondary">Edit</a>
+                        class="btn btn-xs btn-secondary">Edit</a>
                 @endif
                 @if ($hospital && $workorder->W_Status != 'Incomplete' && $usersession['contractor']['C_Invoice'])
                     <a href="{{ route('user.workorders.paymentnote', [$workorder->W_WorkOrder, 'dr' => 2]) }}"
-                       class="btn btn-xs btn-secondary">Edit Note</a>
+                        class="btn btn-xs btn-secondary">Edit Note</a>
                 @endif
 
             </div>
@@ -1441,39 +1334,32 @@
         @if ($subdomain == 'eisdev')
 
             @if ($hospital)
-                <a href="/user/checks?type=envelope&workorder_id={{ $workorder->W_WorkOrder }}"
-                   target="_blank"
-                   class="btn btn-sm btn-secondary">Envelope Facility PDF</a>
+                <a href="/user/checks?type=envelope&workorder_id={{ $workorder->W_WorkOrder }}" target="_blank"
+                    class="btn btn-sm btn-secondary">Envelope Facility PDF</a>
                 &nbsp;
-                <a href="/user/checks?type=copyservice&workorder_id={{ $workorder->W_WorkOrder }}"
-                   target="_blank"
-                   class="btn btn-sm btn-secondary">Envelope Copy Service PDF</a>
+                <a href="/user/checks?type=copyservice&workorder_id={{ $workorder->W_WorkOrder }}" target="_blank"
+                    class="btn btn-sm btn-secondary">Envelope Copy Service PDF</a>
                 &nbsp;
                 @if ($hospital && $workorder->W_DrFee1 > 0)
                     <a href="/user/checks?type=check&workorder_id={{ $workorder->W_WorkOrder }}&amount={{ $workorder->W_DrFee1 }}"
-                       target="_blank"
-                       class="btn btn-sm btn-secondary">Check PDF - Dr Fee 1</a>
+                        target="_blank" class="btn btn-sm btn-secondary">Check PDF - Dr Fee 1</a>
                     &nbsp;
                 @endif
                 @if ($hospital && $workorder->W_DrFee2 > 0)
                     <a href="/user/checks?type=check&workorder_id={{ $workorder->W_WorkOrder }}&amount={{ $workorder->W_DrFee2 }}"
-                       target="_blank"
-                       class="btn btn-sm btn-secondary">Check PDF - Dr Fee 2</a>
+                        target="_blank" class="btn btn-sm btn-secondary">Check PDF - Dr Fee 2</a>
                     &nbsp;
                 @endif
             @endif
 
             <a href="/user/shipments?workorder_id={{ $workorder->W_WorkOrder }}"
-               onclick="popup(this.href); return false;"
-               class="btn btn-sm btn-secondary">Shipments NEW</a>
+                onclick="popup(this.href); return false;" class="btn btn-sm btn-secondary">Shipments NEW</a>
             &nbsp;
             <a href="/user/workorderpayments?workorder_id={{ $workorder->W_WorkOrder }}"
-               onclick="popup(this.href); return false;"
-               class="btn btn-sm btn-secondary">Workorder Payments NEW</a>
+                onclick="popup(this.href); return false;" class="btn btn-sm btn-secondary">Workorder Payments NEW</a>
             &nbsp;
             <a href="/user/bankstatements/?B_Workorder={{ $workorder->W_WorkOrder }}"
-               onclick="popup(this.href); return false;"
-               class="btn btn-sm btn-secondary">Check Issued Log</a>
+                onclick="popup(this.href); return false;" class="btn btn-sm btn-secondary">Check Issued Log</a>
 
         @endif
 
@@ -1484,47 +1370,39 @@
                 <strong>Shipping Labels</strong>
                 <br />
                 <a href="/user/shippinglabels/create?W_WorkOrder={{ $workorder->W_WorkOrder }}"
-                   class="btn btn-sm btn-secondary">Shipping Labels</a>
+                    class="btn btn-sm btn-secondary">Shipping Labels</a>
                 <br />
             </div>
             <div class="col-6 col-md-2">
                 <strong>Change History</strong>
                 <br />
                 <a href="/user/datachanges?search=1&w=1&foreign_key={{ $workorder->W_WorkOrder }}"
-                   onclick="popup(this.href); return false;"
-                   class="btn btn-sm btn-secondary">Change History</a>
+                    onclick="popup(this.href); return false;" class="btn btn-sm btn-secondary">Change History</a>
                 <br />
             </div>
             <div class="col-6 col-md-2">
                 <strong>Email Logs</strong>
                 <br />
                 <a href="/user/emails?w=1&workorder_id={{ $workorder->W_WorkOrder }}"
-                   onclick="popup(this.href); return false;"
-                   class="btn btn-sm btn-secondary">Email Logs</a>
+                    onclick="popup(this.href); return false;" class="btn btn-sm btn-secondary">Email Logs</a>
                 <br />
             </div>
             <div class="col-6 col-md-4">
                 <strong>Transfer Assigned To</strong>
                 <br />
-                <form method="post"
-                      action="{{ route('user.workorders.update', $workorder->W_WorkOrder) }}"
-                      id="transferassignedtoform">
+                <form method="post" action="{{ route('user.workorders.update', $workorder->W_WorkOrder) }}"
+                    id="transferassignedtoform">
                     @method('PATCH')
                     @csrf
-                    <input type="hidden"
-                           name="W_WorkOrder"
-                           value="{{ $workorder->W_WorkOrder }}">
+                    <input type="hidden" name="W_WorkOrder" value="{{ $workorder->W_WorkOrder }}">
                     <div class="row">
                         <div class="col">
-                            <x-form.select name="W_Owner"
-                                           :options="$contractorsselects"
-                                           :default="$workorder->W_Owner"
-                                           empty="-"
-                                           required />
+                            <x-form.select name="W_Owner" :options="$contractorsselects" :default="$workorder->W_Owner" empty="-"
+                                required />
                         </div>
                         <div class="col">
-                            <button class="btn btn-sm btn-secondary submitbutton"
-                                    type="submit">Submit <i class="spin"></i></button>
+                            <button class="btn btn-sm btn-secondary submitbutton" type="submit">Submit <i
+                                    class="spin"></i></button>
                         </div>
                     </div>
                 </form>
@@ -1535,7 +1413,7 @@
         <br />
 
         <a href="{{ route('user.workorders.duplicate', $workorder->W_WorkOrder) }}"
-           class="b1tn btn-sm btn-light">Duplicate workorder</a>
+            class="b1tn btn-sm btn-light">Duplicate workorder</a>
 
         <div class="p-2"></div>
 
@@ -1598,31 +1476,25 @@
 
         @if ($recipient)
             <a
-               href="{{ route('user.emails.create', ['email_type' => 'fee_approval', 'workorder_id' => $workorder->W_WorkOrder, 'recipient' => $recipient]) }}">Fee
+                href="{{ route('user.emails.create', ['email_type' => 'fee_approval', 'workorder_id' => $workorder->W_WorkOrder, 'recipient' => $recipient]) }}">Fee
                 Approval Email</a>
             <div class="p-2"></div>
         @endif
 
         @if ($subdomain == 'eisdev')
-            <a href="#"
-               id=""
-               data-bs-toggle="modal"
-               data-bs-target="#modal"
-               onclick="showModal('{{ route('user.synodextransmissions.index', ['WorkOrderID' => $workorder->W_WorkOrder]) }}')">Synodex
+            <a href="#" id="" data-bs-toggle="modal" data-bs-target="#modal"
+                onclick="showModal('{{ route('user.synodextransmissions.index', ['WorkOrderID' => $workorder->W_WorkOrder]) }}')">Synodex
                 Transmissions</a>
             <div class="p-2"></div>
         @endif
 
         <a hx-get="{{ route('user.synodextransmissions.acordreferenceid', ['WorkOrderID' => $workorder->W_WorkOrder]) }}"
-           hx-target="#synodextransmission"
-           href="#">Synodex Transmission Acord Reference ID</a>
-        <div id="synodextransmission"
-             class="fw-bold"></div>
+            hx-target="#synodextransmission" href="#">Synodex Transmission Acord Reference ID</a>
+        <div id="synodextransmission" class="fw-bold"></div>
         <div class="p-2"></div>
 
         <div class="text-end">
-            <a href="#top"
-               class="btn btn-sm btn-secondary"><i class="fa-solid fa-angles-up"></i></a>
+            <a href="#top" class="btn btn-sm btn-secondary"><i class="fa-solid fa-angles-up"></i></a>
         </div>
 
     </div>

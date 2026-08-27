@@ -330,8 +330,7 @@ Route::group([
     Route::post('/timecards/breakend', [TimecardController::class, 'breakend'])->name('timecards.breakend');
     Route::resource('timecards', TimecardController::class);
 
-    Route::get('/synodextransmissions/acordreferenceid', [SynodextransmissionsController::class, 'acordreferenceid'])
-        ->name('synodextransmissions.acordreferenceid');
+    Route::get('/synodextransmissions/acordreferenceid', [SynodextransmissionsController::class, 'acordreferenceid'])->name('synodextransmissions.acordreferenceid');
     Route::resource('synodextransmissions', SynodextransmissionsController::class);
 
     Route::resource('addonorders', AddonorderController::class);
@@ -349,7 +348,7 @@ Route::group([
     // #########################################################################################################################
     Route::post('/llm/follow-up-status-review/{workorder:W_WorkOrder}', [FollowUpStatusReviewController::class, 'review'])
         ->name('llm.followupstatusreview.review');
-    // #########################################################################################################################
+    // #######################################################################################################################
 
     Route::get('/contractorlogins/stats', [ContractorloginController::class, 'stats'])->name('contractorlogins.stats');
     Route::get('/contractorlogins/statsdaily', [ContractorloginController::class, 'statsdaily'])->name('contractorlogins.statsdaily');
