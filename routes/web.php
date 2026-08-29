@@ -140,7 +140,7 @@ Route::get('/admin', function () {
     return redirect('/authadmin/login');
 });
 
-Route::get('/clear', fn () => '')->name('clear');
+Route::get('/clear', fn() => '')->name('clear');
 
 Route::group([
     'name' => 'user.',
