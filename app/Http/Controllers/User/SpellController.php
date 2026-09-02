@@ -21,6 +21,9 @@ class SpellController extends Controller
         //     'original' => $text,
         //     'corrected' => $corrected
         // ]);
+        
+        // @dump($corrected);
+
         return $corrected;
     }
 }

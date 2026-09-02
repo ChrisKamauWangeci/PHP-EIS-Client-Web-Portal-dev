@@ -31,6 +31,8 @@ class FollowUpStatusReviewController extends Controller
             ];
         }
 
+        @dd($result);
+
         return view('user.workorders.partials._followupstatus_review_result', compact('result'));
     }
 

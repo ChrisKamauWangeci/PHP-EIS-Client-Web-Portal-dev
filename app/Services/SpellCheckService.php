@@ -45,7 +45,7 @@ class SpellCheckService
             'max_tokens' => 500,
         ]);
 
-        // dd($response->json());
+        dd($response->json());
 
         return $response->json('choices.0.message.content');
     }

@@ -109,26 +109,21 @@
 
         @if (!empty($result['revised_status_note']))
             <div class="mb-2 border-top pt-3">
-                <div class="d-flex justify-content-between align-items-start">
-                    <div>
-                        <strong class="text-secondary">Suggested Rewrite:</strong>
-                        <p class="mb-0 text-dark fw-medium" id="suggested-rewrite-text">
-                            {{ $result['revised_status_note'] }}
-                        </p>
-                    </div>
+                <label for="suggested-rewrite-text" class="form-label text-secondary fw-bold">Suggested Rewrite:</label>
+                <textarea class="form-control mb-2 text-dark fw-medium bg-white" id="suggested-rewrite-text" rows="10" readonly>{{ $result['revised_status_note'] }}</textarea>
 
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-sm btn-outline-primary text-nowrap" onclick="applyRewrite()">
+                        <i class="bi bi-box-arrow-in-down me-1"></i> Apply
+                    </button>
                 </div>
             </div>
 
-            <button type="button" class="btn btn-sm btn-outline-primary ms-3 text-nowrap" onclick="applyRewrite()">
-                Apply
-            </button>
-
             <script>
-                // Use a safety check to prevent redeclaration errors if this file is loaded multiple times
                 if (typeof applyRewrite !== 'function') {
                     function applyRewrite() {
-                        const text = document.getElementById('suggested-rewrite-text')?.innerText;
+                        const inputEl = document.getElementById('suggested-rewrite-text');
+                        const text = inputEl?.value || inputEl?.innerText;
                         const textarea = document.getElementById('note');
                         if (text && textarea) {
                             textarea.value = text;
