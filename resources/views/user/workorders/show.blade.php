@@ -25,18 +25,23 @@
         }
 
         .markdown-content strong {
-            color: #0f5132;
-            display: inline-block;
-            margin-top: 0.25rem;
-        }
-
-        .markdown-content ul {
-            padding-left: 1.2rem;
-            margin-bottom: 0.5rem;
+            color: #00060f;
+            font-weight: 700;
         }
 
         .markdown-content p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.25rem;
         }
     </style>
 
@@ -100,30 +105,171 @@
                 initCounters();
             });
 
+            /////////////////////
             document.body.addEventListener('htmx:afterSwap', function(evt) {
                 if (evt.detail.target.id === 'llm-eis-response') {
-                    const target = evt.detail.target;
-                    const rawText = target.innerText;
+                    try {
+                        const data = JSON.parse(evt.detail.xhr.responseText);
 
-                    if (rawText.trim()) {
-                        // Convert markdown text to clean HTML
-                        const parsedHtml = typeof marked !== 'undefined' ? marked.parse(rawText) : rawText;
+                        evt.detail.target.innerHTML = `
+                <div class="card border my-2">
 
-                        // Wrap inside a styled Bootstrap panel
-                        target.innerHTML = `
-                            <div class="card border-info shadow-sm mb-3">
-                                <div class="card-header bg-info-subtle fw-bold d-flex justify-content-between align-items-center">
-                                    <span><i class="fa-solid fa-robot me-1"></i> EIS Analysis Results</span>
-                                    <button type="button" class="btn-close btn-sm" onclick="document.getElementById('llm-eis-response').innerHTML=''"></button>
+                    <!-- Review Results Header -->
+                    <div class="card-header bg-light text-center py-2">
+                        <strong>Review Results</strong>
+                    </div>
+
+                    <!-- Metrics Summary -->
+                    <div class="card-body p-3">
+
+                        <!-- Summary -->
+                        <div class="border p-2 mb-3 bg-light rounded">
+                            <strong class="d-block mb-2">Review Summary</strong>
+
+                            <div class="small">
+                                <div class="d-flex py-1">
+                                    <div class="fw-semibold" style="width: 40%;">
+                                        Quality Score
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <strong>${data.quality_score || 'N/A'}</strong>
+                                    </div>
                                 </div>
-                                <div class="card-body p-3 text-dark small leading-relaxed markdown-content">
-                                    ${parsedHtml}
+
+                                <div class="d-flex py-1">
+                                    <div class="fw-semibold" style="width: 40%;">
+                                        Duplicate Risk
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <strong>${data.duplicate_risk || 'N/A'}</strong>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex py-1">
+                                    <div class="fw-semibold" style="width: 40%;">
+                                        Recommendation
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <strong>${data.save_recommendation || 'N/A'}</strong>
+                                    </div>
                                 </div>
                             </div>
-                        `;
+                        </div>
+
+                        <!-- Action Items / Alerts -->
+                        ${
+                            data.alerts_triggered && data.alerts_triggered.length
+                                ? `
+                                                        <div class="border p-2 mb-3 bg-light rounded">
+                                                            <strong class="d-block mb-1">
+                                                                Required Actions Before Save:
+                                                            </strong>
+
+                                                            <ul class="mb-0 ps-3 small">
+                                                                ${data.alerts_triggered
+                                                                    .map((alert) => `<li class="mb-1">${alert}</li>`)
+                                                                    .join('')}
+                                                            </ul>
+                                                        </div>
+                                                    `
+                                : ''
+                        }
+
+                        <!-- Evaluation -->
+                        <div class="border p-2 mb-3 bg-light rounded">
+                            <strong class="d-block mb-1">
+                                Evaluation:
+                            </strong>
+
+                            <div class="small text-dark">
+                                ${data.reason || 'None provided.'}
+                            </div>
+                        </div>
+
+                        <!-- Missing Information -->
+                        ${
+                            data.missing_information && data.missing_information.length
+                                ? `
+                                                        <div class="border p-2 mb-3 bg-light rounded">
+                                                            <strong class="d-block mb-1">
+                                                                Missing Details:
+                                                            </strong>
+
+                                                            <div class="small text-dark">
+                                                                ${
+                                                                    Array.isArray(data.missing_information)
+                                                                        ? data.missing_information.join(', ')
+                                                                        : data.missing_information
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    `
+                                : ''
+                        }
+
+                        <!-- Suggested Questions -->
+                        ${
+                            data.suggested_questions && data.suggested_questions.length
+                                ? `
+                                                    <div class="border p-2 mb-3 bg-light rounded">
+                                                        <strong class="d-block mb-1">
+                                                            Recommended Provider Questions:
+                                                        </strong>
+
+                                                        <ul class="mb-0 ps-3 small">
+                                                            ${data.suggested_questions
+                                                                .map((q) => `<li class="mb-1">${q}</li>`)
+                                                                .join('')}
+                                                        </ul>
+                                                    </div>
+                                                `
+                                : ''
+                        }
+
+                        <!-- Suggested Status Note -->
+                        <div class="pt-2 border-top mt-2">
+                            <label
+                                for="ai-revised-target"
+                                class="fw-bold form-label mb-1"
+                            >
+                                Suggested Status Note:
+                            </label>
+
+                            <textarea
+                                id="ai-revised-target"
+                                class="form-control form-control-sm mb-2"
+                                rows="5"
+                            >${data.revised_status_note || ''}</textarea>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small">
+                                    ${(data.revised_status_note || '').length}/900 characters
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-dark"
+                                    onclick="
+                                        document.getElementById('note').value =
+                                        document.getElementById('ai-revised-target').value
+                                    "
+                                >
+                                    Apply to Note Field
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+                    } catch (e) {
+                        console.error('Failed to parse AI JSON response:', e);
                     }
                 }
             });
+
+
+            /////////////////////
 
             @if ($subdomain == 'eisdev')
                 let llm1Start = 0;
@@ -1082,8 +1228,7 @@
                                 class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                     &nbsp;
-                    <!-- Display Container for EIS Analysis -->
-                    <div id="llm-eis-response" class="my-2"></div>
+
 
                     <!-- HTMX Button -->
                     <button hx-indicator="#spinner-eis" hx-post="/user/spell/chat"
@@ -1096,6 +1241,9 @@
                             <i class="fa-solid fa-spinner fa-spin"></i>
                         </span>
                     </button>
+                    &nbsp;
+                    <!-- Display Container for EIS Analysis -->
+                    <div id="llm-eis-response" class="my-2"></div>
                     &nbsp;
                     <span id="llm1-timer" class="ms-2 text-muted"></span>
                 @endif
