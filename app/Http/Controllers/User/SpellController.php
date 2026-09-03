@@ -15,13 +15,14 @@ class SpellController extends Controller
 
         $prompt = request('prompt', 'basic');
 
+
         $corrected = $spell->check($text, $prompt);
 
         // return response()->json([
         //     'original' => $text,
         //     'corrected' => $corrected
         // ]);
-        
+
         // @dump($corrected);
 
         return $corrected;

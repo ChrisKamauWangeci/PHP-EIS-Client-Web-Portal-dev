@@ -89,7 +89,25 @@ class EisuatDatabaseSeeder extends Seeder
             }
         }
 
-        // 5. Seed StatusList Options for both Type S (Status Notes) and Type F (Follow-Up Status)
+        // 5. Seed WorkOrders natively
+        $workOrderRows = [];
+        for ($i = 1; $i <= 50; $i++) {
+            $woData = WorkorderFactory::new()->definition();
+
+            $workOrderId = DB::connection('eisuat')
+                ->table('WorkOrder')
+                ->insertGetId($woData, 'W_WorkOrder');
+
+            $workOrderRows[$workOrderId] = $woData;
+        }
+
+        // 6. Check for Hospital ID 10 or 69
+        $hasSpecialHospital = DB::connection('eisuat')
+            ->table('WorkOrder')
+            ->whereIn('W_HospitalID', [10, 69])
+            ->exists();
+
+        // 7. Seed StatusList Options
         foreach (['StatusList', 'statuslist'] as $table) {
             if (DB::connection('eisuat')->getSchemaBuilder()->hasTable($table)) {
                 // Type S: Status Note Options
@@ -136,139 +154,149 @@ class EisuatDatabaseSeeder extends Seeder
                         ]
                     );
                 }
+
+                // Type G: Hospital G Options
+                $hospitalGOptions = $hasSpecialHospital ? [
+                    '101' => '101 : Status Option G',
+                ] : [];
+
+                foreach ($hospitalGOptions as $code => $label) {
+                    DB::connection('eisuat')->table($table)->updateOrInsert(
+                        ['statuscode' => $code, 'Type' => 'G'],
+                        [
+                            'Status' => $label,
+                            'statusname' => trim(substr($label, strpos($label, ':') + 1)),
+                            'description' => $label,
+                            'created_at' => $now,
+                            'updated_at' => $now,
+                        ]
+                    );
+                }
+
+                // Type N: Hospital N Options
+                $hospitalNOptions = $hasSpecialHospital ? [
+                    '201' => '201 : Status Option N',
+                ] : [];
+
+                foreach ($hospitalNOptions as $code => $label) {
+                    DB::connection('eisuat')->table($table)->updateOrInsert(
+                        ['statuscode' => $code, 'Type' => 'N'],
+                        [
+                            'Status' => $label,
+                            'statusname' => trim(substr($label, strpos($label, ':') + 1)),
+                            'description' => $label,
+                            'created_at' => $now,
+                            'updated_at' => $now,
+                        ]
+                    );
+                }
             }
         }
 
-        if (DB::connection('eisuat')->getSchemaBuilder()->hasTable('InsAgencyException')) {
+        // 8. Resolve dependent table names
+        $schema = DB::connection('eisuat')->getSchemaBuilder();
+
+        $hasWorkorderDetails = $schema->hasTable('workorderdetails');
+        $examTable = collect(['ExamRequest', 'Examrequest'])->first(fn($t) => $schema->hasTable($t));
+        $statusTriggerTable = collect(['StatusTrigger', 'statustriggers'])->first(fn($t) => $schema->hasTable($t));
+        $holdTimesTable = collect(['workorderholdtimes', 'Workorderholdtime'])->first(fn($t) => $schema->hasTable($t));
+        $apsLogTable = collect(['incoming_aps_logs', 'IncomingApsLog'])->first(fn($t) => $schema->hasTable($t));
+        $ticketsTable = collect(['tickets', 'Ticket'])->first(fn($t) => $schema->hasTable($t));
+
+        if ($schema->hasTable('InsAgencyException')) {
             DB::connection('eisuat')->table('InsAgencyException')->updateOrInsert(
                 ['CarrierName' => 'EXPRESS IMAGING SERVICES'],
                 ['AgencyName' => 'DEFAULT AGENCY', 'ExceptionType' => 'Standard', 'created_at' => $now, 'updated_at' => $now]
             );
         }
 
-        // 6. Seed 50 WorkOrders via Factory + Dependent Relations
-        // IDENTITY_INSERT is per-statement/connection in SQL Server, and Laravel's
-        // updateOrInsert() issues a SELECT then an INSERT as independent queries.
-        // Over ODBC that session state can reset between Query Builder calls unless
-        // everything runs inside one explicit transaction, so the ON/loop/OFF are
-        // wrapped together here.
-        DB::connection('eisuat')->transaction(function () use ($now) {
-            // Enable IDENTITY_INSERT for WorkOrder
-            DB::connection('eisuat')->statement('SET IDENTITY_INSERT WorkOrder ON');
-
-            for ($i = 1; $i <= 50; $i++) {
-                $woData = WorkorderFactory::new()->definition();
-
-                DB::connection('eisuat')->table('WorkOrder')->updateOrInsert(
-                    ['W_WorkOrder' => $i],
-                    $woData
+        // 9. Seed dependent rows using generated work order IDs
+        foreach ($workOrderRows as $workOrderId => $woData) {
+            if ($hasWorkorderDetails) {
+                DB::connection('eisuat')->table('workorderdetails')->updateOrInsert(
+                    ['workorder_id' => $workOrderId],
+                    ['requestorrole' => 'Standard Requestor', 'created_at' => $now, 'updated_at' => $now]
                 );
-
-                // Seed details table
-                if (DB::connection('eisuat')->getSchemaBuilder()->hasTable('workorderdetails')) {
-                    DB::connection('eisuat')->table('workorderdetails')->updateOrInsert(
-                        ['workorder_id' => $i],
-                        ['requestorrole' => 'Standard Requestor', 'created_at' => $now, 'updated_at' => $now]
-                    );
-                }
-
-                // Seed Examrequest
-                foreach (['ExamRequest', 'Examrequest'] as $table) {
-                    if (DB::connection('eisuat')->getSchemaBuilder()->hasTable($table)) {
-                        DB::connection('eisuat')->table($table)->updateOrInsert(
-                            ['E_WorkOrder' => $i],
-                            [
-                                'E_Address' => rand(100, 999) . ' Main Street',
-                                'E_City' => 'Los Angeles',
-                                'E_State' => 'CA',
-                                'E_Zip' => '90001',
-                                'E_HomePhone' => '555-0199',
-                                'E_CellPhone' => '555-0188',
-                                'E_ApplicantEmail' => 'applicant' . $i . '@example.com',
-                                'created_at' => $now,
-                                'updated_at' => $now,
-                            ]
-                        );
-                    }
-                }
-
-                // Seed StatusTrigger for "New Status Notes" feed
-                foreach (['StatusTrigger', 'statustriggers'] as $table) {
-                    if (DB::connection('eisuat')->getSchemaBuilder()->hasTable($table)) {
-                        DB::connection('eisuat')->table($table)->updateOrInsert(
-                            ['WorkOrderNo' => $i, 'statuscode' => '605'],
-                            [
-                                'laststatus' => '605: ACTION REQUIRED: Additional Facility Information Needed - Standard Order Processing (' . $now->format('g:i:s A') . ')',
-                                'ChangeType' => 'S',
-                                'CreatedBy' => 'ANDRAS KENDE',
-                                'Created' => $now,
-                                'created_at' => $now,
-                                'updated_at' => $now,
-                            ]
-                        );
-                    }
-                }
-
-                // Seed workorderholdtimes
-                foreach (['workorderholdtimes', 'Workorderholdtime'] as $table) {
-                    if (DB::connection('eisuat')->getSchemaBuilder()->hasTable($table)) {
-                        DB::connection('eisuat')->table($table)->updateOrInsert(
-                            ['workorder_id' => $i],
-                            [
-                                'hold_id' => 1,
-                                'status_code' => '605',
-                                'reason' => 'Additional Facility Information Needed',
-                                'date_start' => $now->subDays(2),
-                                'date_end' => null,
-                                'created_by' => 'ANDRAS KENDE',
-                                'modified_by' => 'ANDRAS KENDE',
-                                'created_at' => $now,
-                                'updated_at' => $now,
-                            ]
-                        );
-                    }
-                }
-
-                // Seed incoming_aps_logs
-                foreach (['incoming_aps_logs', 'IncomingApsLog'] as $table) {
-                    if (DB::connection('eisuat')->getSchemaBuilder()->hasTable($table)) {
-                        DB::connection('eisuat')->table($table)->updateOrInsert(
-                            ['workorder' => $i],
-                            [
-                                'status' => 'Received',
-                                'message' => 'APS Record payload successfully ingested.',
-                                'payload' => json_encode(['workorder' => $i, 'status' => 'OK']),
-                                'created_at' => $now,
-                                'updated_at' => $now,
-                            ]
-                        );
-                    }
-                }
-
-                // Seed Tickets
-                foreach (['tickets', 'Ticket'] as $table) {
-                    if (DB::connection('eisuat')->getSchemaBuilder()->hasTable($table)) {
-                        DB::connection('eisuat')->table($table)->updateOrInsert(
-                            ['workorder_id' => $i],
-                            [
-                                'subject' => "Follow-up inquiry for Work Order #{$i}",
-                                'status' => 'open',
-                                'priority' => 'medium',
-                                'assigned_to' => 'ANDRAS KENDE',
-                                'created_by' => 'ANDRAS KENDE',
-                                'created_at' => $now,
-                                'updated_at' => $now,
-                            ]
-                        );
-                    }
-                }
             }
 
-            // Disable IDENTITY_INSERT
-            DB::connection('eisuat')->statement('SET IDENTITY_INSERT WorkOrder OFF');
-        });
+            if ($examTable) {
+                DB::connection('eisuat')->table($examTable)->updateOrInsert(
+                    ['E_WorkOrder' => $workOrderId],
+                    [
+                        'E_Address' => rand(100, 999) . ' Main Street',
+                        'E_City' => 'Los Angeles',
+                        'E_State' => 'CA',
+                        'E_Zip' => '90001',
+                        'E_HomePhone' => '555-0199',
+                        'E_CellPhone' => '555-0188',
+                        'E_ApplicantEmail' => 'applicant' . $workOrderId . '@example.com',
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ]
+                );
+            }
 
-        // 7. Whitelist Local IP
+            if ($statusTriggerTable) {
+                DB::connection('eisuat')->table($statusTriggerTable)->updateOrInsert(
+                    ['WorkOrderNo' => $workOrderId, 'statuscode' => '605'],
+                    [
+                        'laststatus' => '605: ACTION REQUIRED: Additional Facility Information Needed - Standard Order Processing (' . $now->format('g:i:s A') . ')',
+                        'ChangeType' => 'S',
+                        'CreatedBy' => 'ANDRAS KENDE',
+                        'Created' => $now,
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ]
+                );
+            }
+
+            if ($holdTimesTable) {
+                DB::connection('eisuat')->table($holdTimesTable)->updateOrInsert(
+                    ['workorder_id' => $workOrderId],
+                    [
+                        'hold_id' => 1,
+                        'status_code' => '605',
+                        'reason' => 'Additional Facility Information Needed',
+                        'date_start' => $now->copy()->subDays(2),
+                        'date_end' => null,
+                        'created_by' => 'ANDRAS KENDE',
+                        'modified_by' => 'ANDRAS KENDE',
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ]
+                );
+            }
+
+            if ($apsLogTable) {
+                DB::connection('eisuat')->table($apsLogTable)->updateOrInsert(
+                    ['workorder' => $workOrderId],
+                    [
+                        'status' => 'Received',
+                        'message' => 'APS Record payload successfully ingested.',
+                        'payload' => json_encode(['workorder' => $workOrderId, 'status' => 'OK']),
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ]
+                );
+            }
+
+            if ($ticketsTable) {
+                DB::connection('eisuat')->table($ticketsTable)->updateOrInsert(
+                    ['workorder_id' => $workOrderId],
+                    [
+                        'subject' => "Follow-up inquiry for Work Order #{$workOrderId}",
+                        'status' => 'open',
+                        'priority' => 'medium',
+                        'assigned_to' => 'ANDRAS KENDE',
+                        'created_by' => 'ANDRAS KENDE',
+                        'created_at' => $now,
+                        'updated_at' => $now,
+                    ]
+                );
+            }
+        }
+
+        // 10. Whitelist Local IP
         DB::connection('eisuat')->table('contractorloginips')->updateOrInsert(
             ['ip_address' => '127.0.0.1'],
             [

@@ -23,7 +23,24 @@
                 background-color: transparent;
             }
         }
+
+        .markdown-content strong {
+            color: #0f5132;
+            display: inline-block;
+            margin-top: 0.25rem;
+        }
+
+        .markdown-content ul {
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content p {
+            margin-bottom: 0.5rem;
+        }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
@@ -81,6 +98,31 @@
 
             document.body.addEventListener("htmx:afterSwap", function(e) {
                 initCounters();
+            });
+
+            document.body.addEventListener('htmx:afterSwap', function(evt) {
+                if (evt.detail.target.id === 'llm-eis-response') {
+                    const target = evt.detail.target;
+                    const rawText = target.innerText;
+
+                    if (rawText.trim()) {
+                        // Convert markdown text to clean HTML
+                        const parsedHtml = typeof marked !== 'undefined' ? marked.parse(rawText) : rawText;
+
+                        // Wrap inside a styled Bootstrap panel
+                        target.innerHTML = `
+                            <div class="card border-info shadow-sm mb-3">
+                                <div class="card-header bg-info-subtle fw-bold d-flex justify-content-between align-items-center">
+                                    <span><i class="fa-solid fa-robot me-1"></i> EIS Analysis Results</span>
+                                    <button type="button" class="btn-close btn-sm" onclick="document.getElementById('llm-eis-response').innerHTML=''"></button>
+                                </div>
+                                <div class="card-body p-3 text-dark small leading-relaxed markdown-content">
+                                    ${parsedHtml}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
             });
 
             @if ($subdomain == 'eisdev')
@@ -1013,8 +1055,6 @@
                         max="{{ now()->addMonths(3)->toDateString() }}" autocomplete="off" required />
                     <br />
 
-                    {{-- @dump($statusnotes) --}}
-
                     <x-form.select name="statusnoteid" id="statusnoteid" label="Status" :options="$statusnotes"
                         empty="-" :default="old('statusnoteid')" required />
                     <br />
@@ -1042,42 +1082,23 @@
                                 class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                     &nbsp;
-                    <button hx-indicator="#spinner" hx-post="/user/spell/chat"
+                    <!-- Display Container for EIS Analysis -->
+                    <div id="llm-eis-response" class="my-2"></div>
+
+                    <!-- HTMX Button -->
+                    <button hx-indicator="#spinner-eis" hx-post="/user/spell/chat"
                         hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                        hx-vals='js:{ text: document.getElementById("note").value, prompt: "eis" }' hx-target="#llm1"
-                        hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
-                        AI Azure OpenAI - EIS<span id="spinner" class="htmx-indicator"><i
-                                class="fa-solid fa-spinner fa-spin"></i></span>
+                        hx-vals='js:{ text: document.getElementById("note").value, prompt: "eis" }'
+                        hx-target="#llm-eis-response" hx-swap="innerHTML" hx-disabled-elt="self"
+                        class="btn btn-xs btn-success">
+                        AI Azure OpenAI - EIS
+                        <span id="spinner-eis" class="htmx-indicator ms-1">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                        </span>
                     </button>
                     &nbsp;
-
                     <span id="llm1-timer" class="ms-2 text-muted"></span>
                 @endif
-                <br />
-
-                @if ($subdomain == 'eisdev1')
-                    <br />
-
-                    <button hx-indicator="#spinner3"
-                        hx-post="{{ route('user.llm.followupstatusreview.review', $workorder->W_WorkOrder) }}"
-                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}' hx-target="#llm_followupstatusreview"
-                        hx-target="#llm_followupstatusreview" hx-swap="innerHTML" hx-disabled-elt="self"
-                        class="btn btn-xs btn-success">
-                        AI Status Review <span id="spinner3" class="htmx-indicator"><i
-                                class="fa-solid fa-spinner fa-spin"></i></span>
-                    </button>
-
-                    &nbsp;
-
-                    <span id="llm_followupstatusreview-timer" class="ms-2 text-muted"></span>
-                @endif
-
-                &nbsp;
-
-                <br />
-                <div id="llm_followupstatusreview"></div>
-                <br />
-
 
             </div>
 
@@ -1429,11 +1450,11 @@
                 {{-- <button
                     class='btn btn-sm btn-secondary'
                     hx-get="/user/workordernotices/create?workorder_id={{ $workorder->W_WorkOrder }}"
-        hx-select="#content"
-        hx-on:click="htmx.toggleClass('#twentyfive', 'd-none')"
-        hx-target="#twentyfive">
-        25 Day Notice - HTMX
-        </button> --}}
+                    hx-select="#content"
+                    hx-on:click="htmx.toggleClass('#twentyfive', 'd-none')"
+                    hx-target="#twentyfive">
+                    25 Day Notice - HTMX
+                </button> --}}
             @endif
 
             @if (in_array($workorder->Company_C_Name, ['NORTHWESTERN MUTUAL', 'NORTHWESTERN MUTUAL LTC', 'MASSMUTUAL']))

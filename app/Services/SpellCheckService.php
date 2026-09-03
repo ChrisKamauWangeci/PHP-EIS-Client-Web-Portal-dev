@@ -19,6 +19,8 @@ class SpellCheckService
 
         // Return the same text with spelling corrected only. Do not rewrite or add words.
 
+        // @dd("Endpoint: $endpoint, Deployment: $deployment, Version: $version, API Key: $apiKey");
+
         if ($prompt === 'eis') {
             $systemPrompt = file_get_contents(
                 storage_path('app/private/ai.txt')
@@ -45,7 +47,7 @@ class SpellCheckService
             'max_tokens' => 500,
         ]);
 
-        dd($response->json());
+        // dd($response->json());
 
         return $response->json('choices.0.message.content');
     }
