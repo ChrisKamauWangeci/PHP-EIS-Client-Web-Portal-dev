@@ -23,7 +23,29 @@
                 background-color: transparent;
             }
         }
+
+        .markdown-content strong {
+            color: #00060f;
+            font-weight: 700;
+        }
+
+        .markdown-content p {
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.25rem;
+        }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
@@ -82,6 +104,172 @@
             document.body.addEventListener("htmx:afterSwap", function(e) {
                 initCounters();
             });
+
+            /////////////////////
+            document.body.addEventListener('htmx:afterSwap', function(evt) {
+                if (evt.detail.target.id === 'llm-eis-response') {
+                    try {
+                        const data = JSON.parse(evt.detail.xhr.responseText);
+
+                        evt.detail.target.innerHTML = `
+                <div class="card border my-2">
+
+                    <!-- Review Results Header -->
+                    <div class="card-header bg-light text-center py-2">
+                        <strong>Review Results</strong>
+                    </div>
+
+                    <!-- Metrics Summary -->
+                    <div class="card-body p-3">
+
+                        <!-- Summary -->
+                        <div class="border p-2 mb-3 bg-light rounded">
+                            <strong class="d-block mb-2">Review Summary</strong>
+
+                            <div class="small">
+                                <div class="d-flex py-1">
+                                    <div class="fw-semibold" style="width: 40%;">
+                                        Quality Score
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <strong>${data.quality_score || 'N/A'}</strong>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex py-1">
+                                    <div class="fw-semibold" style="width: 40%;">
+                                        Duplicate Risk
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <strong>${data.duplicate_risk || 'N/A'}</strong>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex py-1">
+                                    <div class="fw-semibold" style="width: 40%;">
+                                        Recommendation
+                                    </div>
+                                    <div style="width: 60%;">
+                                        <strong>${data.save_recommendation || 'N/A'}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Items / Alerts -->
+                        ${
+                            data.alerts_triggered && data.alerts_triggered.length
+                                ? `
+                                                                                    <div class="border p-2 mb-3 bg-light rounded">
+                                                                                        <strong class="d-block mb-1">
+                                                                                            Required Actions Before Save:
+                                                                                        </strong>
+
+                                                                                        <ul class="mb-0 ps-3 small">
+                                                                                            ${data.alerts_triggered
+                                                                                                .map((alert) => `<li class="mb-1">${alert}</li>`)
+                                                                                                .join('')}
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                `
+                                : ''
+                        }
+
+                        <!-- Evaluation -->
+                        <div class="border p-2 mb-3 bg-light rounded">
+                            <strong class="d-block mb-1">
+                                Evaluation:
+                            </strong>
+
+                            <div class="small text-dark">
+                                ${data.reason || 'None provided.'}
+                            </div>
+                        </div>
+
+                        <!-- Missing Information -->
+                        ${
+                            data.missing_information && data.missing_information.length
+                                ? `
+                                                                                    <div class="border p-2 mb-3 bg-light rounded">
+                                                                                        <strong class="d-block mb-1">
+                                                                                            Missing Details:
+                                                                                        </strong>
+
+                                                                                        <div class="small text-dark">
+                                                                                            ${
+                                                                                                Array.isArray(data.missing_information)
+                                                                                                    ? data.missing_information.join(', ')
+                                                                                                    : data.missing_information
+                                                                                            }
+                                                                                        </div>
+                                                                                    </div>
+                                                                                `
+                                : ''
+                        }
+
+                        <!-- Suggested Questions -->
+                        ${
+                            data.suggested_questions && data.suggested_questions.length
+                                ? `
+                                                                                <div class="border p-2 mb-3 bg-light rounded">
+                                                                                    <strong class="d-block mb-1">
+                                                                                        Recommended Provider Questions:
+                                                                                    </strong>
+
+                                                                                    <ul class="mb-0 ps-3 small">
+                                                                                        ${data.suggested_questions
+                                                                                            .map((q) => `<li class="mb-1">${q}</li>`)
+                                                                                            .join('')}
+                                                                                    </ul>
+                                                                                </div>
+                                                                            `
+                                : ''
+                        }
+
+                        <!-- Suggested Status Note -->
+                        <div class="pt-2 border-top mt-2">
+                            <label
+                                for="ai-revised-target"
+                                class="fw-bold form-label mb-1"
+                            >
+                                Suggested Status Note:
+                            </label>
+
+                            <textarea
+                                id="ai-revised-target"
+                                class="form-control form-control-sm mb-2"
+                                rows="5"
+                            >${data.revised_status_note || ''}</textarea>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small">
+                                    ${(data.revised_status_note || '').length}/900 characters
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-dark"
+                                    onclick="
+                                        document.getElementById('note').value =
+                                        document.getElementById('ai-revised-target').value
+                                    "
+                                >
+                                    Apply to Note Field
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+                    } catch (e) {
+                        console.error('Failed to parse AI JSON response:', e);
+                    }
+                }
+            });
+
+
+            /////////////////////
 
             @if ($subdomain == 'eisdev')
                 let llm1Start = 0;
@@ -1027,29 +1215,38 @@
 
                 </form>
 
-                {{-- @if (true) --}}
-                <br />
+                @if (true)
+                    <br />
 
-                <div id="llm1"></div>
+                    <div id="llm1"></div>
 
-                <button hx-indicator="#spinner" hx-post="/user/spell/chat"
-                    hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                    hx-vals='js:{ text: document.getElementById("note").value, prompt: "basic" }' hx-target="#llm1"
-                    hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
-                    AI Azure OpenAI - Basic<span id="spinner" class="htmx-indicator"><i
-                            class="fa-solid fa-spinner fa-spin"></i></span>
-                </button>
-                &nbsp;
-                <button hx-indicator="#spinner" hx-post="/user/spell/chat"
-                    hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
-                    hx-vals='js:{ text: document.getElementById("note").value, prompt: "eis" }' hx-target="#llm1"
-                    hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
-                    AI Azure OpenAI - EIS<span id="spinner" class="htmx-indicator"><i
-                            class="fa-solid fa-spinner fa-spin"></i></span>
-                </button>
-                &nbsp;
-                <span id="llm1-timer" class="ms-2 text-muted"></span>
-                {{-- @endif --}}
+                    <button hx-indicator="#spinner" hx-post="/user/spell/chat"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
+                        hx-vals='js:{ text: document.getElementById("note").value, prompt: "basic" }'
+                        hx-target="#llm1" hx-swap="innerHTML" hx-disabled-elt="self" class="btn btn-xs btn-success">
+                        AI Azure OpenAI - Basic<span id="spinner" class="htmx-indicator"><i
+                                class="fa-solid fa-spinner fa-spin"></i></span>
+                    </button>
+                    &nbsp;
+
+
+                    <!-- HTMX Button -->
+                    <button hx-indicator="#spinner-eis" hx-post="/user/spell/chat"
+                        hx-headers='{"X-CSRF-TOKEN":"{{ csrf_token() }}"}'
+                        hx-vals='js:{ text: document.getElementById("note").value, prompt: "eis" }'
+                        hx-target="#llm-eis-response" hx-swap="innerHTML" hx-disabled-elt="self"
+                        class="btn btn-xs btn-success">
+                        AI Azure OpenAI - EIS
+                        <span id="spinner-eis" class="htmx-indicator ms-1">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                        </span>
+                    </button>
+                    &nbsp;
+                    <!-- Display Container for EIS Analysis -->
+                    <div id="llm-eis-response" class="my-2"></div>
+                    &nbsp;
+                    <span id="llm1-timer" class="ms-2 text-muted"></span>
+                @endif
 
             </div>
 
