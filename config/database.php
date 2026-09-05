@@ -5,15 +5,17 @@ declare(strict_types=1);
 use Illuminate\Support\Str;
 use Pdo\Mysql;
 
-$subdomain = explode('.', $_SERVER['HTTP_HOST'] ?? 'eisuat.expressimagingservices.net')[0];
-if (! in_array($subdomain, ['eisuat', 'eisdev', 'eis', 'nyl', 'usaa'])) {
+$host = explode(':', $_SERVER['HTTP_HOST'] ?? 'eisuat.expressimagingservices.net')[0];
+$subdomain = explode('.', $host)[0];
+
+if (!in_array($host, ['localhost', '127.0.0.1']) &&
+    !in_array($subdomain, ['eisuat', 'eisdev', 'eis', 'nyl', 'usaa'])) {
     exit('invalid subdomain');
 }
 
 $dbconnection = $subdomain;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -53,25 +55,26 @@ return [
         //     'transaction_mode' => 'DEFERRED',
         // ],
 
-        // 'mysql' => [
-        //     'driver' => 'mysql',
-        //     'url' => env('DB_URL'),
-        //     'host' => env('DB_HOST', '127.0.0.1'),
-        //     'port' => env('DB_PORT', '3306'),
-        //     'database' => env('DB_DATABASE', 'laravel'),
-        //     'username' => env('DB_USERNAME', 'root'),
-        //     'password' => env('DB_PASSWORD', ''),
-        //     'unix_socket' => env('DB_SOCKET', ''),
-        //     'charset' => env('DB_CHARSET', 'utf8mb4'),
-        //     'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
-        //     'prefix' => '',
-        //     'prefix_indexes' => true,
-        //     'strict' => true,
-        //     'engine' => null,
-        //     'options' => extension_loaded('pdo_mysql') ? array_filter([
-        //         (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-        //     ]) : [],
-        // ],
+        'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST'
+),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'unix_socket' => env('DB_SOCKET'),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
 
         // 'mariadb' => [
         //     'driver' => 'mariadb',
@@ -126,12 +129,12 @@ return [
         'mysql_fax' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_FAX', '127.0.0.1'),
-            'port' => env('DB_PORT_FAX', '3306'),
-            'database' => env('DB_DATABASE_FAX', 'laravel'),
-            'username' => env('DB_USERNAME_FAX', 'root'),
-            'password' => env('DB_PASSWORD_FAX', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'unix_socket' => env('DB_SOCKET'),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
             'prefix' => '',
@@ -139,18 +142,19 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
 
         'eisdev' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_EISUAT', 'localhost'),
-            'port' => env('DB_PORT_EISUAT', '1433'),
-            'database' => env('DB_DATABASE_EISUAT', 'laravel'),
-            'username' => env('DB_USERNAME_EISUAT', 'root'),
-            'password' => env('DB_PASSWORD_EISUAT', ''),
+            'host' => env('DB_HOST'),
+
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -161,11 +165,11 @@ return [
         'eisuat' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_EISUAT', 'localhost'),
-            'port' => env('DB_PORT_EISUAT', '1433'),
-            'database' => env('DB_DATABASE_EISUAT', 'laravel'),
-            'username' => env('DB_USERNAME_EISUAT', 'root'),
-            'password' => env('DB_PASSWORD_EISUAT', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -176,11 +180,11 @@ return [
         'eis' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_EIS', 'localhost'),
-            'port' => env('DB_PORT_EIS', '1433'),
-            'database' => env('DB_DATABASE_EIS', 'laravel'),
-            'username' => env('DB_USERNAME_EIS', 'root'),
-            'password' => env('DB_PASSWORD_EIS', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -191,11 +195,11 @@ return [
         'usaa' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_USAA', 'localhost'),
-            'port' => env('DB_PORT_USAA', '1433'),
-            'database' => env('DB_DATABASE_USAA', 'laravel'),
-            'username' => env('DB_USERNAME_USAA', 'root'),
-            'password' => env('DB_PASSWORD_USAA', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -206,11 +210,11 @@ return [
         'nyl' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_NYL', 'localhost'),
-            'port' => env('DB_PORT_NYL', '1433'),
-            'database' => env('DB_DATABASE_NYL', 'laravel'),
-            'username' => env('DB_USERNAME_NYL', 'root'),
-            'password' => env('DB_PASSWORD_NYL', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -221,11 +225,11 @@ return [
         'ehr' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_EHR', 'localhost'),
-            'port' => env('DB_PORT_EHR', '1433'),
-            'database' => env('DB_DATABASE_EHR', 'laravel'),
-            'username' => env('DB_USERNAME_EHR', 'root'),
-            'password' => env('DB_PASSWORD_EHR', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -236,11 +240,11 @@ return [
         'eisprocesses' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST_EISPROCESSES', 'localhost'),
-            'port' => env('DB_PORT_EISPROCESSES', '1433'),
-            'database' => env('DB_DATABASE_EISPROCESSES', 'laravel'),
-            'username' => env('DB_USERNAME_EISPROCESSES', 'root'),
-            'password' => env('DB_PASSWORD_EISPROCESSES', ''),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
@@ -253,9 +257,9 @@ return [
             'url' => env('DB_URL'),
             'host' => env('DB_HOST_APSSTAGINGDATA', 'localhost'),
             'port' => env('DB_PORT_APSSTAGINGDATA', '1433'),
-            'database' => env('DB_DATABASE_APSSTAGINGDATA', 'laravel'),
-            'username' => env('DB_USERNAME_APSSTAGINGDATA', 'root'),
-            'password' => env('DB_PASSWORD_APSSTAGINGDATA', ''),
+            'database' => env('DB_DATABASE_APSSTAGINGDATA'),
+            'username' => env('DB_USERNAME_APSSTAGINGDATA'),
+            'password' => env('DB_PASSWORD_APSSTAGINGDATA'),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
